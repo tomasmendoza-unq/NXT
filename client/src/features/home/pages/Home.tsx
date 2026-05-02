@@ -1,12 +1,16 @@
-import { ProductsContainer } from "../../../shared/components/ProductsContainer";
-import { TitleContainer } from "../../../shared/components/TitleContainer";
+import { ProductsContainer } from "../../../shared/components/product/ProductsContainer";
+import { BrandsContainer } from "../../../shared/components/brand/BrandsContainer";
+import { TitleContainer } from "../../../shared/components/general/TitleContainer";
 import { featuredProducts } from "./mockProducts";
+import { brands } from "./mockBrands";
+import "./styles/style.css";
 
 export const Home = () => {
     return (
-        <section className="container mx-auto px-4 py-8">
-            <TitleContainer title="Productos Destacados" />
+        <section className="w-full mx-auto section-container">
+            <TitleContainer title="NC" />
             <ProductsContainer products={featuredProducts} />
+            <BrandsContainer brands={brands} />
         </section>
     );
 };
