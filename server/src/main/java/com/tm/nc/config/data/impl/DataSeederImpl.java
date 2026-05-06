@@ -9,6 +9,8 @@ import com.tm.nc.domain.product.service.ProductService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 @Profile("dev")
 public class DataSeederImpl implements DataSeeder {
@@ -50,7 +52,9 @@ public class DataSeederImpl implements DataSeeder {
                 .model("jordan")
                 .build();
 
-        product.addDetails(productDetail);
+
+        productDetail.setProduct(product);
+        product.addDetails(List.of(productDetail));
 
         productService.save(product);
     }

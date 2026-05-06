@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
@@ -48,6 +50,7 @@ public class ProductServiceTest {
                 .size(39)
                 .price(200D)
                 .color(color)
+                .image("https://authogar.vtexassets.com/arquivos/ids/214811-800-auto?v=638721421030330000&width=800&height=auto&aspect=true")
                 .quantity(10)
                 .build();
 
@@ -57,7 +60,7 @@ public class ProductServiceTest {
                 .model("jordan")
                 .build();
 
-        product.addDetails(productDetail);
+        product.addDetails(List.of(productDetail));
     }
 
     @Test

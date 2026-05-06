@@ -1,9 +1,17 @@
 interface ProductImageProps {
-    image: string;
+    image?: string;
     name: string;
 }
 
 export const ProductImage = ({ image, name }: ProductImageProps) => {
+    if (!image) {
+        return (
+            <div className="relative overflow-hidden bg-gray-100 mb-2 w-full aspect-square flex items-center justify-center">
+                <span className="text-gray-400">Sin imagen</span>
+            </div>
+        );
+    }
+
     return (
         <div className="relative overflow-hidden bg-gray-100 mb-2 w-full aspect-square">
             <img

@@ -16,6 +16,7 @@ interface BackendProductDetail {
     price: number;
     color: BackendColor;
     quantity: number;
+    image: string;
 }
 
 interface BackendBrand {
@@ -57,6 +58,7 @@ function adaptProductDetail(detail: BackendProductDetail): ProductDetails {
         price: detail.price,
         color: adaptColor(detail.color),
         quantity: detail.quantity,
+        image: detail.image,
     };
 }
 

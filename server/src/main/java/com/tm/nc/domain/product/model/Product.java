@@ -25,7 +25,7 @@ public class Product {
     @Builder.Default
     private List<ProductDetail> details = new ArrayList<>();
 
-    public void addDetails(ProductDetail productDetail) {
-        details.add(productDetail);
+    public void addDetails(List<ProductDetail> productDetail) {
+        details.addAll(productDetail);
     }
 }

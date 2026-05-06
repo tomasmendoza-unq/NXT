@@ -6,4 +6,5 @@ export interface ProductDetails {
     color: ColorProps;
     size: number;
     quantity: number;
+    image: string;
 }
