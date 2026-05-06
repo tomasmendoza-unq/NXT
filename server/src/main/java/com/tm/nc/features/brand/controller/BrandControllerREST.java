@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController()
-@RequestMapping("/product")
+@RequestMapping("/brand")
 @Tag(name = "Brand", description = "Operaciones relacionadas con la gestión de las marcas")
 public class BrandControllerREST {
 
