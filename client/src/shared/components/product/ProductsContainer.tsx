@@ -1,6 +1,6 @@
 import type { ProductProps } from "../../types/Product";
 import { SubSections } from "../general/SubSections";
-import { ProductsGrid } from "./ProductGrid";
+import { ProductCarousel } from "./ProductCarousel";
 
 export const ProductsContainer = ({
     products,
@@ -9,7 +9,7 @@ export const ProductsContainer = ({
 }) => {
     return (
         <SubSections subTitle="Productos">
-            <ProductsGrid products={products} />
+            <ProductCarousel products={products} />
         </SubSections>
     );
 };

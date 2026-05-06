@@ -1,7 +1,10 @@
+import type { BrandProps } from "./Brand";
+import type { ProductDetails } from "./ProductDetails";
+
 export interface ProductProps {
     image: string;
     name: string;
-    price: number;
-    description: string;
-    rating?: number;
+    productDetails: ProductDetails[];
+    productModel: string;
+    productBrand: BrandProps;
 }
