@@ -12,13 +12,13 @@ import lombok.NoArgsConstructor;
 public class ProductDetail {
     private Long id;
 
-    private Product product;
-
     private int size;
 
     private double price;
 
     private Color color;
+
+    private String image;
 
     private int quantity;
 }
