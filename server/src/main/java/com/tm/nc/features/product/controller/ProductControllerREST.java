@@ -7,10 +7,7 @@ import com.tm.nc.shared.dto.PageResponseDTO;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController()
 @RequestMapping("/product")
@@ -35,5 +32,14 @@ public class ProductControllerREST {
         PageResponseDTO<ProductResponseDTO> response = PageResponseDTO.from(productResponseDTOPage);
 
         return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/{idProduct}")
+    public ResponseEntity<ProductResponseDTO> getProductById(@PathVariable Long idProduct) {
+        Product product = productService.getById(idProduct);
+
+        ProductResponseDTO productResponseDTO = ProductResponseDTO.fromModel(product);
+
+        return ResponseEntity.ok(productResponseDTO);
     }
 }
