@@ -8,6 +8,7 @@ public record ProductResponseDetailsDTO(
          Long id,
          int size,
          double price,
+         String image,
          ColorResponseDTO color,
          int quantity
 ) {
@@ -16,6 +17,7 @@ public record ProductResponseDetailsDTO(
                 productDetail.getId(),
                 productDetail.getSize(),
                 productDetail.getPrice(),
+                productDetail.getImage(),
                 ColorResponseDTO.fromModel(productDetail.getColor()),
                 productDetail.getQuantity()
         );
