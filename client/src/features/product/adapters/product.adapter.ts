@@ -71,6 +71,7 @@ function adaptBrand(brand: BackendBrand): BrandProps {
 
 export function adaptProduct(product: BackendProduct): ProductProps {
     return {
+        id: product.id,
         image: "",
         name: product.name,
         productModel: product.model,

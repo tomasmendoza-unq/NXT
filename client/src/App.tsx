@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import { Home } from "./features/home/pages/Home";
+import { ProductDetail } from "./features/product/pages/ProductDetail";
 
 function About() {
     return (
@@ -15,6 +16,10 @@ function App() {
             <Route
                 path="/"
                 element={<Home />}
+            />
+            <Route
+                path="/product/:id"
+                element={<ProductDetail />}
             />
             <Route
                 path="/about"
