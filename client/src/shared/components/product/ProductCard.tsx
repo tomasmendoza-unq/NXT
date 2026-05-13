@@ -1,16 +1,22 @@
 import type { ProductProps } from "../../types/Product";
 import { ProductImage } from "./ProductImage";
+import { useNavigate } from "react-router-dom";
 
 export const ProductCard = ({
+    id,
     name,
     productModel,
     productDetails,
 }: ProductProps) => {
+    const navigate = useNavigate();
     const price = productDetails[0]?.price ?? 0;
     const productImage = productDetails[0]?.image;
 
     return (
-        <div className="bg-white rounded-none overflow-hidden group cursor-pointer">
+        <div
+            onClick={() => navigate(`/product/${id}`)}
+            className="bg-white rounded-none overflow-hidden group cursor-pointer hover:shadow-lg transition-shadow"
+        >
             <ProductImage
                 image={productImage}
                 name={name}
