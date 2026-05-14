@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { TitleContainer } from "../general/TitleContainer";
 import { links } from "./navLink";
 import "./styles/styles.css";
+import { IconText } from "../iconText/iconText";
 
 export const Sidebard = () => {
     return (
@@ -11,10 +12,10 @@ export const Sidebard = () => {
                 {links.map((link) => (
                     <li key={link.path}>
                         <Link
-                            to={link.path}
                             className="sidebar-link"
+                            to={link.path}
                         >
-                            {link.name}
+                            <IconText icon={link.icon}>{link.label}</IconText>
                         </Link>
                     </li>
                 ))}

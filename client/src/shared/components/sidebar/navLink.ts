@@ -1,14 +1,21 @@
+import HomeIcon from "@mui/icons-material/Home";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import LocalOfferIcon from "@mui/icons-material/LocalOffer";
+
 export const links = [
     {
-        name: "Inicio",
+        label: "Inicio",
         path: "/",
+        icon: HomeIcon,
     },
     {
-        name: "Productos",
+        label: "Productos",
         path: "/products",
+        icon: ShoppingCartIcon,
     },
     {
-        name: "Marcas",
+        label: "Marcas",
         path: "/brands",
+        icon: LocalOfferIcon,
     },
 ];
