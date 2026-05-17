@@ -1,4 +1,5 @@
-import type { ProductProps } from "../../../shared/types/Product";
+import type { ProductProps } from "../../../../../../shared/types/Product";
+import "./ProductSelectors.css";
 
 interface ProductSelectorsProps {
     product: ProductProps;
@@ -14,54 +15,50 @@ export const ProductSelectors = ({
     const currentDetail = product.productDetails[selectedDetail];
 
     return (
-        <div className="mb-6 space-y-6">
-            {/* Color */}
-            <div>
-                <p className="text-sm font-semibold text-gray-900 mb-3">
-                    Color:{" "}
-                    <span className="text-gray-600">
-                        {currentDetail?.color.name}
-                    </span>
+        <div className="product-selectors">
+            <div className="product-selectors__group">
+                <p className="product-selectors__label">
+                    Color <span>{currentDetail?.color.name}</span>
                 </p>
-                <div className="flex gap-3 flex-wrap">
+                <div className="product-selectors__options">
                     {product.productDetails.map((detail, idx) => (
                         <button
                             key={detail.id}
                             onClick={() => onSelectDetail(idx)}
-                            className={`flex items-center gap-2 px-4 py-2 rounded border-2 transition ${
+                            className={`product-selectors__color-option ${
                                 selectedDetail === idx
-                                    ? "border-blue-600 bg-blue-50"
-                                    : "border-gray-300 hover:border-gray-400"
+                                    ? "product-selectors__option--selected"
+                                    : ""
                             }`}
+                            type="button"
                         >
-                            <div
-                                className="w-5 h-5 rounded-full border border-gray-300"
+                            <span
+                                className="product-selectors__swatch"
                                 style={{
                                     backgroundColor: detail.color.color,
                                 }}
                             />
-                            <span className="text-sm">{detail.color.name}</span>
+                            <span>{detail.color.name}</span>
                         </button>
                     ))}
                 </div>
             </div>
 
-            {/* Talla */}
-            <div>
-                <p className="text-sm font-semibold text-gray-900 mb-3">
-                    Talla:{" "}
-                    <span className="text-gray-600">{currentDetail?.size}</span>
+            <div className="product-selectors__group">
+                <p className="product-selectors__label">
+                    Talla <span>{currentDetail?.size}</span>
                 </p>
-                <div className="flex gap-2 flex-wrap">
+                <div className="product-selectors__size-options">
                     {product.productDetails.map((detail, idx) => (
                         <button
                             key={detail.id}
                             onClick={() => onSelectDetail(idx)}
-                            className={`px-6 py-2 rounded border-2 font-semibold transition ${
+                            className={`product-selectors__size-option ${
                                 selectedDetail === idx
-                                    ? "border-blue-600 bg-blue-50 text-blue-600"
-                                    : "border-gray-300 hover:border-gray-400"
+                                    ? "product-selectors__option--selected"
+                                    : ""
                             }`}
+                            type="button"
                         >
                             {detail.size}
                         </button>
