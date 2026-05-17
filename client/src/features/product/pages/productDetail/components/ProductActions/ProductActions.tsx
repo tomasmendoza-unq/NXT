@@ -8,6 +8,7 @@ interface ProductActionsProps {
     hasStock: boolean;
     maxQuantity: number;
     selectedQuantity: number;
+    onAddToCart: () => void;
     onQuantityChange: (quantity: number) => void;
 }
 
@@ -15,6 +16,7 @@ export const ProductActions = ({
     hasStock,
     maxQuantity,
     selectedQuantity,
+    onAddToCart,
     onQuantityChange,
 }: ProductActionsProps) => {
     const updateQuantity = (quantity: number) => {
@@ -108,8 +110,13 @@ export const ProductActions = ({
                 </p>
             </div>
             <button
-                disabled={!hasStock}
+                disabled={
+                    !hasStock ||
+                    selectedQuantity < 1 ||
+                    selectedQuantity > maxQuantity
+                }
                 className="product-actions__cart-button"
+                onClick={onAddToCart}
                 type="button"
             >
                 <AddShoppingCartIcon fontSize="small" />

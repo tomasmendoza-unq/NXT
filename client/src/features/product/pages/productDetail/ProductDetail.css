@@ -102,6 +102,22 @@
     font-weight: 700;
 }
 
+.product-detail__toast {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 20;
+    max-width: calc(100vw - 40px);
+    padding: 14px 18px;
+    border: 1px solid rgba(22, 163, 74, 0.35);
+    border-radius: 8px;
+    background: #16a34a;
+    color: #fff;
+    box-shadow: var(--shadow);
+    font-size: 14px;
+    font-weight: 800;
+}
+
 @keyframes shimmer {
     100% {
         transform: translateX(100%);
