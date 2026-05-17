@@ -1,5 +1,5 @@
-import type { ProductProps } from "../../../shared/types/Product";
-import styles from "./ProductGallery.module.css";
+import type { ProductProps } from "../../../../../../shared/types/Product";
+import "./ProductGallery.css";
 
 interface ProductGalleryProps {
     product: ProductProps;
@@ -15,41 +15,42 @@ export const ProductGallery = ({
     const currentDetail = product.productDetails[selectedDetail];
 
     return (
-        <div className={styles.gallery}>
-            {/* Imagen principal */}
-            <div className={styles.mainImage}>
+        <div className="product-gallery">
+            <div className="product-gallery__main-image">
                 {currentDetail?.image ? (
                     <img
                         src={currentDetail.image}
                         alt={product.name}
-                        className={styles.mainImageContent}
+                        className="product-gallery__main-image-content"
                     />
                 ) : (
-                    <span className={styles.emptyState}>Sin imagen</span>
+                    <span className="product-gallery__empty-state">
+                        Sin imagen
+                    </span>
                 )}
             </div>
 
-            {/* Thumbnails */}
             {product.productDetails.length > 1 && (
-                <div className={styles.thumbnails}>
+                <div className="product-gallery__thumbnails">
                     {product.productDetails.map((detail, idx) => (
                         <button
                             key={detail.id}
                             onClick={() => onSelectDetail(idx)}
-                            className={`${styles.thumbnailButton} ${
+                            className={`product-gallery__thumbnail-button ${
                                 selectedDetail === idx
-                                    ? styles.thumbnailButtonSelected
+                                    ? "product-gallery__thumbnail-button--selected"
                                     : ""
                             }`}
+                            type="button"
                         >
                             {detail.image ? (
                                 <img
                                     src={detail.image}
                                     alt=""
-                                    className={styles.thumbnailImage}
+                                    className="product-gallery__thumbnail-image"
                                 />
                             ) : (
-                                <div className={styles.thumbnailEmpty}>
+                                <div className="product-gallery__thumbnail-empty">
                                     N/A
                                 </div>
                             )}

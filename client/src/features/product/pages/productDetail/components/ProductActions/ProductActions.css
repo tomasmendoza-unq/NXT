@@ -1,0 +1,106 @@
+.product-actions {
+    display: grid;
+    gap: 18px;
+    margin-bottom: 24px;
+}
+
+.product-actions__quantity {
+    display: grid;
+    gap: 8px;
+}
+
+.product-actions__quantity-label {
+    color: var(--text-h);
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.product-actions__quantity-control {
+    display: grid;
+    grid-template-columns: 44px minmax(0, 84px) 44px;
+    width: max-content;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: color-mix(in srgb, var(--code-bg) 70%, transparent);
+}
+
+.product-actions__quantity-button,
+.product-actions__quantity-input {
+    min-height: 42px;
+    border: 0;
+    background: transparent;
+    color: var(--text-h);
+    font: inherit;
+}
+
+.product-actions__quantity-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition:
+        background 160ms ease,
+        opacity 160ms ease;
+}
+
+.product-actions__quantity-button:hover:not(:disabled) {
+    background: var(--accent-bg);
+}
+
+.product-actions__quantity-button:disabled {
+    color: var(--text);
+    cursor: not-allowed;
+    opacity: 0.55;
+}
+
+.product-actions__quantity-input {
+    width: 84px;
+    border-inline: 1px solid var(--border);
+    text-align: center;
+    font-weight: 800;
+    outline: none;
+}
+
+.product-actions__quantity-input:disabled {
+    color: var(--text);
+}
+
+.product-actions__quantity-help {
+    color: var(--text);
+    font-size: 13px;
+}
+
+.product-actions__cart-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    min-height: 50px;
+    border: 1px solid var(--accent);
+    border-radius: 6px;
+    background: var(--accent);
+    color: #fff;
+    font: inherit;
+    font-size: 16px;
+    font-weight: 800;
+    cursor: pointer;
+    transition:
+        filter 160ms ease,
+        transform 160ms ease,
+        opacity 160ms ease;
+}
+
+.product-actions__cart-button:hover:not(:disabled) {
+    transform: translateY(-1px);
+    filter: brightness(1.05);
+}
+
+.product-actions__cart-button:disabled {
+    border-color: var(--border);
+    background: var(--border);
+    color: var(--text);
+    cursor: not-allowed;
+    opacity: 0.75;
+}

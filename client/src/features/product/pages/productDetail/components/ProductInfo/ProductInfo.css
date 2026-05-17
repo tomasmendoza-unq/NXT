@@ -1,0 +1,33 @@
+.product-info {
+    margin-bottom: 22px;
+}
+
+.product-info__brand {
+    margin-bottom: 8px;
+    color: var(--accent);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0;
+    text-transform: uppercase;
+}
+
+.product-info__title {
+    margin: 0;
+    color: var(--text-h);
+    font-size: 32px;
+    line-height: 1.12;
+    letter-spacing: 0;
+    font-weight: 700;
+}
+
+.product-info__model {
+    margin-top: 10px;
+    color: var(--text);
+    font-size: 15px;
+}
+
+@media (max-width: 640px) {
+    .product-info__title {
+        font-size: 26px;
+    }
+}
