@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import { Home } from "./features/home/pages/Home";
 import { MainLayout } from "./shared/layouts/MainLayout";
-import { ProductRoutes } from "./features/product/routes/Product.routes";
+import { productRoutes } from "./features/product/routes/Product.routes";
 
 function App() {
     return (
@@ -11,7 +11,7 @@ function App() {
                     path="/"
                     element={<Home />}
                 />
-                <ProductRoutes />
+                {productRoutes}
                 <Route
                     path="/about"
                     element={<h1>About</h1>}

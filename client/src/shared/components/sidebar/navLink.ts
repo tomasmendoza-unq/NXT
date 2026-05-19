@@ -10,7 +10,7 @@ export const links = [
     },
     {
         label: "Productos",
-        path: "/products",
+        path: "/product",
         icon: ShoppingCartIcon,
     },
     {
