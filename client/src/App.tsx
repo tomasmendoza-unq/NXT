@@ -3,7 +3,7 @@ import { Home } from "./features/home/pages/Home";
 import { ProductDetail } from "./features/product/pages/ProductDetail";
 import { MainLayout } from "./shared/layouts/MainLayout";
 import { AdminPanel } from "./features/admin/pages/AdminPanel";
-import { AddProduct } from "./features/admin/pages/AddProduct";
+import { AddProduct } from "./features/admin/pages/addProduct";
 
 function App() {
   return (
