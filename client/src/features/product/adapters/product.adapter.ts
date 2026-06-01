@@ -1,22 +1,29 @@
 import type { ProductProps } from "../../../shared/types/Product";
-import type { ProductDetails } from "../../../shared/types/ProductDetails";
+import type {
+    ProductDetails,
+    ProductSizeOption,
+    ProductVariant,
+} from "../../../shared/types/ProductDetails";
 import type { BrandProps } from "../../../shared/types/Brand";
 import type { ColorProps } from "../../../shared/types/Color";
 
-// Tipos del backend (response)
 interface BackendColor {
     id: number;
     name: string;
     color: string;
 }
 
-interface BackendProductDetail {
+interface BackendProductSize {
     id: number;
     size: number;
     price: number;
-    color: BackendColor;
     quantity: number;
+}
+
+interface BackendProductVariant {
+    color: BackendColor;
     image: string;
+    sizes: BackendProductSize[];
 }
 
 interface BackendBrand {
@@ -29,7 +36,7 @@ export interface BackendProduct {
     id: number;
     name: string;
     model: string;
-    details: BackendProductDetail[];
+    variants: BackendProductVariant[];
     brand: BackendBrand;
 }
 
@@ -51,15 +58,31 @@ function adaptColor(color: BackendColor): ColorProps {
     };
 }
 
-function adaptProductDetail(detail: BackendProductDetail): ProductDetails {
+function adaptProductSize(size: BackendProductSize): ProductSizeOption {
     return {
-        id: detail.id,
-        size: detail.size,
-        price: detail.price,
-        color: adaptColor(detail.color),
-        quantity: detail.quantity,
-        image: detail.image,
+        id: size.id,
+        size: size.size,
+        price: size.price,
+        quantity: size.quantity,
     };
+}
+
+function adaptProductVariant(variant: BackendProductVariant): ProductVariant {
+    return {
+        color: adaptColor(variant.color),
+        image: variant.image,
+        sizes: variant.sizes.map(adaptProductSize),
+    };
+}
+
+function adaptProductDetails(variants: ProductVariant[]): ProductDetails[] {
+    return variants.flatMap((variant) =>
+        variant.sizes.map((size) => ({
+            ...size,
+            color: variant.color,
+            image: variant.image,
+        })),
+    );
 }
 
 function adaptBrand(brand: BackendBrand): BrandProps {
@@ -70,12 +93,16 @@ function adaptBrand(brand: BackendBrand): BrandProps {
 }
 
 export function adaptProduct(product: BackendProduct): ProductProps {
+    const productVariants = product.variants.map(adaptProductVariant);
+    const productDetails = adaptProductDetails(productVariants);
+
     return {
         id: product.id,
-        image: "",
+        image: productVariants[0]?.image ?? "",
         name: product.name,
         productModel: product.model,
-        productDetails: product.details.map(adaptProductDetail),
+        productDetails,
+        productVariants,
         productBrand: adaptBrand(product.brand),
     };
 }

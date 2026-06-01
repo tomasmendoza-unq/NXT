@@ -1,11 +1,12 @@
 import type { BrandProps } from "./Brand";
-import type { ProductDetails } from "./ProductDetails";
+import type { ProductDetails, ProductVariant } from "./ProductDetails";
 
 export interface ProductProps {
     id: number;
-    image?: string;
+    image: string;
     name: string;
     productDetails: ProductDetails[];
+    productVariants: ProductVariant[];
     productModel: string;
     productBrand: BrandProps;
 }
