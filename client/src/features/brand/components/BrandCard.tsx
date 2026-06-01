@@ -1,4 +1,4 @@
-import type { BrandProps } from "../../types/Brand";
+import type { BrandProps } from "../../../shared/types/Brand";
 import { BrandImage } from "./BrandImage";
 
 export const BrandCard = ({ image, name }: BrandProps) => {

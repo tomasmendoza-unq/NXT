@@ -1,9 +1,9 @@
-import { ProductsContainer } from "../../../shared/components/product/ProductsContainer";
+import { ProductsContainer } from "../../product/components/ProductsContainer";
 import "./styles/style.css";
 import { useEffect } from "react";
 import { useGetAllProducts } from "../../product";
 import { useGetAllBrands } from "../../brand";
-import { BrandsContainer } from "../../../shared/components/brand/BrandsContainer";
+import { BrandsContainer } from "../../brand/components/BrandsContainer";
 
 export const Home = () => {
     const { products, fetch } = useGetAllProducts();

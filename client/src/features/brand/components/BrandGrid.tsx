@@ -1,4 +1,4 @@
-import type { BrandProps } from "../../types/Brand";
+import type { BrandProps } from "../../../shared/types/Brand";
 import { BrandCard } from "./BrandCard";
 import styles from "./styles/BrandGrid.module.css";
 
