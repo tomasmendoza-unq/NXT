@@ -1,4 +1,4 @@
-import type { ProductProps } from "../../types/Product";
+import type { ProductProps } from "../../../shared/types/Product";
 import { ProductCard } from "./ProductCard";
 import styles from "./styles/ProductGrid.module.css";
 

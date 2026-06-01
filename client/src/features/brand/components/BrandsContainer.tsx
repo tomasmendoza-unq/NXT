@@ -1,5 +1,5 @@
-import type { BrandProps } from "../../types/Brand";
-import { SubSections } from "../general/SubSections";
+import type { BrandProps } from "../../../shared/types/Brand";
+import { SubSections } from "../../../shared/layouts/main/components/titleContainer/SubSections";
 import { BrandsGrid } from "./BrandGrid";
 
 export const BrandsContainer = ({ brands }: { brands: BrandProps[] }) => {

@@ -1,4 +1,4 @@
-import type { ProductProps } from "../../types/Product";
+import type { ProductProps } from "../../../shared/types/Product";
 import { ProductImage } from "./ProductImage";
 import { useNavigate } from "react-router-dom";
 

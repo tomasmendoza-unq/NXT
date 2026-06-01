@@ -3,7 +3,7 @@ import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "./styles/ProductCarousel.css";
-import type { ProductProps } from "../../types/Product";
+import type { ProductProps } from "../../../shared/types/Product";
 import { ProductCard } from "./ProductCard";
 
 export const ProductCarousel = ({ products }: { products: ProductProps[] }) => {
