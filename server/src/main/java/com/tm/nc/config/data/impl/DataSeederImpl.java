@@ -28,33 +28,74 @@ public class DataSeederImpl implements DataSeeder {
 
     @Override
     public void run(String... args) throws Exception {
-        brand = Brand.builder()
+        Brand brand = Brand.builder()
                 .name("nike")
                 .logo("https://acdn-us.mitiendanube.com/stores/006/133/691/products/nike-logo-24edf4f26f5a40025b17503629706845-1024-1024.webp")
                 .build();
 
-        color = Color.builder()
-                .name("red")
+        Color black = Color.builder()
+                .name("black")
                 .color("#000000")
                 .build();
 
-        productDetail = ProductDetail.builder()
-                .size(39)
-                .price(200D)
-                .color(color)
-                .image("https://authogar.vtexassets.com/arquivos/ids/214811-800-auto?v=638721421030330000&width=800&height=auto&aspect=true")
-                .quantity(10)
+        Color red = Color.builder()
+                .name("red")
+                .color("#FF0000")
                 .build();
 
-        product = Product.builder()
+        Color white = Color.builder()
+                .name("white")
+                .color("#FFFFFF")
+                .build();
+
+        Product product = Product.builder()
                 .brand(brand)
                 .name("Nike Nike Nike Nike")
                 .model("jordan")
                 .build();
 
+        ProductDetail detailSize39Black = ProductDetail.builder()
+                .size(39)
+                .price(200D)
+                .color(black)
+                .image("https://authogar.vtexassets.com/arquivos/ids/214811-800-auto?v=638721421030330000&width=800&height=auto&aspect=true")
+                .quantity(10)
+                .product(product)
+                .build();
 
-        productDetail.setProduct(product);
-        product.addDetails(List.of(productDetail));
+        ProductDetail detailSize40Red = ProductDetail.builder()
+                .size(40)
+                .price(210D)
+                .color(red)
+                .image("https://authogar.vtexassets.com/arquivos/ids/214811-800-auto?v=638721421030330000&width=800&height=auto&aspect=true")
+                .quantity(7)
+                .product(product)
+                .build();
+
+        ProductDetail detailSize41White = ProductDetail.builder()
+                .size(41)
+                .price(215D)
+                .color(white)
+                .image("https://authogar.vtexassets.com/arquivos/ids/214811-800-auto?v=638721421030330000&width=800&height=auto&aspect=true")
+                .quantity(5)
+                .product(product)
+                .build();
+
+        ProductDetail detailSize42Black = ProductDetail.builder()
+                .size(42)
+                .price(220D)
+                .color(black)
+                .image("https://authogar.vtexassets.com/arquivos/ids/214811-800-auto?v=638721421030330000&width=800&height=auto&aspect=true")
+                .quantity(3)
+                .product(product)
+                .build();
+
+        product.addDetails(List.of(
+                detailSize39Black,
+                detailSize40Red,
+                detailSize41White,
+                detailSize42Black
+        ));
 
         productService.save(product);
     }

@@ -6,8 +6,7 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 @Service
 @Transactional
@@ -22,24 +21,16 @@ public class ResetServiceImpl implements ResetService {
     }
 
     private void resetSQL() {
-        Set<String> tablasExistentes = obtenerTablasExistentes();
-
-        if (tablasExistentes.isEmpty()) {
-            return;
-        }
+        List<String> tablasExistentes = List.of(
+                "product_details",
+                "products",
+                "colors",
+                "brands"
+        );
 
         for (String tableName : tablasExistentes) {
             limpiarTabla(tableName);
         }
-    }
-
-    private Set<String> obtenerTablasExistentes() {
-        Set<String> tablas = new HashSet<>();
-        entityManager.getMetamodel().getEntities().forEach(entity -> {
-            String tableName = entity.getJavaType().getSimpleName().toLowerCase();
-            tablas.add(tableName);
-        });
-        return tablas;
     }
 
     private void limpiarTabla(String tableName) {
