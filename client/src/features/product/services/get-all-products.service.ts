@@ -2,17 +2,18 @@ import api from "../../../core/api/api";
 import type { PageResponseDTO } from "../../../core/api/types/PageResponseDTO.t";
 import type { Product } from "../../../shared/types/Product";
 import { adaptProduct } from "../adapters/product.adapter";
-import type { ProductResponseDTO } from "../api/types";
+import { PRODUCT_ENDPOINTS } from "../api/constants/productEndpoints";
+import type { ProductResponseDTO } from "../api/types/product-response";
 
-async function getAllProducts(
+export const getAllProducts = async (
     page: number = 0,
     size: number = 5,
 ): Promise<{
     products: Product[];
     pagination: Omit<PageResponseDTO<never>, "content">;
-}> {
+}> => {
     const response = await api.get<PageResponseDTO<ProductResponseDTO>>(
-        "/product",
+        PRODUCT_ENDPOINTS.GET_PRODUCTS,
         {
             params: { page, size },
         },
@@ -28,6 +29,4 @@ async function getAllProducts(
     };
 
     return { products, pagination };
-}
-
-export default getAllProducts;
+};
