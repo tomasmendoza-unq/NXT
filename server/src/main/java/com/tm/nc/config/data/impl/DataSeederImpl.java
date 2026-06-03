@@ -2,7 +2,7 @@ package com.tm.nc.config.data.impl;
 
 import com.tm.nc.config.data.DataSeeder;
 import com.tm.nc.domain.brand.model.Brand;
-import com.tm.nc.domain.product.model.Color;
+import com.tm.nc.domain.color.model.Color;
 import com.tm.nc.domain.product.model.Product;
 import com.tm.nc.domain.product.model.ProductDetail;
 import com.tm.nc.domain.product.service.ProductService;
@@ -17,11 +17,6 @@ public class DataSeederImpl implements DataSeeder {
 
     private ProductService productService;
 
-    private Product product;
-    private Brand brand;
-    private ProductDetail productDetail;
-    private Color color;
-
     public DataSeederImpl(ProductService productService) {
         this.productService = productService;
     }
@@ -32,8 +27,6 @@ public class DataSeederImpl implements DataSeeder {
                 .name("nike")
                 .logo("https://acdn-us.mitiendanube.com/stores/006/133/691/products/nike-logo-24edf4f26f5a40025b17503629706845-1024-1024.webp")
                 .build();
-
-
 
         Product product = Product.builder()
                 .brand(brand)
@@ -46,7 +39,6 @@ public class DataSeederImpl implements DataSeeder {
                 .price(200D)
                 .image("https://authogar.vtexassets.com/arquivos/ids/214811-800-auto?v=638721421030330000&width=800&height=auto&aspect=true")
                 .quantity(10)
-                .product(product)
                 .build();
 
         ProductDetail detailSize40Red = ProductDetail.builder()
@@ -54,7 +46,6 @@ public class DataSeederImpl implements DataSeeder {
                 .price(210D)
                 .image("https://authogar.vtexassets.com/arquivos/ids/214811-800-auto?v=638721421030330000&width=800&height=auto&aspect=true")
                 .quantity(7)
-                .product(product)
                 .build();
 
         ProductDetail detailSize41White = ProductDetail.builder()
@@ -62,7 +53,6 @@ public class DataSeederImpl implements DataSeeder {
                 .price(215D)
                 .image("https://authogar.vtexassets.com/arquivos/ids/214811-800-auto?v=638721421030330000&width=800&height=auto&aspect=true")
                 .quantity(5)
-                .product(product)
                 .build();
 
         ProductDetail detailSize42Black = ProductDetail.builder()
@@ -70,7 +60,6 @@ public class DataSeederImpl implements DataSeeder {
                 .price(220D)
                 .image("https://authogar.vtexassets.com/arquivos/ids/214811-800-auto?v=638721421030330000&width=800&height=auto&aspect=true")
                 .quantity(3)
-                .product(product)
                 .build();
 
         Color black = Color.builder()

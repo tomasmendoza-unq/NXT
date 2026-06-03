@@ -1,5 +1,6 @@
-package com.tm.nc.domain.product.model;
+package com.tm.nc.domain.color.model;
 
+import com.tm.nc.domain.product.model.ProductDetail;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

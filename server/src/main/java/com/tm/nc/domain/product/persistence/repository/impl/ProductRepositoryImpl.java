@@ -1,11 +1,10 @@
 package com.tm.nc.domain.product.persistence.repository.impl;
 
-import com.tm.nc.domain.product.model.Color;
+import com.tm.nc.domain.color.model.Color;
+import com.tm.nc.domain.color.persistence.repository.ColorRepository;
 import com.tm.nc.domain.product.model.Product;
-import com.tm.nc.domain.product.model.ProductDetail;
 import com.tm.nc.domain.product.persistence.repository.ProductRepository;
-import com.tm.nc.domain.product.persistence.sql.ColorSQLDAO;
-import com.tm.nc.domain.product.persistence.sql.ProductDetailsSQLDAO;
+import com.tm.nc.domain.color.persistence.sql.ColorSQLDAO;
 import com.tm.nc.domain.product.persistence.sql.ProductSQLDAO;
 import com.tm.nc.shared.exception.EntityNotFoundException;
 import org.springframework.data.domain.Page;
@@ -18,11 +17,11 @@ import java.util.List;
 public class ProductRepositoryImpl implements ProductRepository {
 
     private final ProductSQLDAO productSQLDAO;
-    private final ColorSQLDAO colorSQLDAO;
+    private final ColorRepository colorRepository;
 
-    public ProductRepositoryImpl(ProductSQLDAO productSQLDAO, ColorSQLDAO colorSQLDAO) {
+    public ProductRepositoryImpl(ProductSQLDAO productSQLDAO, ColorRepository colorRepository) {
         this.productSQLDAO = productSQLDAO;
-        this.colorSQLDAO = colorSQLDAO;
+        this.colorRepository = colorRepository;
     }
 
     @Override
@@ -37,7 +36,8 @@ public class ProductRepositoryImpl implements ProductRepository {
 
     @Override
     public Product save(Product product) {
-
+        List<Color> colors = colorRepository.saveAll(product.getColors());
+        product.setColors(colors);
         return productSQLDAO.save(product);
     }
 }
