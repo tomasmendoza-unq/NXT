@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react";
-import getProductById from "../services/get-product-by-id.service";
 import type { Product } from "../../../shared/types/Product";
 import { ApiError } from "../../../core";
+import { getProductById } from "../services/get-product-by-id.service";
 
 const useGetProductById = () => {
     const [product, setProduct] = useState<Product | null>(null);

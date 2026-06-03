@@ -1,7 +1,7 @@
 import { useState } from "react";
-import getAllProducts from "../services/get-all-products.service";
 import type { Product } from "../../../shared/types/Product";
 import { ApiError } from "../../../core";
+import { getAllProducts } from "../services/get-all-products.service";
 
 interface PaginationInfo {
     page: number;

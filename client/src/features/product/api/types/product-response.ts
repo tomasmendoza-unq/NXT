@@ -1,4 +1,4 @@
-import type { BrandResponseDTO } from "../../brand/api/types/brand-response";
+import type { BrandResponseDTO } from "../../../brand/api/types/brand-response";
 
 export interface ProductDetailsResponseDTO {
     id: number;

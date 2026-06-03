@@ -1,14 +1,12 @@
+import { adaptBrand } from "../../brand/adapters/brand.adapter";
+import type { ProductDetails } from "../../../shared/types/ProductDetails";
+import type { Color } from "../../../shared/types/Color";
+import type { Product } from "../../../shared/types/Product";
 import type {
-    Product,
-    Color,
-    ProductDetails,
-} from "../../../shared/types/Product";
-import type {
-    ProductResponseDTO,
     ColorResponseDTO,
     ProductDetailsResponseDTO,
-} from "../api/types";
-import { adaptBrand } from "../../brand/adapters/brand.adapter";
+    ProductResponseDTO,
+} from "../api/types/product-response";
 
 function adaptProductDetail(detail: ProductDetailsResponseDTO): ProductDetails {
     return {
