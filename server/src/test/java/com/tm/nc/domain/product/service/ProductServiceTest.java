@@ -1,10 +1,9 @@
 package com.tm.nc.domain.product.service;
 
 import com.tm.nc.domain.brand.model.Brand;
-import com.tm.nc.domain.product.model.Color;
+import com.tm.nc.domain.color.model.Color;
 import com.tm.nc.domain.product.model.Product;
 import com.tm.nc.domain.product.model.ProductDetail;
-import com.tm.nc.features.product.controller.dto.ProductResponseDTO;
 import com.tm.nc.shared.service.ResetService;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.AfterEach;
@@ -50,7 +49,6 @@ public class ProductServiceTest {
                 .price(200D)
                 .image("https://authogar.vtexassets.com/arquivos/ids/214811-800-auto?v=638721421030330000&width=800&height=auto&aspect=true")
                 .quantity(10)
-                .product(product)
                 .build();
 
         ProductDetail detailSize42Black = ProductDetail.builder()
@@ -58,7 +56,6 @@ public class ProductServiceTest {
                 .price(220D)
                 .image("https://authogar.vtexassets.com/arquivos/ids/214811-800-auto?v=638721421030330000&width=800&height=auto&aspect=true")
                 .quantity(3)
-                .product(product)
                 .build();
 
         ProductDetail detailSize40Red = ProductDetail.builder()
@@ -66,7 +63,6 @@ public class ProductServiceTest {
                 .price(210D)
                 .image("https://authogar.vtexassets.com/arquivos/ids/214811-800-auto?v=638721421030330000&width=800&height=auto&aspect=true")
                 .quantity(7)
-                .product(product)
                 .build();
 
         Color black = Color.builder()

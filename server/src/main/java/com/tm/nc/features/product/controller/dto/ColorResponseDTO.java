@@ -1,6 +1,6 @@
 package com.tm.nc.features.product.controller.dto;
 
-import com.tm.nc.domain.product.model.Color;
+import com.tm.nc.domain.color.model.Color;
 
 import java.util.List;
 
