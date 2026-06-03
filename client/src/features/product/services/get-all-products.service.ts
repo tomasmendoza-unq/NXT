@@ -1,21 +1,22 @@
 import api from "../../../core/api/api";
-import {
-    adaptProduct,
-    type PageResponse,
-    type BackendProduct,
-} from "../adapters/product.adapter";
-import type { ProductProps } from "../../../shared/types/Product";
+import type { PageResponseDTO } from "../../../core/api/types/PageResponseDTO.t";
+import type { Product } from "../../../shared/types/Product";
+import { adaptProduct } from "../adapters/product.adapter";
+import type { ProductResponseDTO } from "../api/types";
 
 async function getAllProducts(
     page: number = 0,
     size: number = 5,
 ): Promise<{
-    products: ProductProps[];
-    pagination: Omit<PageResponse<never>, "content">;
+    products: Product[];
+    pagination: Omit<PageResponseDTO<never>, "content">;
 }> {
-    const response = await api.get<PageResponse<BackendProduct>>("/product", {
-        params: { page, size },
-    });
+    const response = await api.get<PageResponseDTO<ProductResponseDTO>>(
+        "/product",
+        {
+            params: { page, size },
+        },
+    );
 
     const products = response.data.content.map(adaptProduct);
     const pagination = {

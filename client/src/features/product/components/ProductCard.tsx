@@ -1,16 +1,11 @@
-import type { ProductProps } from "../../../shared/types/Product";
+import type { Product } from "../../../shared/types/Product";
 import { ProductImage } from "./ProductImage";
 import { useNavigate } from "react-router-dom";
 
-export const ProductCard = ({
-    id,
-    name,
-    productModel,
-    productDetails,
-}: ProductProps) => {
+export const ProductCard = ({ id, name, model, colors }: Product) => {
     const navigate = useNavigate();
-    const price = productDetails[0]?.price ?? 0;
-    const productImage = productDetails[0]?.image;
+    const price = colors[0]?.details[0]?.price ?? 0;
+    const productImage = colors[0]?.details[0]?.image;
 
     return (
         <div
@@ -26,7 +21,7 @@ export const ProductCard = ({
                     {name}
                 </h3>
                 <p className="text-gray-600 text-xs mb-2 line-clamp-1">
-                    {productModel}
+                    {model}
                 </p>
                 <p className="text-orange-600 font-bold text-sm">
                     ${price.toLocaleString()}

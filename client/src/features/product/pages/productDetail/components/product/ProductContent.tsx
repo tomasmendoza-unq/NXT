@@ -23,6 +23,7 @@ export const ProductContent = ({ product }: ProductContentProps) => {
             <ImagenContainer
                 product={product}
                 selectedColorId={selectedColorId}
+                selectedDetailId={selectedDetailId}
                 alt={product.name}
             />
 

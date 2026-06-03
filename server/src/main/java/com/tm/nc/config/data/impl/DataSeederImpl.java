@@ -33,20 +33,7 @@ public class DataSeederImpl implements DataSeeder {
                 .logo("https://acdn-us.mitiendanube.com/stores/006/133/691/products/nike-logo-24edf4f26f5a40025b17503629706845-1024-1024.webp")
                 .build();
 
-        Color black = Color.builder()
-                .name("black")
-                .color("#000000")
-                .build();
 
-        Color red = Color.builder()
-                .name("red")
-                .color("#FF0000")
-                .build();
-
-        Color white = Color.builder()
-                .name("white")
-                .color("#FFFFFF")
-                .build();
 
         Product product = Product.builder()
                 .brand(brand)
@@ -57,7 +44,6 @@ public class DataSeederImpl implements DataSeeder {
         ProductDetail detailSize39Black = ProductDetail.builder()
                 .size(39)
                 .price(200D)
-                .color(black)
                 .image("https://authogar.vtexassets.com/arquivos/ids/214811-800-auto?v=638721421030330000&width=800&height=auto&aspect=true")
                 .quantity(10)
                 .product(product)
@@ -66,7 +52,6 @@ public class DataSeederImpl implements DataSeeder {
         ProductDetail detailSize40Red = ProductDetail.builder()
                 .size(40)
                 .price(210D)
-                .color(red)
                 .image("https://authogar.vtexassets.com/arquivos/ids/214811-800-auto?v=638721421030330000&width=800&height=auto&aspect=true")
                 .quantity(7)
                 .product(product)
@@ -75,7 +60,6 @@ public class DataSeederImpl implements DataSeeder {
         ProductDetail detailSize41White = ProductDetail.builder()
                 .size(41)
                 .price(215D)
-                .color(white)
                 .image("https://authogar.vtexassets.com/arquivos/ids/214811-800-auto?v=638721421030330000&width=800&height=auto&aspect=true")
                 .quantity(5)
                 .product(product)
@@ -84,17 +68,33 @@ public class DataSeederImpl implements DataSeeder {
         ProductDetail detailSize42Black = ProductDetail.builder()
                 .size(42)
                 .price(220D)
-                .color(black)
                 .image("https://authogar.vtexassets.com/arquivos/ids/214811-800-auto?v=638721421030330000&width=800&height=auto&aspect=true")
                 .quantity(3)
                 .product(product)
                 .build();
 
-        product.addDetails(List.of(
-                detailSize39Black,
-                detailSize40Red,
-                detailSize41White,
-                detailSize42Black
+        Color black = Color.builder()
+                .name("black")
+                .color("#000000")
+                .details(List.of(detailSize39Black, detailSize42Black))
+                .build();
+
+        Color red = Color.builder()
+                .name("red")
+                .color("#FF0000")
+                .details(List.of(detailSize40Red))
+                .build();
+
+        Color white = Color.builder()
+                .name("white")
+                .color("#FFFFFF")
+                .details(List.of(detailSize41White))
+                .build();
+
+        product.addColor(List.of(
+                black,
+                white,
+                red
         ));
 
         productService.save(product);
