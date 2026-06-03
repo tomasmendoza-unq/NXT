@@ -26,7 +26,6 @@ export const ProductDetailInfo = ({
         return {
             ...selectedSize,
             color: selectedVariant.color,
-            image: selectedVariant.image,
         };
     }, [product.productVariants, selectedColorId, selectedDetailId]);
 

@@ -18,8 +18,6 @@ public class ProductDetail {
 
     private Product product;
 
-    private Color color;
-
     private String image;
 
     private int quantity;

@@ -1,10 +1,10 @@
 import { useCallback, useState } from "react";
 import getProductById from "../services/get-product-by-id.service";
-import type { ProductProps } from "../../../shared/types/Product";
+import type { Product } from "../../../shared/types/Product";
 import { ApiError } from "../../../core";
 
 const useGetProductById = () => {
-    const [product, setProduct] = useState<ProductProps | null>(null);
+    const [product, setProduct] = useState<Product | null>(null);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<ApiError | null>(null);
 

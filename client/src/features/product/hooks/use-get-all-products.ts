@@ -1,6 +1,6 @@
 import { useState } from "react";
 import getAllProducts from "../services/get-all-products.service";
-import type { ProductProps } from "../../../shared/types/Product";
+import type { Product } from "../../../shared/types/Product";
 import { ApiError } from "../../../core";
 
 interface PaginationInfo {
@@ -12,7 +12,7 @@ interface PaginationInfo {
 }
 
 const useGetAllProducts = () => {
-    const [products, setProducts] = useState<ProductProps[]>([]);
+    const [products, setProducts] = useState<Product[]>([]);
     const [pagination, setPagination] = useState<PaginationInfo | null>(null);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<ApiError | null>(null);

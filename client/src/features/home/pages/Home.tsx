@@ -14,6 +14,10 @@ export const Home = () => {
         fetchBrands();
     }, []);
 
+    useEffect(() => {
+        console.log(products);
+    }, [products]);
+
     return (
         <section className="w-full mx-auto section-container">
             <ProductsContainer products={products} />

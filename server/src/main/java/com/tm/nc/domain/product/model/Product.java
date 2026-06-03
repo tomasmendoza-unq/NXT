@@ -23,9 +23,9 @@ public class Product {
     private Brand brand;
 
     @Builder.Default
-    private List<ProductDetail> details = new ArrayList<>();
+    private List<Color> colors = new ArrayList<>();
 
-    public void addDetails(List<ProductDetail> productDetail) {
-        details.addAll(productDetail);
+    public void addColor(List<Color> color) {
+        colors.addAll(color);
     }
 }

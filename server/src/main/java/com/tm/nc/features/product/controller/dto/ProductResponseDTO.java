@@ -12,7 +12,7 @@ public record ProductResponseDTO(
         Long  id,
         String name,
         String model,
-        List<ProductVariantResponseDTO> variants,
+        List<ColorResponseDTO> colors,
         BrandResponseDTO brand
 ) {
     public static ProductResponseDTO fromModel(Product product) {
@@ -20,21 +20,8 @@ public record ProductResponseDTO(
                 product.getId(),
                 product.getName(),
                 product.getModel(),
-                groupDetailsByColor(product.getDetails()),
+                product.getColors().stream().map(ColorResponseDTO::fromModel).toList(),
                 BrandResponseDTO.fromModel(product.getBrand())
         );
-    }
-
-    private static List<ProductVariantResponseDTO> groupDetailsByColor(List<ProductDetail> details) {
-        Map<Long, List<ProductDetail>> detailsByColor = new LinkedHashMap<>();
-
-        details.forEach(detail -> detailsByColor
-                .computeIfAbsent(detail.getColor().getId(), colorId -> new java.util.ArrayList<>())
-                .add(detail));
-
-        return detailsByColor.values()
-                .stream()
-                .map(ProductVariantResponseDTO::fromDetails)
-                .toList();
     }
 }
