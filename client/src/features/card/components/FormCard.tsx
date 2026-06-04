@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { QuantitySelector } from "./quantitySelector/QuantitySelector";
+import "./styles/FormCard.css";
 
 export const FormCard = ({
     colorSelected,
@@ -27,6 +28,7 @@ export const FormCard = ({
                 quantity={quantity}
                 setQuantity={setQuantity}
             />
+
             <button
                 type="submit"
                 className="add-to-card-button"
