@@ -1,9 +1,13 @@
-package com.tm.nc.domain.product.model;
+package com.tm.nc.domain.color.model;
 
+import com.tm.nc.domain.product.model.ProductDetail;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -15,4 +19,6 @@ public class Color {
     private String name;
 
     private String color;
+
+    private List<ProductDetail> details = new ArrayList<>();
 }

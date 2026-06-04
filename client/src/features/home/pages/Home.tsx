@@ -1,9 +1,9 @@
 import { ProductsContainer } from "../../product/components/ProductsContainer";
 import "./styles/style.css";
 import { useEffect } from "react";
-import { useGetAllProducts } from "../../product";
-import { useGetAllBrands } from "../../brand";
 import { BrandsContainer } from "../../brand/components/BrandsContainer";
+import useGetAllProducts from "../../product/hooks/use-get-all-products";
+import useGetAllBrands from "../../brand/hooks/use-get-all-brands";
 
 export const Home = () => {
     const { products, fetch } = useGetAllProducts();

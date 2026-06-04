@@ -16,10 +16,6 @@ public class ProductDetail {
 
     private double price;
 
-    private Product product;
-
-    private Color color;
-
     private String image;
 
     private int quantity;
