@@ -1,9 +1,10 @@
-import { useMemo, type Dispatch, type SetStateAction } from "react";
-import type { ProductProps } from "../../../../../../shared/types/Product";
+import { type Dispatch, type SetStateAction } from "react";
+import type { Product } from "../../../../../../shared/types/Product";
 import "./style/ProductSizeOptions.css";
+import { useSelectedVariant } from "../../../../hooks/use-select-variant";
 
 interface ProductSizeOptionsProps {
-    product: ProductProps;
+    product: Product;
     selectedColorId: number;
     selectedDetailId: number;
     setSelectedDetailId: Dispatch<SetStateAction<number>>;
@@ -15,33 +16,28 @@ export const ProductSizeOptions = ({
     selectedDetailId,
     setSelectedDetailId,
 }: ProductSizeOptionsProps) => {
-    const sizes = useMemo(() => {
-        const selectedVariant =
-            product.productVariants.find(
-                (variant) => variant.color.id === selectedColorId,
-            ) ?? product.productVariants[0];
-
-        return selectedVariant?.sizes ?? [];
-    }, [product.productVariants, selectedColorId]);
-
-    const selectedSize = sizes.find((size) => size.id === selectedDetailId);
+    const { variant, detail } = useSelectedVariant(
+        product,
+        selectedColorId,
+        selectedDetailId,
+    );
 
     return (
         <section className="product-size-options">
-            <h3>Talle: {selectedSize?.size}</h3>
+            <h3>Talle: {detail.size}</h3>
             <div className="product-size-option-list">
-                {sizes.map((detail) => (
+                {variant.details.map((d) => (
                     <button
-                        key={detail.id}
+                        key={d.id}
                         className={
-                            detail.id === selectedDetailId
+                            d.id === selectedDetailId
                                 ? "product-size-option product-size-option-selected"
                                 : "product-size-option"
                         }
                         type="button"
-                        onClick={() => setSelectedDetailId(detail.id)}
+                        onClick={() => setSelectedDetailId(d.id)}
                     >
-                        {detail.size}
+                        {d.size}
                     </button>
                 ))}
             </div>

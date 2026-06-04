@@ -1,8 +1,8 @@
-import { useMemo } from "react";
-import type { ProductProps } from "../../../../../../shared/types/Product";
+import type { Product } from "../../../../../../shared/types/Product";
+import { useSelectedVariant } from "../../../../hooks/use-select-variant";
 
 interface ProductDetailInfoProps {
-    product: ProductProps;
+    product: Product;
     selectedColorId: number;
     selectedDetailId: number;
 }
@@ -12,23 +12,11 @@ export const ProductDetailInfo = ({
     selectedColorId,
     selectedDetailId,
 }: ProductDetailInfoProps) => {
-    const detail = useMemo(() => {
-        const selectedVariant =
-            product.productVariants.find(
-                (variant) => variant.color.id === selectedColorId,
-            ) ?? product.productVariants[0];
-
-        const selectedSize =
-            selectedVariant?.sizes.find(
-                (size) => size.id === selectedDetailId,
-            ) ?? selectedVariant?.sizes[0];
-
-        return {
-            ...selectedSize,
-            color: selectedVariant.color,
-        };
-    }, [product.productVariants, selectedColorId, selectedDetailId]);
-
+    const { detail } = useSelectedVariant(
+        product,
+        selectedColorId,
+        selectedDetailId,
+    );
     return (
         <section>
             <h3>{product.name}</h3>
