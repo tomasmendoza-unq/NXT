@@ -8,7 +8,7 @@ import "./ProductDetail.css";
 export const ProductDetail = () => {
     const { id } = useParams();
     const productId = Number(id);
-    const { product, isLoading, error, fetch } = useGetProductById();
+    const { product, isLoading, fetch } = useGetProductById();
     const links = product
         ? [
               { text: "Inicio", href: "/" },
@@ -28,11 +28,6 @@ export const ProductDetail = () => {
     if (isLoading) {
         return <div>Loading...</div>;
     }
-
-    if (error) {
-        return <div>Error: {error.message}</div>;
-    }
-
     return (
         <section className="product-detail">
             {product ? (
