@@ -5,6 +5,7 @@ import { ProductDetailInfo } from "../productDetailInfo/ProductDetailInfo";
 import { ProductColorOptions } from "../productColorOptions/ProductColorOptions";
 import { ProductSizeOptions } from "../productSizeOptions/ProductSizeOptions";
 import type { Product } from "../../../../../../shared/types/Product";
+import { FormCard } from "../../../../../card/components/FormCard";
 
 interface ProductContentProps {
     product: Product;
@@ -47,6 +48,12 @@ export const ProductContent = ({ product }: ProductContentProps) => {
                         selectedColorId={selectedColorId}
                         selectedDetailId={selectedDetailId}
                         setSelectedDetailId={setSelectedDetailId}
+                    />
+                </section>
+                <section className="product-actions">
+                    <FormCard
+                        colorSelected={selectedColorId}
+                        detailSelected={selectedDetailId}
                     />
                 </section>
             </article>
