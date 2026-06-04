@@ -3,10 +3,10 @@ import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "./styles/ProductCarousel.css";
-import type { ProductProps } from "../../../shared/types/Product";
+import type { Product } from "../../../shared/types/Product";
 import { ProductCard } from "./ProductCard";
 
-export const ProductCarousel = ({ products }: { products: ProductProps[] }) => {
+export const ProductCarousel = ({ products }: { products: Product[] }) => {
     return (
         <Swiper
             modules={[Navigation]}

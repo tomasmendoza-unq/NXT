@@ -1,11 +1,10 @@
 import type { BrandProps } from "./Brand";
-import type { ProductDetails } from "./ProductDetails";
+import type { Color } from "./Color";
 
-export interface ProductProps {
+export interface Product {
     id: number;
-    image?: string;
     name: string;
-    productDetails: ProductDetails[];
-    productModel: string;
-    productBrand: BrandProps;
+    model: string;
+    colors: Color[];
+    brand: BrandProps;
 }

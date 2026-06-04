@@ -1,12 +1,7 @@
 import type { BrandProps } from "../../../shared/types/Brand";
+import type { BrandResponseDTO } from "../api/types/brand-response";
 
-export interface BackendBrand {
-    id: number;
-    name: string;
-    logo: string;
-}
-
-export function adaptBrand(brand: BackendBrand): BrandProps {
+export function adaptBrand(brand: BrandResponseDTO): BrandProps {
     return {
         name: brand.name,
         image: brand.logo,
