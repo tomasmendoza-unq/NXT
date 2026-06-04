@@ -12,7 +12,7 @@ export const ProductDetail = () => {
     const links = product
         ? [
               { text: "Inicio", href: "/" },
-              { text: product.productBrand.name, href: "/brands" },
+              { text: product.brand.name, href: "/brands" },
               { text: product.name, href: `/product/${product.id}` },
           ]
         : [];

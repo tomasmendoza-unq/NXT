@@ -1,21 +1,21 @@
 import { useState } from "react";
-import type { ProductProps } from "../../../../../../shared/types/Product";
 import { ImagenContainer } from "../imageContainer/ImageContainer";
 import "./style/ProductContent.css";
 import { ProductDetailInfo } from "../productDetailInfo/ProductDetailInfo";
 import { ProductColorOptions } from "../productColorOptions/ProductColorOptions";
 import { ProductSizeOptions } from "../productSizeOptions/ProductSizeOptions";
+import type { Product } from "../../../../../../shared/types/Product";
 
 interface ProductContentProps {
-    product: ProductProps;
+    product: Product;
 }
 
 export const ProductContent = ({ product }: ProductContentProps) => {
     const [selectedColorId, setSelectedColorId] = useState(
-        () => product.productVariants[0]?.color.id,
+        () => product.colors[0]?.id,
     );
     const [selectedDetailId, setSelectedDetailId] = useState(
-        () => product.productVariants[0]?.sizes[0]?.id,
+        () => product.colors[0]?.details[0]?.id,
     );
 
     return (
@@ -36,7 +36,7 @@ export const ProductContent = ({ product }: ProductContentProps) => {
 
                 <section className="product-detail-options">
                     <ProductColorOptions
-                        variants={product.productVariants}
+                        colors={product.colors}
                         selectedColorId={selectedColorId}
                         setSelectedColorId={setSelectedColorId}
                         setSelectedDetailId={setSelectedDetailId}

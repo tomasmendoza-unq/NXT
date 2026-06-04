@@ -1,43 +1,41 @@
 import type { Dispatch, SetStateAction } from "react";
-import type { ProductVariant } from "../../../../../../shared/types/ProductDetails";
 import "./style/ProductColorOptions.css";
+import type { Color } from "../../../../../../shared/types/Color";
 
 interface ProductColorOptionsProps {
-    variants: ProductVariant[];
+    colors: Color[];
     selectedColorId: number;
     setSelectedColorId: Dispatch<SetStateAction<number>>;
     setSelectedDetailId: Dispatch<SetStateAction<number>>;
 }
 
 export const ProductColorOptions = ({
-    variants,
+    colors,
     selectedColorId,
     setSelectedColorId,
     setSelectedDetailId,
 }: ProductColorOptionsProps) => {
-    const selectedColor = variants.find(
-        (variant) => variant.color.id === selectedColorId,
-    )?.color;
+    const selectedColor = colors.find((color) => color.id === selectedColorId);
 
     return (
         <section className="product-color-options">
             <h3>Color: {selectedColor?.name}</h3>
             <div className="product-color-option-list">
-                {variants.map((variant) => (
+                {colors.map((color) => (
                     <button
-                        key={variant.color.id}
+                        key={color.id}
                         className={
-                            variant.color.id === selectedColorId
+                            color.id === selectedColorId
                                 ? "product-color-option product-color-option-selected"
                                 : "product-color-option"
                         }
-                        style={{ backgroundColor: variant.color.color }}
+                        style={{ backgroundColor: color.color }}
                         type="button"
-                        aria-label={variant.color.name}
-                        title={variant.color.name}
+                        aria-label={color.name}
+                        title={color.name}
                         onClick={() => {
-                            setSelectedColorId(variant.color.id);
-                            setSelectedDetailId(variant.sizes[0]?.id);
+                            setSelectedColorId(color.id);
+                            setSelectedDetailId(color.details[0]?.id);
                         }}
                     />
                 ))}

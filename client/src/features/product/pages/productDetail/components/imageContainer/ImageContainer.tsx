@@ -1,9 +1,9 @@
-import { useMemo } from "react";
-import type { ProductProps } from "../../../../../../shared/types/Product";
 import "./style/ImagenContainer.css";
+import type { Product } from "../../../../../../shared/types/Product";
+import { useSelectedVariant } from "../../../../hooks/use-select-variant";
 
 interface ImagenContainerProps {
-    product: ProductProps;
+    product: Product;
     selectedColorId: number;
     selectedDetailId: number;
     alt: string;
@@ -15,29 +15,16 @@ export const ImagenContainer = ({
     selectedDetailId,
     alt,
 }: ImagenContainerProps) => {
-    const selectedImage = useMemo(() => {
-        const selectedVariant =
-            product.productVariants.find(
-                (variant) => variant.color.id === selectedColorId,
-            ) ?? product.productVariants[0];
-
-        const selectedSize =
-            selectedVariant?.sizes.find(
-                (size) => size.id === selectedDetailId,
-            ) ?? selectedVariant?.sizes[0];
-
-        return (
-            selectedSize?.image ??
-            selectedVariant?.image ??
-            product.productVariants[0]?.image
-        );
-    }, [product.productVariants, selectedColorId, selectedDetailId]);
-
+    const { detail } = useSelectedVariant(
+        product,
+        selectedColorId,
+        selectedDetailId,
+    );
     return (
         <section className="image-container">
             <>
                 <img
-                    src={selectedImage}
+                    src={detail.image}
                     alt={alt}
                 />
             </>
