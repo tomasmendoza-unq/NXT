@@ -1,16 +1,20 @@
 import { useState } from "react";
 import { QuantitySelector } from "./quantitySelector/QuantitySelector";
 import "./styles/FormCard.css";
+import type { CartItem } from "../../../shared/types/CartItem";
+import { useAddCart } from "../hooks/use-add-cart";
 
 export const FormCard = ({
     colorSelected,
     detailSelected,
 }: {
-    colorSelected?: number;
-    detailSelected?: number;
+    colorSelected: number;
+    detailSelected: number;
 }) => {
     const [quantity, setQuantity] = useState(1);
-    const formData = {
+    const { addToCart } = useAddCart();
+
+    const formData: CartItem = {
         colorId: colorSelected,
         detailId: detailSelected,
         quantity,
@@ -20,7 +24,7 @@ export const FormCard = ({
         <form
             onSubmit={(e) => {
                 e.preventDefault();
-                console.log("Form submitted:", formData);
+                addToCart(formData);
             }}
             className="form-card"
         >
