@@ -1,0 +1,17 @@
+.product-content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5rem;
+}
+
+.product-content-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.product-detail-options {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
