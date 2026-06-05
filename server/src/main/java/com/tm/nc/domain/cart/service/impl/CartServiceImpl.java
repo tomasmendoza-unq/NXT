@@ -6,12 +6,15 @@ import com.tm.nc.domain.cart.persistence.sql.CartSQLDAO;
 import com.tm.nc.domain.cart.service.CartService;
 import com.tm.nc.domain.color.model.Color;
 import com.tm.nc.domain.color.persistence.repository.ColorRepository;
-import com.tm.nc.domain.product.model.ProductDetail;
-import com.tm.nc.domain.product.persistence.sql.ProductDetailsSQLDAO;
+import com.tm.nc.domain.productDetail.model.ProductDetail;
+import com.tm.nc.domain.productDetail.persistence.sql.ProductDetailsSQLDAO;
 import com.tm.nc.domain.user.model.User;
-import com.tm.nc.features.cart.controller.dto.CartRequestDTO;
+import com.tm.nc.features.cart.controller.dto.request.ItemPreviewDTO;
+import com.tm.nc.features.cart.controller.dto.request.CartRequestDTO;
 import com.tm.nc.shared.exception.EntityNotFoundException;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class CartServiceImpl implements CartService {
@@ -50,4 +53,22 @@ public class CartServiceImpl implements CartService {
     public Cart findById(Long idCart) {
         return cartSQLDAO.findById(idCart).orElseThrow(() -> new EntityNotFoundException(Cart.class.getName(), idCart));
     }
+
+    @Override
+    public List<ItemCart> findItemsCart(List<ItemPreviewDTO> itemPreview) {
+        return itemPreview.stream().map(
+                item -> {
+                    ProductDetail productDetail = productDetailsSQLDAO.findById(item.detailId()).orElseThrow(() -> new EntityNotFoundException(ProductDetail.class.getName(), item.detailId()));
+                    return ItemCart.builder()
+                            .id(productDetail.getId())
+                            .productDetail(productDetail)
+                            .color(productDetail.getColor())
+                            .quantity(item.quantity())
+                            .build();
+                }
+        ).toList();
+
+    }
+
+
 }

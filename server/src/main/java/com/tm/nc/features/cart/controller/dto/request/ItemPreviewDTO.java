@@ -1,9 +1,10 @@
 package com.tm.nc.features.cart.controller.dto.request;
 
-import java.util.List;
+import jakarta.validation.constraints.Min;
 
-public record CartPreviewRequestDTO(
-        List<Long> details,
+public record ItemPreviewDTO(
+        Long detailId,
+        @Min(1)
         int quantity
 ) {
 

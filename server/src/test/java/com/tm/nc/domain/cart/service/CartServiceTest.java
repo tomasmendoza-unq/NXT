@@ -1,16 +1,15 @@
 package com.tm.nc.domain.cart.service;
 
 import com.tm.nc.domain.brand.model.Brand;
-import com.tm.nc.domain.cart.exception.InsufficientStockException;
 import com.tm.nc.domain.cart.model.Cart;
 import com.tm.nc.domain.cart.model.ItemCart;
 import com.tm.nc.domain.color.model.Color;
 import com.tm.nc.domain.product.model.Product;
-import com.tm.nc.domain.product.model.ProductDetail;
+import com.tm.nc.domain.productDetail.model.ProductDetail;
 import com.tm.nc.domain.product.service.ProductService;
 import com.tm.nc.domain.user.model.User;
 import com.tm.nc.domain.user.service.UserService;
-import com.tm.nc.features.cart.controller.dto.CartRequestDTO;
+import com.tm.nc.features.cart.controller.dto.request.CartRequestDTO;
 import com.tm.nc.shared.service.ResetService;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.AfterEach;
