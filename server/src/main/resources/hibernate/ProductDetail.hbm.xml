@@ -16,6 +16,13 @@
         <property name="image" column="image" not-null="true"/>
         <property name="quantity" column="quantity" not-null="true"/>
 
+
+        <bag name="gallery" table="product_detail_gallery">
+            <key column="product_detail_id"/>
+            <element column="image_url" type="string"/>
+        </bag>
+
+
     </class>
 
 </hibernate-mapping>
