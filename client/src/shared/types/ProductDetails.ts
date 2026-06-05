@@ -4,4 +4,5 @@ export interface ProductDetails {
     size: number;
     quantity: number;
     image: string;
+    gallery: string[];
 }
