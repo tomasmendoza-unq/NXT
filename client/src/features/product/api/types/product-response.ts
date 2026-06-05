@@ -6,6 +6,7 @@ export interface ProductDetailsResponseDTO {
     price: number;
     image: string;
     quantity: number;
+    gallery: string[];
 }
 
 export interface ColorResponseDTO {
