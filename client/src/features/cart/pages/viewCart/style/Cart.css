@@ -1,0 +1,26 @@
+.cart-items {
+    max-height: 800px;
+    width: 70%;
+
+    background-color: #fff;
+    border: 1px solid #e5e5e5;
+
+    overflow-y: auto;
+}
+.cart-items ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.cart-items li {
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+}
+
+.cart-divider {
+    width: 85%;
+    margin: 10px auto 0;
+    border: none;
+    border-top: 1px solid #b6b5b5;
+}
