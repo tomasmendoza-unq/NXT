@@ -15,6 +15,7 @@ function adaptProductDetail(detail: ProductDetailsResponseDTO): ProductDetails {
         price: detail.price,
         image: detail.image,
         quantity: detail.quantity,
+        gallery: detail.gallery,
     };
 }
 
