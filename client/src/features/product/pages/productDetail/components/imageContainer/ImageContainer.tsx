@@ -1,7 +1,6 @@
 import "./style/ImagenContainer.css";
 import type { Product } from "../../../../../../shared/types/Product";
 import { useSelectedVariant } from "../../../../hooks/use-select-variant";
-import { useState } from "react";
 import { Carrusel } from "../../../../../../shared/components/carrusel/Carrusel";
 
 interface ImagenContainerProps {
@@ -9,6 +8,8 @@ interface ImagenContainerProps {
     selectedColorId: number;
     selectedDetailId: number;
     alt: string;
+    setImageSelected: (image: string | null) => void;
+    imageSelected: string | null;
 }
 
 export const ImagenContainer = ({
@@ -16,6 +17,8 @@ export const ImagenContainer = ({
     selectedColorId,
     selectedDetailId,
     alt,
+    setImageSelected,
+    imageSelected,
 }: ImagenContainerProps) => {
     const { detail } = useSelectedVariant(
         product,
@@ -23,18 +26,18 @@ export const ImagenContainer = ({
         selectedDetailId,
     );
 
-    const [imageSelected, setImageSelected] = useState<string | null>(null);
-
     const imageToShow = imageSelected ?? detail.image;
 
     const gallery = [detail.image, ...detail.gallery];
 
     return (
         <section className="image-container">
-            <Carrusel
-                images={gallery}
-                onImageSelect={setImageSelected}
-            />
+            {gallery.length > 1 && (
+                <Carrusel
+                    images={gallery}
+                    onImageSelect={setImageSelected}
+                />
+            )}
             <img
                 src={imageToShow}
                 alt={alt}

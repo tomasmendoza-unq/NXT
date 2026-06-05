@@ -12,9 +12,12 @@ interface ProductContentProps {
 }
 
 export const ProductContent = ({ product }: ProductContentProps) => {
+    const [imageSelected, setImageSelected] = useState<string | null>(null);
+
     const [selectedColorId, setSelectedColorId] = useState(
         () => product.colors[0]?.id,
     );
+
     const [selectedDetailId, setSelectedDetailId] = useState(
         () => product.colors[0]?.details[0]?.id,
     );
@@ -26,6 +29,8 @@ export const ProductContent = ({ product }: ProductContentProps) => {
                 selectedColorId={selectedColorId}
                 selectedDetailId={selectedDetailId}
                 alt={product.name}
+                setImageSelected={setImageSelected}
+                imageSelected={imageSelected}
             />
 
             <article className="product-content-info">
@@ -41,6 +46,7 @@ export const ProductContent = ({ product }: ProductContentProps) => {
                         selectedColorId={selectedColorId}
                         setSelectedColorId={setSelectedColorId}
                         setSelectedDetailId={setSelectedDetailId}
+                        setImageSelected={setImageSelected}
                     />
 
                     <ProductSizeOptions
