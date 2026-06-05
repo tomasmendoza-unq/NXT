@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface ColorRepository {
     public List<Color> saveAll(List<Color> colors);
+
+    Color findById(Long idColor);
 }

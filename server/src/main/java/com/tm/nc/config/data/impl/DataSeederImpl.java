@@ -15,7 +15,7 @@ import java.util.List;
 @Profile("dev")
 public class DataSeederImpl implements DataSeeder {
 
-    private ProductService productService;
+    private final ProductService productService;
 
     public DataSeederImpl(ProductService productService) {
         this.productService = productService;
@@ -28,24 +28,47 @@ public class DataSeederImpl implements DataSeeder {
                 .logo("https://acdn-us.mitiendanube.com/stores/006/133/691/products/nike-logo-24edf4f26f5a40025b17503629706845-1024-1024.webp")
                 .build();
 
+        Brand brand2 = Brand.builder()
+                .name("nike")
+                .logo("https://acdn-us.mitiendanube.com/stores/006/133/691/products/nike-logo-24edf4f26f5a40025b17503629706845-1024-1024.webp")
+                .build();
+
         Product product = Product.builder()
                 .brand(brand)
                 .name("Nike Nike Nike Nike")
                 .model("jordan")
                 .build();
 
+        Product product2 = Product.builder()
+                .brand(brand2)
+                .name("Nike")
+                .model("Duke")
+                .build();
+
         ProductDetail detailSize39Black = ProductDetail.builder()
                 .size(39)
                 .price(200D)
-                .image("https://authogar.vtexassets.com/arquivos/ids/214811-800-auto?v=638721421030330000&width=800&height=auto&aspect=true")
+                .image("https://www.kappastore.com.ar/cdn/shop/files/K134242KW-KA0Z-1.jpg?v=1766067184&width=1380")
                 .quantity(10)
+                .gallery(List.of(
+                        "https://www.kappastore.com.ar/cdn/shop/files/K134242KW-KA0Z-3.jpg?v=1766067238&width=128",
+                        "https://www.kappastore.com.ar/cdn/shop/files/K134242KW-KA0Z-4.jpg?v=1766067238&width=128",
+                        "https://www.kappastore.com.ar/cdn/shop/files/K134242KW-KA0Z-2.jpg?v=1766067238&width=128"
+                ))
                 .build();
 
         ProductDetail detailSize40Red = ProductDetail.builder()
                 .size(40)
                 .price(210D)
-                .image("https://authogar.vtexassets.com/arquivos/ids/214811-800-auto?v=638721421030330000&width=800&height=auto&aspect=true")
+                .image("https://www.kappastore.com.ar/cdn/shop/files/K134242KW-KA1M-1.jpg?v=1766066883&width=1380")
                 .quantity(7)
+                .gallery(List.of(
+                        "https://www.kappastore.com.ar/cdn/shop/files/K134242KW-KA1M-2.jpg?v=1766066927&width=690",
+                        "https://www.kappastore.com.ar/cdn/shop/files/K134242KW-KA1M-4.jpg?v=1766066927&width=690",
+                        "https://www.kappastore.com.ar/cdn/shop/files/K134242KW-KA1M-3.jpg?v=1766066927&width=690",
+                        "https://www.kappastore.com.ar/cdn/shop/files/K134242KW-KA1M-3.jpg?v=1766066927&width=690",
+                        "https://www.kappastore.com.ar/cdn/shop/files/K134242KW-KA1M-3.jpg?v=1766066927&width=690"
+                ))
                 .build();
 
         ProductDetail detailSize41White = ProductDetail.builder()
@@ -53,9 +76,26 @@ public class DataSeederImpl implements DataSeeder {
                 .price(215D)
                 .image("https://authogar.vtexassets.com/arquivos/ids/214811-800-auto?v=638721421030330000&width=800&height=auto&aspect=true")
                 .quantity(5)
+                .gallery(List.of(
+                        "https://http2.mlstatic.com/D_NQ_NP_786651-MLA74664829441_022024-O.webp",
+                        "https://http2.mlstatic.com/D_NQ_NP_786651-MLA74664829441_022024-O.webp",
+                        "https://http2.mlstatic.com/D_NQ_NP_786651-MLA74664829441_022024-O.webp"
+                ))
                 .build();
 
         ProductDetail detailSize42Black = ProductDetail.builder()
+                .size(42)
+                .price(220D)
+                .image("https://www.kappastore.com.ar/cdn/shop/files/K134242KW-KA0Z-1.jpg?v=1766067184&width=1380")
+                .quantity(3)
+                .gallery(List.of(
+                        "https://www.kappastore.com.ar/cdn/shop/files/K134242KW-KA0Z-3.jpg?v=1766067238&width=128",
+                        "https://www.kappastore.com.ar/cdn/shop/files/K134242KW-KA0Z-4.jpg?v=1766067238&width=128",
+                        "https://www.kappastore.com.ar/cdn/shop/files/K134242KW-KA0Z-2.jpg?v=1766067238&width=128")
+                )
+                .build();
+
+        ProductDetail detailSize4Black = ProductDetail.builder()
                 .size(42)
                 .price(220D)
                 .image("https://authogar.vtexassets.com/arquivos/ids/214811-800-auto?v=638721421030330000&width=800&height=auto&aspect=true")
@@ -80,12 +120,23 @@ public class DataSeederImpl implements DataSeeder {
                 .details(List.of(detailSize41White))
                 .build();
 
+        Color blackDuke = Color.builder()
+                .name("black")
+                .color("#000000")
+                .details(List.of( detailSize4Black))
+                .build();
+
         product.addColor(List.of(
                 black,
                 white,
                 red
         ));
 
+        product2.addColor(List.of(
+                blackDuke
+        ));
+
         productService.save(product);
+        productService.save(product2);
     }
 }

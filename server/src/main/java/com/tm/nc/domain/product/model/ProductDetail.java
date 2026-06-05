@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -17,6 +19,8 @@ public class ProductDetail {
     private double price;
 
     private String image;
+
+    private List<String> gallery;
 
     private int quantity;
 }
