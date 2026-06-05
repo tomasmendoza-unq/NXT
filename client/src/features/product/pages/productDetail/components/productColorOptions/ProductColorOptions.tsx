@@ -7,6 +7,7 @@ interface ProductColorOptionsProps {
     selectedColorId: number;
     setSelectedColorId: Dispatch<SetStateAction<number>>;
     setSelectedDetailId: Dispatch<SetStateAction<number>>;
+    setImageSelected: Dispatch<SetStateAction<string | null>>;
 }
 
 export const ProductColorOptions = ({
@@ -14,8 +15,17 @@ export const ProductColorOptions = ({
     selectedColorId,
     setSelectedColorId,
     setSelectedDetailId,
+    setImageSelected,
 }: ProductColorOptionsProps) => {
     const selectedColor = colors.find((color) => color.id === selectedColorId);
+
+    const onClickColor = (colorId: number, firstDetailId?: number) => {
+        setSelectedColorId(colorId);
+        if (firstDetailId) {
+            setSelectedDetailId(firstDetailId);
+        }
+        setImageSelected(null);
+    };
 
     return (
         <section className="product-color-options">
@@ -33,10 +43,9 @@ export const ProductColorOptions = ({
                         type="button"
                         aria-label={color.name}
                         title={color.name}
-                        onClick={() => {
-                            setSelectedColorId(color.id);
-                            setSelectedDetailId(color.details[0]?.id);
-                        }}
+                        onClick={() =>
+                            onClickColor(color.id, color.details[0]?.id)
+                        }
                     />
                 ))}
             </div>
