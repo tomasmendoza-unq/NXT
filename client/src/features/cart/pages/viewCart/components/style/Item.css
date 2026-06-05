@@ -1,0 +1,47 @@
+.item {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+
+    padding: 20px;
+
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.item-image {
+    flex-shrink: 0;
+}
+
+.item-image img {
+    width: 120px;
+    height: auto;
+    object-fit: contain;
+    display: block;
+}
+
+.item-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+}
+
+.item-details h2 {
+    margin: 0 0 8px;
+    font-size: 18px;
+    font-weight: 500;
+    color: #222;
+}
+
+.item-details p {
+    margin: 0;
+    color: #666;
+    font-size: 14px;
+}
+
+.item-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}

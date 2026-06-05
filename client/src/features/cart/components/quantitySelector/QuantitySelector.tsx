@@ -1,3 +1,5 @@
+import "./style/QuantitySelector.css";
+
 export const QuantitySelector = ({
     quantity,
     setQuantity,

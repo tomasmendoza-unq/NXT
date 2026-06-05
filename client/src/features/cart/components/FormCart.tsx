@@ -4,18 +4,11 @@ import "./styles/FormCard.css";
 import type { CartItem } from "../../../shared/types/CartItem";
 import { useAddCart } from "../hooks/use-add-cart";
 
-export const FormCard = ({
-    colorSelected,
-    detailSelected,
-}: {
-    colorSelected: number;
-    detailSelected: number;
-}) => {
+export const FormCart = ({ detailSelected }: { detailSelected: number }) => {
     const [quantity, setQuantity] = useState(1);
     const { addToCart } = useAddCart();
 
     const formData: CartItem = {
-        colorId: colorSelected,
         detailId: detailSelected,
         quantity,
     };

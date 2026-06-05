@@ -1,5 +1,7 @@
 import { useState } from "react";
+
 import type { CartItem } from "../../../shared/types/CartItem";
+
 const CART_STORAGE_KEY = "guest_cart";
 
 const getLocalCart = (): CartItem[] => {
@@ -21,15 +23,10 @@ export const useAddCart = () => {
 
     const [localCart, setLocalCart] = useState<CartItem[]>(getLocalCart);
 
-    const addToCart = (formData: {
-        colorId?: number;
-        detailId?: number;
-        quantity: number;
-    }) => {
-        if (!formData.colorId || !formData.detailId) return;
+    const addToCart = (formData: { detailId?: number; quantity: number }) => {
+        if (!formData.detailId) return;
 
         const item: CartItem = {
-            colorId: formData.colorId,
             detailId: formData.detailId,
             quantity: formData.quantity,
         };
@@ -39,13 +36,12 @@ export const useAddCart = () => {
             console.log("POST /cart", item);
         } else {
             const existing = localCart.find(
-                (i) =>
-                    i.colorId === item.colorId && i.detailId === item.detailId,
+                (i) => i.detailId === item.detailId,
             );
 
             const updated = existing
                 ? localCart.map((i) =>
-                      i.colorId === item.colorId && i.detailId === item.detailId
+                      i.detailId === item.detailId
                           ? { ...i, quantity: i.quantity + item.quantity }
                           : i,
                   )

@@ -20,6 +20,8 @@ public class ProductDetail {
 
     private String image;
 
+    private Product product;
+
     private List<String> gallery;
 
     private int quantity;
