@@ -1,6 +1,7 @@
 package com.tm.nc.domain.product.model;
 
 import com.tm.nc.domain.brand.model.Brand;
+import com.tm.nc.domain.color.model.Color;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,9 +24,9 @@ public class Product {
     private Brand brand;
 
     @Builder.Default
-    private List<ProductDetail> details = new ArrayList<>();
+    private List<Color> colors = new ArrayList<>();
 
-    public void addDetails(List<ProductDetail> productDetail) {
-        details.addAll(productDetail);
+    public void addColor(List<Color> color) {
+        colors.addAll(color);
     }
 }

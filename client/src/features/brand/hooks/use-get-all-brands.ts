@@ -1,7 +1,7 @@
 import { useState } from "react";
-import getAllBrands from "../services/get-all-brands.service";
 import type { BrandProps } from "../../../shared/types/Brand";
 import { ApiError } from "../../../core";
+import { getAllBrands } from "../services/get-all-brands.service";
 
 const useGetAllBrands = () => {
     const [brands, setBrands] = useState<BrandProps[]>([]);

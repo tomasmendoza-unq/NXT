@@ -1,10 +1,9 @@
 package com.tm.nc.domain.product.service;
 
 import com.tm.nc.domain.brand.model.Brand;
-import com.tm.nc.domain.product.model.Color;
+import com.tm.nc.domain.color.model.Color;
 import com.tm.nc.domain.product.model.Product;
 import com.tm.nc.domain.product.model.ProductDetail;
-import com.tm.nc.domain.product.persistence.repository.ProductRepository;
 import com.tm.nc.shared.service.ResetService;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.AfterEach;
@@ -31,8 +30,6 @@ public class ProductServiceTest {
 
     private Product product;
     private Brand brand;
-    private ProductDetail productDetail;
-    private Color color;
 
     @BeforeEach
     public void setUp() {
@@ -41,26 +38,49 @@ public class ProductServiceTest {
                 .logo("kkk")
                 .build();
 
-        color = Color.builder()
-                .name("red")
-                .color("#000000")
-                .build();
-
-        productDetail = ProductDetail.builder()
-                .size(39)
-                .price(200D)
-                .color(color)
-                .image("https://authogar.vtexassets.com/arquivos/ids/214811-800-auto?v=638721421030330000&width=800&height=auto&aspect=true")
-                .quantity(10)
-                .build();
-
         product = Product.builder()
                 .brand(brand)
                 .name("Nike Nike Nike Nike")
                 .model("jordan")
                 .build();
 
-        product.addDetails(List.of(productDetail));
+        ProductDetail detailSize39Black = ProductDetail.builder()
+                .size(39)
+                .price(200D)
+                .image("https://authogar.vtexassets.com/arquivos/ids/214811-800-auto?v=638721421030330000&width=800&height=auto&aspect=true")
+                .quantity(10)
+                .build();
+
+        ProductDetail detailSize42Black = ProductDetail.builder()
+                .size(42)
+                .price(220D)
+                .image("https://authogar.vtexassets.com/arquivos/ids/214811-800-auto?v=638721421030330000&width=800&height=auto&aspect=true")
+                .quantity(3)
+                .build();
+
+        ProductDetail detailSize40Red = ProductDetail.builder()
+                .size(40)
+                .price(210D)
+                .image("https://authogar.vtexassets.com/arquivos/ids/214811-800-auto?v=638721421030330000&width=800&height=auto&aspect=true")
+                .quantity(7)
+                .build();
+
+        Color black = Color.builder()
+                .name("black")
+                .color("#000000")
+                .details(List.of(detailSize39Black, detailSize42Black))
+                .build();
+
+        Color red = Color.builder()
+                .name("red")
+                .color("#FF0000")
+                .details(List.of(detailSize40Red))
+                .build();
+
+        product.addColor(List.of(
+                black,
+                red
+        ));
     }
 
     @Test
@@ -70,15 +90,16 @@ public class ProductServiceTest {
         assertEquals(product.getName(), saved.getName(), "El nombre debe coincidir");
         assertEquals(product.getModel(), saved.getModel(), "El modelo debe coincidir");
         assertNotNull(saved.getBrand(), "La marca no debe ser nula");
-        assertFalse(saved.getDetails().isEmpty(), "Debe tener al menos un detalle");
+        assertFalse(saved.getColors().isEmpty(), "Debe tener al menos un color");
 
         Product recovered = productService.getById(saved.getId());
 
         assertNotNull(recovered, "El producto recuperado no debe ser nulo");
         assertEquals(saved.getId(), recovered.getId(), "El ID debe coincidir");
         assertEquals(saved.getName(), recovered.getName(), "El nombre debe coincidir");
-        assertEquals(1, recovered.getDetails().size(), "Debe tener 1 detalle");
+        assertEquals(2, recovered.getColors().size(), "Debe tener 2 colores");
     }
+
 
     @AfterEach
     public void tearDown() {

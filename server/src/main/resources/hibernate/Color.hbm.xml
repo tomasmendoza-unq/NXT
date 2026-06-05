@@ -5,7 +5,7 @@
 
 <hibernate-mapping>
 
-    <class name="com.tm.nc.domain.product.model.Color" table="colors">
+    <class name="com.tm.nc.domain.color.model.Color" table="colors">
 
         <id name="id" column="id">
             <generator class="sequence"/>
@@ -13,6 +13,11 @@
 
         <property name="name" column="name" not-null="true"/>
         <property name="color" column="hex_code" not-null="true"/>
+
+        <bag name="details" cascade="all">
+            <key column="color_id"/>
+            <one-to-many class="com.tm.nc.domain.product.model.ProductDetail"/>
+        </bag>
 
     </class>
 

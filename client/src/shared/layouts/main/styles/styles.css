@@ -1,0 +1,11 @@
+.main-layout {
+    min-height: 100vh;
+    min-width: 0;
+    padding-left: 28px;
+}
+
+.main-layout-container {
+    display: grid;
+    grid-template-columns: 240px minmax(0, 1fr);
+    min-height: 100vh;
+}
