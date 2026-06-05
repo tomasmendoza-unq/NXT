@@ -1,4 +1,4 @@
-package com.tm.nc.features.product.controller.dto;
+package com.tm.nc.features.productDetail.controller.dto;
 
 import com.tm.nc.domain.productDetail.model.ProductDetail;
 

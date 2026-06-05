@@ -1,7 +1,7 @@
 package com.tm.nc.domain.cart.model;
 
 import com.tm.nc.domain.color.model.Color;
-import com.tm.nc.domain.product.model.ProductDetail;
+import com.tm.nc.domain.productDetail.model.ProductDetail;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

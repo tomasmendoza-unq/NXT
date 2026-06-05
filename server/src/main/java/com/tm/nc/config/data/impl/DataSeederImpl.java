@@ -4,7 +4,7 @@ import com.tm.nc.config.data.DataSeeder;
 import com.tm.nc.domain.brand.model.Brand;
 import com.tm.nc.domain.color.model.Color;
 import com.tm.nc.domain.product.model.Product;
-import com.tm.nc.domain.product.model.ProductDetail;
+import com.tm.nc.domain.productDetail.model.ProductDetail;
 import com.tm.nc.domain.product.service.ProductService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
@@ -125,6 +125,12 @@ public class DataSeederImpl implements DataSeeder {
                 .color("#000000")
                 .details(List.of( detailSize4Black))
                 .build();
+
+        detailSize39Black.setColor(black);
+        detailSize42Black.setColor(black);
+        detailSize41White.setColor(white);
+        detailSize40Red.setColor(red);
+        detailSize4Black.setColor(blackDuke);
 
         product.addColor(List.of(
                 black,
