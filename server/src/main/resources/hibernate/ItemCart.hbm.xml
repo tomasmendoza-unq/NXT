@@ -17,7 +17,7 @@
                      not-null="true"/>
 
         <many-to-one name="productDetail"
-                     class="com.tm.nc.domain.product.model.ProductDetail"
+                     class="com.tm.nc.domain.productDetail.model.ProductDetail"
                      column="product_detail_id"
                      not-null="true"/>
 

@@ -3,7 +3,7 @@ package com.tm.nc.domain.product.service;
 import com.tm.nc.domain.brand.model.Brand;
 import com.tm.nc.domain.color.model.Color;
 import com.tm.nc.domain.product.model.Product;
-import com.tm.nc.domain.product.model.ProductDetail;
+import com.tm.nc.domain.productDetail.model.ProductDetail;
 import com.tm.nc.shared.service.ResetService;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.AfterEach;

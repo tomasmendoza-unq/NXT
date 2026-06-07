@@ -1,6 +1,6 @@
-package com.tm.nc.domain.product.persistence.sql;
+package com.tm.nc.domain.productDetail.persistence.sql;
 
-import com.tm.nc.domain.product.model.ProductDetail;
+import com.tm.nc.domain.productDetail.model.ProductDetail;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

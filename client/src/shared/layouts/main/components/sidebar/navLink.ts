@@ -18,4 +18,9 @@ export const links = [
         path: "/brands",
         icon: LocalOfferIcon,
     },
+    {
+        label: "Carrito",
+        path: "/cart",
+        icon: ShoppingCartIcon,
+    },
 ];
