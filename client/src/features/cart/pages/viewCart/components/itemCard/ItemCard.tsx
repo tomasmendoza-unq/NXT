@@ -4,9 +4,25 @@ import "./style/Item.css";
 import type { Item } from "../../../../types/Item";
 import { QuantitySelector } from "../../../../components/quantitySelector/QuantitySelector";
 import { RemoveItem } from "../../../../components/removeItem/RemoveItem";
+import { cartService } from "../../../../service/cartService.service";
 
-export const ItemCard = ({ item }: { item: Item }) => {
+export const ItemCard = ({
+    item,
+    onQuantityChange,
+    onRemove,
+}: {
+    item: Item;
+    onQuantityChange: (detailId: number, newQuantity: number) => void;
+    onRemove: (detailId: number) => void;
+}) => {
     const [quantity, setQuantity] = useState(item.quantity);
+
+    const handleQuantityChange = (newQuantity: number) => {
+        setQuantity(newQuantity);
+        cartService.updateQuantity(item.detail.id, newQuantity);
+        onQuantityChange(item.detail.id, newQuantity);
+    };
+
     return (
         <article className="item">
             <section className="item-image">
@@ -25,9 +41,12 @@ export const ItemCard = ({ item }: { item: Item }) => {
             <section className="item-actions">
                 <QuantitySelector
                     quantity={quantity}
-                    setQuantity={setQuantity}
+                    onIncrement={() => handleQuantityChange(quantity + 1)}
+                    onDecrement={() =>
+                        handleQuantityChange(Math.max(1, quantity - 1))
+                    }
                 />
-                <RemoveItem />
+                <RemoveItem onRemove={() => onRemove(item.detail.id)} />
             </section>
         </article>
     );
