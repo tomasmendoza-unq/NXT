@@ -3,19 +3,43 @@ import { useGetPreviewCart } from "../../hooks/use-get-preview-cart";
 import "./style/Cart.css";
 import { Summary } from "./components/summary/Summary";
 import { CartContent } from "./components/content/CartContent";
+import { cartService } from "../../service/cartService.service";
 
 export const Cart = () => {
-    const { fetch, items } = useGetPreviewCart();
+    const { fetch, items, setItems } = useGetPreviewCart();
 
     useEffect(() => {
         fetch();
     }, []);
 
+    const handleQuantityChange = (detailId: number, newQuantity: number) => {
+        setItems((prev) =>
+            prev.map((i) =>
+                i.detail.id === detailId
+                    ? {
+                          ...i,
+                          quantity: newQuantity,
+                          subTotal: i.detail.price * newQuantity,
+                      }
+                    : i,
+            ),
+        );
+    };
+
+    const handleRemove = (detailId: number) => {
+        cartService.removeItem(detailId);
+        setItems((prev) => prev.filter((i) => i.detail.id !== detailId));
+    };
+
     return items.length === 0 ? (
         <p>Carrito está vacío</p>
     ) : (
         <main className="cart-container">
-            <CartContent items={items} />
+            <CartContent
+                items={items}
+                onQuantityChange={handleQuantityChange}
+                onRemove={handleRemove}
+            />
             <Summary items={items} />
         </main>
     );

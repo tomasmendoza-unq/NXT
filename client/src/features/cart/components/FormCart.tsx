@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { QuantitySelector } from "./quantitySelector/QuantitySelector";
-import "./styles/FormCard.css";
-import type { CartItem } from "../../../shared/types/CartItem";
 import { useAddCart } from "../hooks/use-add-cart";
+import type { CartItem } from "../../../shared/types/CartItem";
+import "./styles/FormCard.css";
+import { QuantitySelector } from "./quantitySelector/QuantitySelector";
 
 export const FormCart = ({ detailSelected }: { detailSelected: number }) => {
     const [quantity, setQuantity] = useState(1);
@@ -23,7 +23,8 @@ export const FormCart = ({ detailSelected }: { detailSelected: number }) => {
         >
             <QuantitySelector
                 quantity={quantity}
-                setQuantity={setQuantity}
+                onIncrement={() => setQuantity(quantity + 1)}
+                onDecrement={() => setQuantity(Math.max(1, quantity - 1))}
             />
 
             <button
