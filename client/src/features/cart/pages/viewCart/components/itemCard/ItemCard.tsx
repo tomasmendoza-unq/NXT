@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { QuantitySelector } from "../../../components/quantitySelector/QuantitySelector";
-import type { Item } from "../../../types/Item";
+
 import "./style/Item.css";
-import { RemoveItem } from "../../../components/removeItem/RemoveItem";
+import type { Item } from "../../../../types/Item";
+import { QuantitySelector } from "../../../../components/quantitySelector/QuantitySelector";
+import { RemoveItem } from "../../../../components/removeItem/RemoveItem";
 
 export const ItemCard = ({ item }: { item: Item }) => {
     const [quantity, setQuantity] = useState(item.quantity);
