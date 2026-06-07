@@ -3,9 +3,11 @@ import { useAddCart } from "../hooks/use-add-cart";
 import type { CartItem } from "../../../shared/types/CartItem";
 import "./styles/FormCard.css";
 import { QuantitySelector } from "./quantitySelector/QuantitySelector";
+import { Toast } from "../../../shared/components/toast/Toast";
 
 export const FormCart = ({ detailSelected }: { detailSelected: number }) => {
     const [quantity, setQuantity] = useState(1);
+    const [toastOpen, setToastOpen] = useState(false);
     const { addToCart } = useAddCart();
 
     const formData: CartItem = {
@@ -18,6 +20,7 @@ export const FormCart = ({ detailSelected }: { detailSelected: number }) => {
             onSubmit={(e) => {
                 e.preventDefault();
                 addToCart(formData);
+                setToastOpen(true);
             }}
             className="form-card"
         >
@@ -33,6 +36,12 @@ export const FormCart = ({ detailSelected }: { detailSelected: number }) => {
             >
                 Add to Card
             </button>
+
+            <Toast
+                open={toastOpen}
+                message="Producto agregado al carrito"
+                onClose={() => setToastOpen(false)}
+            />
         </form>
     );
 };

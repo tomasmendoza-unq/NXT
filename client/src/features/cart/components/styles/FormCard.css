@@ -6,22 +6,14 @@
     max-width: 400px;
 }
 
-.form-card button {
-    background-color: var(--button-primary-bg);
-    color: var(--button-primary-text);
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-}
-
-.form-card button:hover {
-    background-color: var(--button-primary-hover-bg);
-    color: var(--button-primary-text);
-}
-
 .add-to-card-button {
     background-color: var(--button-primary-bg);
     color: var(--button-primary-text);
     border: none;
     width: 100%;
+}
+
+.add-to-card-button:hover {
+    background-color: var(--button-primary-hover-bg);
+    color: var(--button-primary-text);
 }
