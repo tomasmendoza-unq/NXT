@@ -1,4 +1,6 @@
+import { Link } from "react-router-dom";
 import type { Item } from "../../../../types/Item";
+import "./style/Summary.css";
 
 export const Summary = ({ items }: { items: Item[] }) => {
     return (
@@ -12,6 +14,13 @@ export const Summary = ({ items }: { items: Item[] }) => {
                     0,
                 )}
             </p>
+
+            <Link
+                to="/checkout"
+                className="checkout-button"
+            >
+                Iniciar compra
+            </Link>
         </aside>
     );
 };
