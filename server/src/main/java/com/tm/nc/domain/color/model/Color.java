@@ -1,7 +1,7 @@
 package com.tm.nc.domain.color.model;
 
 import com.tm.nc.domain.product.model.Product;
-import com.tm.nc.domain.product.model.ProductDetail;
+import com.tm.nc.domain.productDetail.model.ProductDetail;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,6 +20,8 @@ public class Color {
     private String name;
 
     private String color;
+
+    private Product product;
 
     private List<ProductDetail> details = new ArrayList<>();
 }

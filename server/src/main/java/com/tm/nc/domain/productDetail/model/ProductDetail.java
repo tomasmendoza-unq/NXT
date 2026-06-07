@@ -1,5 +1,7 @@
-package com.tm.nc.domain.product.model;
+package com.tm.nc.domain.productDetail.model;
 
+import com.tm.nc.domain.color.model.Color;
+import com.tm.nc.domain.product.model.Product;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,6 +21,8 @@ public class ProductDetail {
     private double price;
 
     private String image;
+
+    private Color color;
 
     private List<String> gallery;
 

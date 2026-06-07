@@ -6,23 +6,6 @@
     max-width: 400px;
 }
 
-.form-card .quantity-input {
-    width: 10px;
-}
-
-.form-card .quantity-selector {
-    display: flex;
-    height: 30px;
-
-    border-radius: 8px;
-}
-
-.form-card .quantity-selector .quantity-input {
-    width: 50px;
-    text-align: center;
-    border: none;
-}
-
 .form-card button {
     background-color: var(--button-primary-bg);
     color: var(--button-primary-text);

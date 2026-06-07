@@ -1,4 +1,4 @@
-package com.tm.nc.features.cart.controller.dto;
+package com.tm.nc.features.cart.controller.dto.request;
 
 public record CartRequestDTO(
     Long idColor,
