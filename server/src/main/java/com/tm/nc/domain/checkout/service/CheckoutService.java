@@ -9,4 +9,6 @@ public interface CheckoutService {
     Checkout generateCheckout(Checkout model, List<ItemCheckoutRequestDTO> itemCheckoutRequestDTOS);
 
     Checkout findById(Long id);
+
+    List<Checkout> findAllByStatus(String status);
 }
