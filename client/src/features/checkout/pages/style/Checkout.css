@@ -1,5 +1,17 @@
-@media (max-width: 768px) {
+.checkout-container {
+    display: flex;
+    gap: 32px;
+    align-items: flex-start;
+}
+
+@media (max-width: 1000px) {
     .checkout-container {
-        padding: 10px;
+        flex-direction: column;
+        padding: 16px;
+    }
+
+    .form-facturation,
+    .order-summary {
+        width: 100%;
     }
 }
