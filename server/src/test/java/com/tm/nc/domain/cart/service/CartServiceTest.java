@@ -3,6 +3,7 @@ package com.tm.nc.domain.cart.service;
 import com.tm.nc.domain.brand.model.Brand;
 import com.tm.nc.domain.cart.model.Cart;
 import com.tm.nc.domain.cart.model.ItemCart;
+import com.tm.nc.domain.client.model.Client;
 import com.tm.nc.domain.color.model.Color;
 import com.tm.nc.domain.product.model.Product;
 import com.tm.nc.domain.productDetail.model.ProductDetail;
@@ -42,7 +43,7 @@ public class CartServiceTest {
     private ProductService productService;
 
 
-    private User user;
+    private Client user;
 
     private CartRequestDTO requestGood;
 
@@ -59,7 +60,7 @@ public class CartServiceTest {
 
     @BeforeEach
     void setUp() {
-        user = userService.generateUser();
+        user = userService.generateClient();
 
         brand = Brand.builder()
                 .name("nike")

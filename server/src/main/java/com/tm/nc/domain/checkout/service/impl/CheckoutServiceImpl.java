@@ -1,0 +1,75 @@
+package com.tm.nc.domain.checkout.service.impl;
+
+import com.tm.nc.domain.checkout.model.Checkout;
+import com.tm.nc.domain.checkout.persistence.sql.CheckoutDAOSQL;
+import com.tm.nc.domain.checkout.service.CheckoutService;
+import com.tm.nc.domain.client.model.Client;
+import com.tm.nc.domain.client.persistence.sql.ClientSQLDAO;
+import com.tm.nc.domain.productDetail.model.ProductDetail;
+import com.tm.nc.domain.productDetail.persistence.sql.ProductDetailsSQLDAO;
+import com.tm.nc.features.checkout.controller.dto.request.ItemCheckoutRequestDTO;
+import com.tm.nc.shared.exception.EntityNotFoundException;
+import jakarta.transaction.Transactional;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
+@Service
+@Transactional
+public class CheckoutServiceImpl implements CheckoutService {
+
+    private final CheckoutDAOSQL checkoutDAOSQL;
+
+    private final ProductDetailsSQLDAO productDetailsSQLDAO;
+
+    private final ClientSQLDAO clientSQLDAO;
+
+    public CheckoutServiceImpl(CheckoutDAOSQL checkoutDAOSQL, ProductDetailsSQLDAO productDetailsSQLDAO, ClientSQLDAO clientSQLDAO) {
+        this.checkoutDAOSQL = checkoutDAOSQL;
+        this.productDetailsSQLDAO = productDetailsSQLDAO;
+        this.clientSQLDAO = clientSQLDAO;
+    }
+
+    @Override
+    public Checkout generateCheckout(
+            Checkout model,
+            List<ItemCheckoutRequestDTO> itemCheckoutRequestDTOS
+    ) {
+        List<Long> idsDetail = itemCheckoutRequestDTOS.stream()
+                .map(ItemCheckoutRequestDTO::idDetail)
+                .toList();
+
+        Map<Long, ProductDetail> detailsById = productDetailsSQLDAO.findAllById(idsDetail)
+                .stream()
+                .collect(Collectors.toMap(
+                        ProductDetail::getId,
+                        Function.identity()
+                ));
+
+        itemCheckoutRequestDTOS.forEach(item -> {
+            ProductDetail detail = Optional.ofNullable(
+                            detailsById.get(item.idDetail()))
+                    .orElseThrow(() -> new EntityNotFoundException(
+                            ProductDetail.class.getName(),
+                            item.idDetail()
+                    ));
+
+            model.addItem(detail, item.quantity());
+        });
+
+        Client client = clientSQLDAO.save(model.getClient());
+
+        model.setClient(client);
+
+        return checkoutDAOSQL.save(model);
+    }
+
+    @Override
+    public Checkout findById(Long id) {
+        return checkoutDAOSQL.findById(id).orElseThrow(() -> new EntityNotFoundException(Checkout.class.getName(), id));
+    }
+}
