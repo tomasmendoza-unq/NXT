@@ -1,7 +1,6 @@
 package com.tm.nc.domain.cart.model;
 
 import com.tm.nc.domain.cart.exception.InsufficientStockException;
-import com.tm.nc.domain.user.model.User;
 import lombok.*;
 
 import java.util.ArrayList;

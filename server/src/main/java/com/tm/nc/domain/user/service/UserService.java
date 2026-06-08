@@ -1,7 +1,7 @@
 package com.tm.nc.domain.user.service;
 
-import com.tm.nc.domain.user.model.User;
+import com.tm.nc.domain.client.model.Client;
 
 public interface UserService {
-    public User generateUser();
+    public Client generateClient();
 }

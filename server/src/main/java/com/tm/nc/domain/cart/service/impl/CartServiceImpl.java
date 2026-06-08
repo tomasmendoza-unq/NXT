@@ -4,6 +4,7 @@ import com.tm.nc.domain.cart.model.Cart;
 import com.tm.nc.domain.cart.model.ItemCart;
 import com.tm.nc.domain.cart.persistence.sql.CartSQLDAO;
 import com.tm.nc.domain.cart.service.CartService;
+import com.tm.nc.domain.client.model.Client;
 import com.tm.nc.domain.color.model.Color;
 import com.tm.nc.domain.color.persistence.repository.ColorRepository;
 import com.tm.nc.domain.productDetail.model.ProductDetail;
@@ -15,6 +16,10 @@ import com.tm.nc.shared.exception.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Service
 public class CartServiceImpl implements CartService {
@@ -32,7 +37,7 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public void addToCart(CartRequestDTO cartRequestDTO, User user) {
+    public void addToCart(CartRequestDTO cartRequestDTO, Client client) {
         ProductDetail detail = productDetailsSQLDAO.findById(cartRequestDTO.idDetails()).orElseThrow(() -> new EntityNotFoundException(ProductDetail.class.getName(), cartRequestDTO.idDetails()));
         Color color = colorRepository.findById(cartRequestDTO.idColor());
 
@@ -42,7 +47,7 @@ public class CartServiceImpl implements CartService {
                 .quantity(cartRequestDTO.quantity())
                 .build();
 
-        Cart cart = user.getCart();
+        Cart cart = client.getCart();
 
         cart.addToCard(item);
 
@@ -56,18 +61,35 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public List<ItemCart> findItemsCart(List<ItemPreviewDTO> itemPreview) {
-        return itemPreview.stream().map(
-                item -> {
-                    ProductDetail productDetail = productDetailsSQLDAO.findById(item.detailId()).orElseThrow(() -> new EntityNotFoundException(ProductDetail.class.getName(), item.detailId()));
+
+        List<Long> ids = itemPreview.stream()
+                .map(ItemPreviewDTO::detailId)
+                .toList();
+
+        Map<Long, ProductDetail> productDetailsById = productDetailsSQLDAO.findAllById(ids)
+                .stream()
+                .collect(Collectors.toMap(
+                        ProductDetail::getId,
+                        Function.identity()
+                ));
+
+        return itemPreview.stream()
+                .map(item -> {
+                    ProductDetail productDetail = Optional.ofNullable(
+                                    productDetailsById.get(item.detailId()))
+                            .orElseThrow(() -> new EntityNotFoundException(
+                                    ProductDetail.class.getName(),
+                                    item.detailId()
+                            ));
+
                     return ItemCart.builder()
                             .id(productDetail.getId())
                             .productDetail(productDetail)
                             .color(productDetail.getColor())
                             .quantity(item.quantity())
                             .build();
-                }
-        ).toList();
-
+                })
+                .toList();
     }
 
     @Override

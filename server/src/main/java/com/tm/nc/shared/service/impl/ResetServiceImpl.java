@@ -25,7 +25,12 @@ public class ResetServiceImpl implements ResetService {
                 "product_details",
                 "products",
                 "colors",
-                "brands"
+                "brands",
+                "clients",
+                "checkouts",
+                "items_cart",
+                "carts",
+                "checkout_items"
         );
 
         for (String tableName : tablasExistentes) {
