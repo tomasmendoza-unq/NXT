@@ -5,11 +5,16 @@ import type { FacturationForm } from "../types/FacturationForm.t";
 import { postCheckout } from "../service/post-checkout.service";
 import { checkoutToRequestDTO } from "../adapter/checkout.adapter";
 import type { Checkout } from "../types/checkout.t";
+import type { CheckoutResponseDTO } from "../api/types/CheckoutResponseDTO";
 
 export const useCheckout = () => {
+    const [checkoutData, setCheckoutData] =
+        useState<CheckoutResponseDTO | null>(null);
     const [localCart] = useState<CartItem[]>(cartService.getCart);
     const [error, setError] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [showSuccessMessage, setShowSuccessMessage] =
+        useState<boolean>(false);
 
     const checkout = async (formData: FacturationForm) => {
         setError(null);
@@ -24,7 +29,9 @@ export const useCheckout = () => {
             };
 
             const response = await postCheckout(checkoutToRequestDTO(checkout));
-            console.log("Respuesta del checkout:", response);
+            setCheckoutData(response);
+            cartService.clearCart();
+            setShowSuccessMessage(true);
         } catch {
             setError("Error al procesar la compra");
         } finally {
@@ -32,5 +39,13 @@ export const useCheckout = () => {
         }
     };
 
-    return { checkout, localCart, error, isLoading };
+    return {
+        checkout,
+        localCart,
+        error,
+        isLoading,
+        showSuccessMessage,
+        checkoutData,
+        setShowSuccessMessage,
+    };
 };
