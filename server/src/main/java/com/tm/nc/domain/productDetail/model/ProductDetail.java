@@ -27,4 +27,8 @@ public class ProductDetail {
     private List<String> gallery;
 
     private int quantity;
+
+    public boolean hasStock(Integer quantity) {
+        return this.quantity >= quantity;
+    }
 }

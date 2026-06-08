@@ -70,5 +70,11 @@ public class CartServiceImpl implements CartService {
 
     }
 
+    @Override
+    public Boolean checkStock(Long idDetail, Integer quantity) {
+        ProductDetail detail = productDetailsSQLDAO.findById(idDetail).orElseThrow(() -> new EntityNotFoundException(ProductDetail.class.getName(), idDetail));
+        return detail.hasStock(quantity);
+    }
+
 
 }
