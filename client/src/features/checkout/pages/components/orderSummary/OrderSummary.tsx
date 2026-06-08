@@ -1,4 +1,6 @@
 import type { Item } from "../../../../cart/types/Item";
+import { BankTransferNotice } from "../bankTransfertNotice/BankTransferNotice";
+import { OrderSummaryRow } from "../rows/OrderSummaryRow";
 import "./style/OrderSummary.css";
 
 export const OrderSummary = ({
@@ -36,15 +38,13 @@ export const OrderSummary = ({
                 ))}
             </ul>
 
-            <div className="order-summary-row">
-                <span>Subtotal</span>
-                <span>${total.toLocaleString()}</span>
-            </div>
+            <OrderSummaryRow
+                label="Total"
+                value={`$${total.toLocaleString()}`}
+            />
 
-            <div className="order-summary-row order-summary-total">
-                <span>Total</span>
-                <span>${total.toLocaleString()}</span>
-            </div>
+            <BankTransferNotice />
+
             <button
                 onClick={onCheckout}
                 className="checkout-button"
