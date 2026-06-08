@@ -2,9 +2,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
-import "./styles/ProductCarousel.css";
-import type { Product } from "../../../shared/types/Product";
-import { ProductCard } from "./ProductCard";
+import "./style/ProductCarousel.css";
+import type { Product } from "../../../../shared/types/Product";
+import { ProductCard } from "../productCard/ProductCard";
 
 export const ProductCarousel = ({ products }: { products: Product[] }) => {
     return (
@@ -12,10 +12,10 @@ export const ProductCarousel = ({ products }: { products: Product[] }) => {
             modules={[Navigation]}
             navigation
             spaceBetween={20}
-            slidesPerView={4}
+            slidesPerView={1}
             breakpoints={{
-                640: { slidesPerView: 1 },
-                768: { slidesPerView: 2 },
+                480: { slidesPerView: 1 },
+                640: { slidesPerView: 2 },
                 1024: { slidesPerView: 3 },
                 1280: { slidesPerView: 4 },
             }}

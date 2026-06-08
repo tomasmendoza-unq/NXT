@@ -1,0 +1,13 @@
+.subSection-Container {
+    width: 100%;
+    padding-left: 10px;
+    box-sizing: border-box;
+    margin-bottom: 1.5rem;
+}
+
+.subSection-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #9ca3af;
+    margin-bottom: 1rem;
+}

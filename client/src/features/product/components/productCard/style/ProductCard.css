@@ -1,0 +1,36 @@
+.product-card {
+    background-color: #fff;
+    overflow: hidden;
+    cursor: pointer;
+    transition: box-shadow 0.2s ease;
+}
+
+.product-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.product-card-info {
+    padding: 8px;
+}
+
+.product-card-name {
+    font-weight: 600;
+    color: #111827;
+    font-size: 0.75rem;
+    margin-bottom: 4px;
+}
+
+.product-card-model {
+    color: #4b5563;
+    font-size: 0.75rem;
+    margin-bottom: 8px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.product-card-price {
+    color: #ea580c;
+    font-weight: 700;
+    font-size: 0.875rem;
+}
