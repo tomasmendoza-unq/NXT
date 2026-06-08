@@ -5,6 +5,8 @@ import type { Item } from "../../../../types/Item";
 import { QuantitySelector } from "../../../../components/quantitySelector/QuantitySelector";
 import { RemoveItem } from "../../../../components/removeItem/RemoveItem";
 import { cartService } from "../../../../service/cartService.service";
+import { checkStock } from "../../../../service/check-stock.service";
+import { useToast } from "../../../../../../shared/hooks/toast/useToast";
 
 export const ItemCard = ({
     item,
@@ -16,8 +18,16 @@ export const ItemCard = ({
     onRemove: (detailId: number) => void;
 }) => {
     const [quantity, setQuantity] = useState(item.quantity);
+    const { showToast } = useToast();
 
-    const handleQuantityChange = (newQuantity: number) => {
+    const handleQuantityChange = async (newQuantity: number) => {
+        const hasStock = await checkStock(item.detail.id, newQuantity);
+
+        if (!hasStock) {
+            showToast({ message: "Sin stock disponible", severity: "error" });
+            return;
+        }
+
         setQuantity(newQuantity);
         cartService.updateQuantity(item.detail.id, newQuantity);
         onQuantityChange(item.detail.id, newQuantity);
