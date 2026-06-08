@@ -1,5 +1,5 @@
 import type { Product } from "../../../shared/types/Product";
-import { ProductCard } from "./ProductCard";
+import { ProductCard } from "./productCard/ProductCard";
 import styles from "./styles/ProductGrid.module.css";
 
 export const ProductsGrid = ({ products }: { products: Product[] }) => {
