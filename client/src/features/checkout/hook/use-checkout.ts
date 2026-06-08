@@ -23,7 +23,6 @@ export const useCheckout = () => {
                 })),
             };
 
-            console.log("Datos del checkout:", checkout);
             const response = await postCheckout(checkoutToRequestDTO(checkout));
             console.log("Respuesta del checkout:", response);
         } catch {
