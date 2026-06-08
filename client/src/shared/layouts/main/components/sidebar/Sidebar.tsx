@@ -13,10 +13,13 @@ const SidebarLogo = ({ className }: { className?: string }) => (
     />
 );
 
-export const Sidebard = () => {
+export const Sidebard = ({ isOpen }: { isOpen: boolean }) => {
     return (
-        <nav className="sidebar">
-            <Link className="sidebar-brand" to="/">
+        <nav className={`sidebar ${isOpen ? "sidebar--open" : ""}`}>
+            <Link
+                className="sidebar-brand"
+                to="/"
+            >
                 <IconText icon={SidebarLogo}>NXT_STEPS</IconText>
             </Link>
             <ul>
