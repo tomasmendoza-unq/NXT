@@ -1,36 +1,58 @@
 import { useState } from "react";
 import type { CartItem } from "../../../shared/types/CartItem";
 import { cartService } from "../service/cartService.service";
+import { checkStock } from "../service/check-stock.service";
 
 export const useAddCart = () => {
     const isAuthenticated = false;
     const [localCart, setLocalCart] = useState<CartItem[]>(cartService.getCart);
+    const [error, setError] = useState<string | null>(null);
 
-    const addToCart = (formData: { detailId?: number; quantity: number }) => {
+    const addToCart = async (formData: {
+        detailId?: number;
+        quantity: number;
+    }) => {
         if (!formData.detailId) return;
+        setError(null);
 
-        const item: CartItem = {
-            detailId: formData.detailId,
-            quantity: formData.quantity,
-        };
-
-        if (isAuthenticated) {
-            console.log("POST /cart", item);
-        } else {
+        try {
             const cart = cartService.getCart();
-            const existing = cart.find((i) => i.detailId === item.detailId);
-            const updated = existing
-                ? cart.map((i) =>
-                      i.detailId === item.detailId
-                          ? { ...i, quantity: i.quantity + item.quantity }
-                          : i,
-                  )
-                : [...cart, item];
+            const existing = cart.find((i) => i.detailId === formData.detailId);
+            const totalQuantity = existing
+                ? existing.quantity + formData.quantity
+                : formData.quantity;
 
-            cartService.saveCart(updated);
-            setLocalCart(updated);
+            const hasStock = await checkStock(formData.detailId, totalQuantity);
+
+            if (!hasStock) {
+                setError("Sin stock disponible");
+                return;
+            }
+
+            if (isAuthenticated) {
+                console.log("POST /cart", formData);
+            } else {
+                const updated = existing
+                    ? cart.map((i) =>
+                          i.detailId === formData.detailId
+                              ? { ...i, quantity: totalQuantity }
+                              : i,
+                      )
+                    : [
+                          ...cart,
+                          {
+                              detailId: formData.detailId,
+                              quantity: formData.quantity,
+                          },
+                      ];
+
+                cartService.saveCart(updated);
+                setLocalCart(updated);
+            }
+        } catch {
+            setError("Error al agregar el producto");
         }
     };
 
-    return { addToCart, localCart };
+    return { addToCart, localCart, error };
 };

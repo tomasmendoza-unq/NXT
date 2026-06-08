@@ -4,6 +4,7 @@ import com.tm.nc.domain.cart.model.ItemCart;
 import com.tm.nc.domain.cart.service.CartService;
 import com.tm.nc.domain.user.model.User;
 import com.tm.nc.domain.user.service.UserService;
+import com.tm.nc.features.cart.controller.dto.request.CheckRequestDTO;
 import com.tm.nc.features.cart.controller.dto.request.ItemPreviewDTO;
 import com.tm.nc.features.cart.controller.dto.request.CartRequestDTO;
 import com.tm.nc.features.cart.controller.dto.response.ItemCartResponseDTO;
@@ -42,5 +43,11 @@ public class CartControllerREST {
         List<ItemCartResponseDTO> response = items.stream().map(ItemCartResponseDTO::from).toList();
 
         return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/check")
+    public ResponseEntity<Boolean> checkCart(@RequestBody CheckRequestDTO checkRequestDTO) {
+
+        return ResponseEntity.ok(cartService.checkStock(checkRequestDTO.detailId(), checkRequestDTO.quantity()));
     }
 }
