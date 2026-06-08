@@ -11,8 +11,8 @@ export const useAddCart = () => {
     const addToCart = async (formData: {
         detailId?: number;
         quantity: number;
-    }) => {
-        if (!formData.detailId) return;
+    }): Promise<boolean> => {
+        if (!formData.detailId) return false;
         setError(null);
 
         try {
@@ -26,7 +26,7 @@ export const useAddCart = () => {
 
             if (!hasStock) {
                 setError("Sin stock disponible");
-                return;
+                return false;
             }
 
             if (isAuthenticated) {
@@ -49,8 +49,11 @@ export const useAddCart = () => {
                 cartService.saveCart(updated);
                 setLocalCart(updated);
             }
+
+            return true;
         } catch {
             setError("Error al agregar el producto");
+            return false;
         }
     };
 
