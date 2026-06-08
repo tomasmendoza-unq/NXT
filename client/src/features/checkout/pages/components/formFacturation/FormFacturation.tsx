@@ -11,22 +11,31 @@ export const FormFacturation = ({
 }) => {
     return (
         <form className="form-facturation">
-            <h2>Detalles de facturación</h2>
-            {inputs.map((input) => (
+            <h1>Detalles de facturación</h1>
+            {inputs.map((row, rowIndex) => (
                 <div
-                    key={input.name}
-                    className="form-facturation-field"
+                    key={rowIndex}
+                    className="form-row"
                 >
-                    <label htmlFor={input.name}>{input.label}</label>
-                    <input
-                        id={input.name}
-                        name={input.name}
-                        type={input.type}
-                        pattern={input.pattern}
-                        title={input.title}
-                        value={formData[input.name as keyof FacturationForm]}
-                        onChange={onChange}
-                    />
+                    {row.map((input) => (
+                        <div
+                            key={input.name}
+                            className="form-facturation-field"
+                        >
+                            <label htmlFor={input.name}>{input.label}</label>
+                            <input
+                                id={input.name}
+                                name={input.name}
+                                type={input.type}
+                                value={
+                                    formData[
+                                        input.name as keyof FacturationForm
+                                    ]
+                                }
+                                onChange={onChange}
+                            />
+                        </div>
+                    ))}
                 </div>
             ))}
         </form>
