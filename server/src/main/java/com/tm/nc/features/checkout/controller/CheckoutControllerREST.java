@@ -29,8 +29,10 @@ public class CheckoutControllerREST {
     }
 
     @PostMapping
-    public ResponseEntity<CheckoutResponseDTO> generateCheckout(@RequestBody CheckoutRequestDTO checkoutRequestDTO) {
-        Checkout checkout = checkoutService.generateCheckout(checkoutRequestDTO.toModel(), checkoutRequestDTO.itemCheckoutRequestDTO());
+    public ResponseEntity<CheckoutResponseDTO> generateCheckout(
+            @RequestHeader("Idempotency-Key") String idempotencyKey,
+            @RequestBody CheckoutRequestDTO checkoutRequestDTO) {
+        Checkout checkout = checkoutService.generateCheckout(checkoutRequestDTO.toModel(), checkoutRequestDTO.itemCheckoutRequestDTO(), idempotencyKey);
 
         return  ResponseEntity.ok(CheckoutResponseDTO.fromModel(checkout));
     }

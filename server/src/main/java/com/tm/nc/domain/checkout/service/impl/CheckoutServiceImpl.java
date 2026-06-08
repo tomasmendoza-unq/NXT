@@ -1,8 +1,10 @@
 package com.tm.nc.domain.checkout.service.impl;
 
 import com.tm.nc.domain.checkout.model.Checkout;
+import com.tm.nc.domain.checkout.model.CheckoutIdempotency;
 import com.tm.nc.domain.checkout.model.enums.CheckoutStatus;
 import com.tm.nc.domain.checkout.persistence.sql.CheckoutDAOSQL;
+import com.tm.nc.domain.checkout.persistence.sql.CheckoutIdempotencyDAO;
 import com.tm.nc.domain.checkout.service.CheckoutService;
 import com.tm.nc.domain.client.model.Client;
 import com.tm.nc.domain.client.persistence.sql.ClientSQLDAO;
@@ -13,6 +15,7 @@ import com.tm.nc.shared.exception.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -28,18 +31,31 @@ public class CheckoutServiceImpl implements CheckoutService {
     private final ProductDetailsSQLDAO productDetailsSQLDAO;
 
     private final ClientSQLDAO clientSQLDAO;
+    private final CheckoutIdempotencyDAO checkoutIdempotencyDAO;
 
-    public CheckoutServiceImpl(CheckoutDAOSQL checkoutDAOSQL, ProductDetailsSQLDAO productDetailsSQLDAO, ClientSQLDAO clientSQLDAO) {
+    public CheckoutServiceImpl(CheckoutDAOSQL checkoutDAOSQL, ProductDetailsSQLDAO productDetailsSQLDAO, ClientSQLDAO clientSQLDAO, CheckoutIdempotencyDAO checkoutIdempotencyDAO) {
         this.checkoutDAOSQL = checkoutDAOSQL;
         this.productDetailsSQLDAO = productDetailsSQLDAO;
         this.clientSQLDAO = clientSQLDAO;
+        this.checkoutIdempotencyDAO = checkoutIdempotencyDAO;
     }
 
     @Override
     public Checkout generateCheckout(
             Checkout model,
-            List<ItemCheckoutRequestDTO> itemCheckoutRequestDTOS
-    ) {
+            List<ItemCheckoutRequestDTO> itemCheckoutRequestDTOS,
+            String idempotencyKey) {
+
+
+        Optional<CheckoutIdempotency> existing =
+                checkoutIdempotencyDAO.findById(idempotencyKey);
+
+        if (existing.isPresent()) {
+            return checkoutDAOSQL.findById(existing.get().getCheckoutId())
+                    .orElseThrow();
+        }
+
+
         List<Long> idsDetail = itemCheckoutRequestDTOS.stream()
                 .map(ItemCheckoutRequestDTO::idDetail)
                 .toList();
@@ -66,7 +82,13 @@ public class CheckoutServiceImpl implements CheckoutService {
 
         model.setClient(client);
 
-        return checkoutDAOSQL.save(model);
+        Checkout saved = checkoutDAOSQL.save(model);
+
+        checkoutIdempotencyDAO.save(
+                new CheckoutIdempotency(idempotencyKey, saved.getId(), LocalDateTime.now())
+        );
+
+        return saved;
     }
 
     @Override

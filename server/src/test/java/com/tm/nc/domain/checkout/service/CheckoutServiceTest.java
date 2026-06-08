@@ -4,7 +4,6 @@ import com.tm.nc.domain.brand.model.Brand;
 import com.tm.nc.domain.cart.exception.InsufficientStockException;
 import com.tm.nc.domain.checkout.model.Checkout;
 import com.tm.nc.domain.checkout.model.enums.CheckoutStatus;
-import com.tm.nc.domain.client.model.Client;
 import com.tm.nc.domain.color.model.Color;
 import com.tm.nc.domain.product.model.Product;
 import com.tm.nc.domain.product.service.ProductService;
@@ -137,7 +136,7 @@ public class CheckoutServiceTest {
 
     @Test
     public void testCheckoutSuccess() {
-        Checkout checkout = checkoutService.generateCheckout(requestGood.toModel(), requestGood.itemCheckoutRequestDTO());
+        Checkout checkout = checkoutService.generateCheckout(requestGood.toModel(), requestGood.itemCheckoutRequestDTO(), "idempotencyKey");
         Checkout recovered = checkoutService.findById(checkout.getId());
 
         assertNotNull(recovered);
@@ -197,7 +196,63 @@ public class CheckoutServiceTest {
 
     @Test
     public void testCheckoutFailure() {
-        assertThrows(InsufficientStockException.class, () -> checkoutService.generateCheckout(requestWrong.toModel(), requestWrong.itemCheckoutRequestDTO()));
+        assertThrows(InsufficientStockException.class, () -> checkoutService.generateCheckout(requestWrong.toModel(), requestWrong.itemCheckoutRequestDTO(), "idempotencyKey"));
+    }
+
+    @Test
+    public void testCheckoutIdempotency() {
+
+        String idempotencyKey = "test-key-123";
+
+        Checkout first = checkoutService.generateCheckout(
+                requestGood.toModel(),
+                requestGood.itemCheckoutRequestDTO(),
+                idempotencyKey
+        );
+
+        Checkout second = checkoutService.generateCheckout(
+                requestGood.toModel(),
+                requestGood.itemCheckoutRequestDTO(),
+                idempotencyKey
+        );
+
+        assertEquals(first.getId(), second.getId());
+
+        assertEquals(first.getClient().getId(), second.getClient().getId());
+
+        assertEquals(first.getItems().size(), second.getItems().size());
+
+        assertEquals(first.getNotes(), second.getNotes());
+
+        assertEquals(first.getStatus(), second.getStatus());
+    }
+
+    @Test
+    public void testCheckoutIdempotencyDoesNotDuplicateRows() {
+
+        String key = "idem-key-999";
+
+        Checkout first = checkoutService.generateCheckout(
+                requestGood.toModel(),
+                requestGood.itemCheckoutRequestDTO(),
+                key
+        );
+
+        checkoutService.generateCheckout(
+                requestGood.toModel(),
+                requestGood.itemCheckoutRequestDTO(),
+                key
+        );
+
+        List<Checkout> all = checkoutService.findAllByStatus(
+                CheckoutStatus.PENDING_PAYMENT.name()
+        );
+
+        long count = all.stream()
+                .filter(c -> c.getId().equals(first.getId()))
+                .count();
+
+        assertEquals(1, count);
     }
 
     @AfterEach
