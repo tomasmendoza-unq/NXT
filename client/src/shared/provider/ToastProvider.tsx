@@ -4,22 +4,25 @@ import { Toast } from "../components/toast/Toast";
 import { ToastContext, type ToastOptions } from "../context/toast.context";
 
 export const ToastProvider = ({ children }: { children: React.ReactNode }) => {
-    const [open, setOpen] = useState(false);
-    const [options, setOptions] = useState<ToastOptions>({ message: "" });
+    const [queue, setQueue] = useState<ToastOptions[]>([]);
+    const current = queue[0];
 
     const showToast = (opts: ToastOptions) => {
-        setOptions(opts);
-        setOpen(true);
+        setQueue((prev) => [...prev, opts]);
+    };
+
+    const handleClose = () => {
+        setQueue((prev) => prev.slice(1));
     };
 
     return (
         <ToastContext.Provider value={{ showToast }}>
             {children}
             <Toast
-                open={open}
-                message={options.message}
-                severity={options.severity}
-                onClose={() => setOpen(false)}
+                open={!!current}
+                message={current?.message ?? ""}
+                severity={current?.severity}
+                onClose={handleClose}
             />
         </ToastContext.Provider>
     );

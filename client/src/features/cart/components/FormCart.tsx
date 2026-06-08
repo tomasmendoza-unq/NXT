@@ -7,7 +7,7 @@ import { useToast } from "../../../shared/hooks/toast/useToast";
 
 export const FormCart = ({ detailSelected }: { detailSelected: number }) => {
     const [quantity, setQuantity] = useState(1);
-    const { addToCart } = useAddCart();
+    const { addToCart, error } = useAddCart();
     const { showToast } = useToast();
 
     const formData: CartItem = {
@@ -17,10 +17,14 @@ export const FormCart = ({ detailSelected }: { detailSelected: number }) => {
 
     return (
         <form
-            onSubmit={(e) => {
+            onSubmit={async (e) => {
                 e.preventDefault();
-                addToCart(formData);
-                showToast({ message: "Producto agregado al carrito" });
+                await addToCart(formData);
+                if (!error) {
+                    showToast({ message: "Producto agregado al carrito" });
+                } else {
+                    showToast({ message: error, severity: "error" });
+                }
             }}
             className="form-card"
         >
