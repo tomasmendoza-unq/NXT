@@ -6,6 +6,7 @@ import {
     initialFacturationForm,
     type FacturationForm,
 } from "../types/FacturationForm.t";
+import "./style/Checkout.css";
 
 export const Checkout = () => {
     const { fetch, items } = useGetPreviewCart();
