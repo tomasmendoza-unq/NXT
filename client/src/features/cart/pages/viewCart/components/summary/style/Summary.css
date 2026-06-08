@@ -1,8 +1,9 @@
 .cart-summary {
-    width: 280px;
+    width: 20%;
     background-color: #fff;
     border: 1px solid #e5e5e5;
     padding: 16px;
+    border-radius: var(--border-radius);
     box-sizing: border-box;
     margin-right: 16px;
 }
@@ -25,4 +26,29 @@
 
 .checkout-button:hover {
     background-color: #01943a;
+}
+
+@media (max-width: 1000px) {
+    .cart-container {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 16px;
+        padding: 0 16px;
+        box-sizing: border-box;
+    }
+
+    .cart-content {
+        width: 100%;
+    }
+
+    .cart-items {
+        max-height: calc(100vh - 200px);
+        width: 100%;
+    }
+
+    .cart-summary {
+        width: 100%;
+        margin-right: 0;
+        position: static;
+    }
 }
