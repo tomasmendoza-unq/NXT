@@ -1,7 +1,7 @@
 .checkout-container {
     display: flex;
     gap: 32px;
-    align-items: flex-start;
+    align-items: center;
 }
 
 @media (max-width: 1000px) {
