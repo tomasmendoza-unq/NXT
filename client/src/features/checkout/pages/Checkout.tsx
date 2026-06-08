@@ -7,12 +7,14 @@ import {
     type FacturationForm,
 } from "../types/FacturationForm.t";
 import "./style/Checkout.css";
+import { useCheckout } from "../hook/use-checkout";
 
 export const Checkout = () => {
     const { fetch, items } = useGetPreviewCart();
     const [formData, setFormData] = useState<FacturationForm>(
         initialFacturationForm,
     );
+    const { checkout } = useCheckout();
 
     useEffect(() => {
         fetch();
@@ -33,11 +35,8 @@ export const Checkout = () => {
         }));
     };
 
-    const onCheckout = () => {
-        // Aquí iría la lógica para procesar el pago y finalizar la compra
-        console.log("Procesando compra con los siguientes datos:");
-        console.log("Información de facturación:", formData);
-        console.log("Items en el pedido:", items);
+    const handleCheckout = async () => {
+        await checkout(formData);
     };
 
     return (
@@ -48,7 +47,7 @@ export const Checkout = () => {
             />
             <OrderSummary
                 items={items}
-                onCheckout={onCheckout}
+                onCheckout={handleCheckout}
             />
         </section>
     );
