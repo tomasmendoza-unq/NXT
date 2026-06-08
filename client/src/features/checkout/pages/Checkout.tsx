@@ -8,13 +8,22 @@ import {
 } from "../types/FacturationForm.t";
 import "./style/Checkout.css";
 import { useCheckout } from "../hook/use-checkout";
+import { Modal } from "../../../shared/components/modal/Modal";
+import { useNavigate } from "react-router-dom";
 
 export const Checkout = () => {
     const { fetch, items } = useGetPreviewCart();
     const [formData, setFormData] = useState<FacturationForm>(
         initialFacturationForm,
     );
-    const { checkout } = useCheckout();
+    const {
+        checkout,
+        showSuccessMessage,
+        setShowSuccessMessage,
+        checkoutData,
+    } = useCheckout();
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetch();
@@ -24,7 +33,6 @@ export const Checkout = () => {
         e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
     ) => {
         const { name } = e.target;
-
         setFormData((prev) => ({
             ...prev,
             [name]:
@@ -39,6 +47,11 @@ export const Checkout = () => {
         await checkout(formData);
     };
 
+    const onCloseModal = () => {
+        setShowSuccessMessage(false);
+        navigate("/orders");
+    };
+
     return (
         <section className="checkout-container">
             <FormFacturation
@@ -49,6 +62,17 @@ export const Checkout = () => {
                 items={items}
                 onCheckout={handleCheckout}
             />
+
+            <Modal
+                isOpen={showSuccessMessage}
+                onClose={onCloseModal}
+                title="¡Compra exitosa!"
+            >
+                <p>Tu pedido fue procesado correctamente.</p>
+                {checkoutData && (
+                    <p>Código de confirmación: {checkoutData.id}</p>
+                )}
+            </Modal>
         </section>
     );
 };
