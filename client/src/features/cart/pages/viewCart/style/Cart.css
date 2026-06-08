@@ -41,28 +41,3 @@
 .cart-content {
     border-radius: var(--border-radius);
 }
-
-@media (max-width: 1000px) {
-    .cart-container {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 16px;
-        padding: 0 16px;
-        box-sizing: border-box;
-    }
-
-    .cart-content {
-        width: 100%;
-    }
-
-    .cart-items {
-        max-height: calc(100vh - 200px);
-        width: 100%;
-    }
-
-    .cart-summary {
-        width: 100%;
-        margin-right: 0;
-        position: static;
-    }
-}
