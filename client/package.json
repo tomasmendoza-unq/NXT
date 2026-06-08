@@ -18,7 +18,8 @@
         "react": "^19.2.5",
         "react-dom": "^19.2.5",
         "react-router-dom": "^7.14.2",
-        "swiper": "^12.1.4"
+        "swiper": "^12.1.4",
+        "uuid": "^14.0.0"
     },
     "devDependencies": {
         "@babel/core": "^7.29.0",
@@ -29,6 +30,7 @@
         "@types/node": "^24.12.2",
         "@types/react": "^19.2.14",
         "@types/react-dom": "^19.2.3",
+        "@types/uuid": "^11.0.0",
         "@vitejs/plugin-react": "^6.0.1",
         "autoprefixer": "^10.5.0",
         "babel-plugin-react-compiler": "^1.0.0",
