@@ -3,12 +3,12 @@ package com.tm.nc.features.checkout.controller;
 import com.tm.nc.domain.checkout.model.Checkout;
 import com.tm.nc.domain.checkout.service.CheckoutService;
 import com.tm.nc.features.checkout.controller.dto.request.CheckoutRequestDTO;
+import com.tm.nc.features.checkout.controller.dto.response.CheckoutResponseDTO;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/checkout")
@@ -21,11 +21,17 @@ public class CheckoutControllerREST {
         this.checkoutService = checkoutService;
     }
 
+    @GetMapping("/{status}")
+    public ResponseEntity<List<CheckoutResponseDTO>> getCheckoutsByStatus(@PathVariable String status){
+        List<Checkout> checkout = checkoutService.findAllByStatus(status);
+
+        return ResponseEntity.ok(checkout.stream().map(CheckoutResponseDTO::fromModel).toList());
+    }
 
     @PostMapping
-    public ResponseEntity<?> generateCheckout(@RequestBody CheckoutRequestDTO checkoutRequestDTO) {
+    public ResponseEntity<CheckoutResponseDTO> generateCheckout(@RequestBody CheckoutRequestDTO checkoutRequestDTO) {
         Checkout checkout = checkoutService.generateCheckout(checkoutRequestDTO.toModel(), checkoutRequestDTO.itemCheckoutRequestDTO());
 
-        return  ResponseEntity.ok(checkout);
+        return  ResponseEntity.ok(CheckoutResponseDTO.fromModel(checkout));
     }
 }

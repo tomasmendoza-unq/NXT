@@ -1,6 +1,7 @@
 package com.tm.nc.domain.checkout.service.impl;
 
 import com.tm.nc.domain.checkout.model.Checkout;
+import com.tm.nc.domain.checkout.model.enums.CheckoutStatus;
 import com.tm.nc.domain.checkout.persistence.sql.CheckoutDAOSQL;
 import com.tm.nc.domain.checkout.service.CheckoutService;
 import com.tm.nc.domain.client.model.Client;
@@ -71,5 +72,12 @@ public class CheckoutServiceImpl implements CheckoutService {
     @Override
     public Checkout findById(Long id) {
         return checkoutDAOSQL.findById(id).orElseThrow(() -> new EntityNotFoundException(Checkout.class.getName(), id));
+    }
+
+    @Override
+    public List<Checkout> findAllByStatus(String status) {
+        CheckoutStatus checkoutStatus = CheckoutStatus.fromString(status);
+
+        return checkoutDAOSQL.findAllByStatus(checkoutStatus);
     }
 }
