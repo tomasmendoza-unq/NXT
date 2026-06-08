@@ -18,11 +18,26 @@ export const Checkout = () => {
         fetch();
     }, []);
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChange = (
+        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    ) => {
+        const { name } = e.target;
+
         setFormData((prev) => ({
             ...prev,
-            [e.target.name]: e.target.value,
+            [name]:
+                e.target instanceof HTMLInputElement &&
+                e.target.type === "checkbox"
+                    ? e.target.checked
+                    : e.target.value,
         }));
+    };
+
+    const onCheckout = () => {
+        // Aquí iría la lógica para procesar el pago y finalizar la compra
+        console.log("Procesando compra con los siguientes datos:");
+        console.log("Información de facturación:", formData);
+        console.log("Items en el pedido:", items);
     };
 
     return (
@@ -31,7 +46,10 @@ export const Checkout = () => {
                 formData={formData}
                 onChange={handleChange}
             />
-            <OrderSummary items={items} />
+            <OrderSummary
+                items={items}
+                onCheckout={onCheckout}
+            />
         </section>
     );
 };

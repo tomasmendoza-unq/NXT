@@ -11,31 +11,10 @@
     margin-bottom: 8px;
 }
 
-.form-facturation-field {
+.form-row {
     display: flex;
     flex-direction: column;
-    gap: 6px;
-}
-
-.form-facturation-field label {
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: var(--text);
-}
-
-.form-facturation-field input {
-    padding: 10px 12px;
-    border: 1px solid #e5e5e5;
-    border-radius: 6px;
-    font-size: 0.875rem;
-    outline: none;
-    transition: border-color 0.2s ease;
-    box-sizing: border-box;
-    width: 100%;
-}
-
-.form-facturation-field input:focus {
-    border-color: #9ca3af;
+    gap: 16px;
 }
 
 .form-facturation-submit {
@@ -56,12 +35,12 @@
     background-color: #01943c;
 }
 
-.form-row {
-    display: flex;
-    gap: 16px;
-    margin-bottom: 16px;
-}
+@media (min-width: 1020px) {
+    .form-facturation {
+        width: 80%;
+    }
 
-.form-row .form-facturation-field {
-    flex: 1;
+    .form-row {
+        flex-direction: row;
+    }
 }

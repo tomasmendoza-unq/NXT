@@ -1,4 +1,16 @@
-export const inputs = [
+import type { FacturationForm } from "../../../types/FacturationForm.t";
+
+export type InputType = "text" | "email" | "tel" | "checkbox" | "textarea";
+
+export interface InputConfig {
+    name: keyof FacturationForm;
+    label: string;
+    type: InputType;
+    pattern?: string;
+    title?: string;
+}
+
+export const inputs: InputConfig[][] = [
     [
         {
             name: "firstName",
@@ -48,6 +60,21 @@ export const inputs = [
             label: "Correo Electrónico",
             type: "email",
             title: "Debe cumplir con el formato de un email",
+        },
+    ],
+    [
+        {
+            name: "registerUser",
+            label: "¿Crear una cuenta?",
+            type: "checkbox",
+        },
+    ],
+    [
+        {
+            name: "notes",
+            label: "Notas",
+            type: "textarea",
+            title: "Notas del pedido (opcional)",
         },
     ],
 ];
