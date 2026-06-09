@@ -2,7 +2,7 @@ package com.tm.nc.features.cart.controller;
 
 import com.tm.nc.domain.cart.model.ItemCart;
 import com.tm.nc.domain.cart.service.CartService;
-import com.tm.nc.domain.user.model.User;
+import com.tm.nc.domain.client.model.Client;
 import com.tm.nc.domain.user.service.UserService;
 import com.tm.nc.features.cart.controller.dto.request.CheckRequestDTO;
 import com.tm.nc.features.cart.controller.dto.request.ItemPreviewDTO;
@@ -33,7 +33,7 @@ public class CartControllerREST {
     @PostMapping("/add")
     public void addToCart(@RequestBody CartRequestDTO cartRequestDTO) {
         //TODO: CUANDO YA SE TENGA READY SECURITY MODIFICAR
-        User user = userService.generateUser();
+        Client user = userService.generateClient();
         cartService.addToCart(cartRequestDTO, user);
     }
 

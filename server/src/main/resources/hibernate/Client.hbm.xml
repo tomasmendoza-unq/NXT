@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <joined-subclass
+            name="com.tm.nc.domain.client.model.Client"
+            extends="com.tm.nc.domain.user.model.User"
+            table="clients">
+
+        <key column="id"/>
+
+        <property name="phone" column="phone"/>
+        <property name="email" column="email"/>
+        <property name="address" column="address"/>
+        <property name="province" column="province"/>
+        <property name="city" column="city"/>
+        <property name="postalCode" column="postal_code"/>
+
+        <one-to-one
+                name="cart"
+                class="com.tm.nc.domain.cart.model.Cart"
+                cascade="all"/>
+
+    </joined-subclass>
+
+</hibernate-mapping>

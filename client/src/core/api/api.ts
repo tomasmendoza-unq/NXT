@@ -9,7 +9,17 @@ const api = axios.create({
 });
 
 api.interceptors.request.use(
-    (request) => request,
+    (request) => {
+        if (
+            ["POST", "PUT", "PATCH"].includes(
+                request.method?.toUpperCase() ?? "",
+            ) &&
+            !request.headers["Idempotency-Key"]
+        ) {
+            request.headers["Idempotency-Key"] = crypto.randomUUID();
+        }
+        return request;
+    },
     (error: AxiosError) => handleErrors(error),
 );
 

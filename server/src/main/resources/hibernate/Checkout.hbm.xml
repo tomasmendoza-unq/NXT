@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="com.tm.nc.domain.checkout.model.Checkout"
+           table="checkouts">
+
+        <id name="id" column="id">
+            <generator class="sequence"/>
+        </id>
+
+        <many-to-one
+                name="client"
+                class="com.tm.nc.domain.client.model.Client"
+                column="client_id"
+                not-null="true"/>
+
+        <property name="notes" column="notes"/>
+
+        <property name="total" column="total"/>
+
+        <property name="createdAt"
+                  column="created_at"/>
+
+        <property name="status" column="status" type="com.tm.nc.domain.checkout.model.enums.CheckoutStatus"/>
+
+        <bag name="items"
+             cascade="all-delete-orphan"
+             inverse="false">
+
+            <key column="checkout_id"/>
+
+            <one-to-many
+                    class="com.tm.nc.domain.checkout.model.ItemCheckout"/>
+
+        </bag>
+
+
+    </class>
+
+</hibernate-mapping>
