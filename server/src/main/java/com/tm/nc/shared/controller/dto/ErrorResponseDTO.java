@@ -1,4 +1,4 @@
-package com.tm.nc.shared.exception.dto;
+package com.tm.nc.shared.controller.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.servlet.http.HttpServletRequest;

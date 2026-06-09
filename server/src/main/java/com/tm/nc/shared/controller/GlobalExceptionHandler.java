@@ -1,6 +1,8 @@
-package com.tm.nc.shared.exception;
+package com.tm.nc.shared.controller;
 
-import com.tm.nc.shared.exception.dto.ErrorResponseDTO;
+import com.tm.nc.shared.exception.BusinessException;
+import com.tm.nc.shared.exception.EntityNotFoundException;
+import com.tm.nc.shared.controller.dto.ErrorResponseDTO;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -17,6 +19,7 @@ public class GlobalExceptionHandler{
             EntityNotFoundException exception,
             HttpServletRequest request
     ) {
+        log.warn("Entity not found - URI: {} | Message: {}", request.getRequestURI(), exception.getMessage());
         return ErrorResponseDTO.buildResponse(HttpStatus.NOT_FOUND, exception.getMessage(), request);
     }
 
@@ -25,6 +28,7 @@ public class GlobalExceptionHandler{
             BusinessException exception,
             HttpServletRequest request
     ) {
+        log.warn("Business rule violation - URI: {} | Message: {}", request.getRequestURI(), exception.getMessage());
         return ErrorResponseDTO.buildResponse(HttpStatus.CONFLICT, exception.getMessage(), request);
     }
 
@@ -38,8 +42,7 @@ public class GlobalExceptionHandler{
                 request.getRequestURI()
         );
 
-        log.error(request.getRequestURI(), error);
-        log.error(String.valueOf(exception));
+        log.error("Unexpected error - URI: {} | Error: {}", request.getRequestURI(), error);
 
         return ResponseEntity.internalServerError().body(error);
     }

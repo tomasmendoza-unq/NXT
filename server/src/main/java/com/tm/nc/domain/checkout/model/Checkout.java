@@ -40,7 +40,7 @@ public class Checkout {
 
 
     public void addItem(ProductDetail detail, int quantity) {
-        if(!detail.hasStock(quantity)) throw new InsufficientStockException("Insufficient stock");
+        if(!detail.hasStock(quantity)) throw new InsufficientStockException("No hay stock de: " + detail.getName());
         items.add(ItemCheckout.builder()
                 .quantity(quantity)
                 .unitPrice(detail.getPrice())
