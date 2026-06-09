@@ -54,14 +54,20 @@ export const Checkout = () => {
 
     return (
         <section className="checkout-container">
-            <FormFacturation
-                formData={formData}
-                onChange={handleChange}
-            />
-            <OrderSummary
-                items={items}
-                onCheckout={handleCheckout}
-            />
+            {items.length === 0 ? (
+                <h1>Tu carrito está vacío.</h1>
+            ) : (
+                <>
+                    <FormFacturation
+                        formData={formData}
+                        onChange={handleChange}
+                    />
+                    <OrderSummary
+                        items={items}
+                        onCheckout={handleCheckout}
+                    />
+                </>
+            )}
 
             <Modal
                 isOpen={showSuccessMessage}
