@@ -35,13 +35,13 @@ public class DataSeederImpl implements DataSeeder {
 
         Product product = Product.builder()
                 .brand(brand)
-                .name("Nike Nike Nike Nike")
+                .name("New balance 540")
                 .model("jordan")
                 .build();
 
         Product product2 = Product.builder()
                 .brand(brand2)
-                .name("Nike")
+                .name("Jordan 1")
                 .model("Duke")
                 .build();
 
@@ -49,7 +49,7 @@ public class DataSeederImpl implements DataSeeder {
                 .size(39)
                 .price(200D)
                 .image("https://www.kappastore.com.ar/cdn/shop/files/K134242KW-KA0Z-1.jpg?v=1766067184&width=1380")
-                .quantity(10)
+                .quantity(1)
                 .gallery(List.of(
                         "https://www.kappastore.com.ar/cdn/shop/files/K134242KW-KA0Z-3.jpg?v=1766067238&width=128",
                         "https://www.kappastore.com.ar/cdn/shop/files/K134242KW-KA0Z-4.jpg?v=1766067238&width=128",
@@ -75,7 +75,7 @@ public class DataSeederImpl implements DataSeeder {
                 .size(41)
                 .price(215D)
                 .image("https://authogar.vtexassets.com/arquivos/ids/214811-800-auto?v=638721421030330000&width=800&height=auto&aspect=true")
-                .quantity(5)
+                .quantity(1)
                 .gallery(List.of(
                         "https://http2.mlstatic.com/D_NQ_NP_786651-MLA74664829441_022024-O.webp",
                         "https://http2.mlstatic.com/D_NQ_NP_786651-MLA74664829441_022024-O.webp",
