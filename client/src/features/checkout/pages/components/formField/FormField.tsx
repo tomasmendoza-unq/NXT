@@ -52,6 +52,7 @@ export const FormField = ({ input, formData, onChange }: Props) => {
             <input
                 id={input.name}
                 name={input.name}
+                required
                 type={input.type}
                 value={formData[input.name as keyof FacturationForm] as string}
                 onChange={onChange}

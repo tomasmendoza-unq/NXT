@@ -3,13 +3,7 @@ import { BankTransferNotice } from "../bankTransfertNotice/BankTransferNotice";
 import { OrderSummaryRow } from "../rows/OrderSummaryRow";
 import "./style/OrderSummary.css";
 
-export const OrderSummary = ({
-    items,
-    onCheckout,
-}: {
-    items: Item[];
-    onCheckout: () => void;
-}) => {
+export const OrderSummary = ({ items }: { items: Item[] }) => {
     const total = items.reduce(
         (acc, item) => acc + item.quantity * item.detail.price,
         0,
@@ -46,8 +40,9 @@ export const OrderSummary = ({
             <BankTransferNotice />
 
             <button
-                onClick={onCheckout}
+                type="submit"
                 className="checkout-button"
+                form="facturation-form"
             >
                 Finalizar compra
             </button>
