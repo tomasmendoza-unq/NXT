@@ -31,4 +31,8 @@ public class ProductDetail {
     public boolean hasStock(Integer quantity) {
         return this.quantity >= quantity;
     }
+
+    public String getName() {
+        return color.getProduct().getName();
+    }
 }
