@@ -1,3 +1,7 @@
 .button-close {
     background: green !important;
 }
+
+.button-close:hover {
+    background: rgb(9, 59, 4) !important;
+}
