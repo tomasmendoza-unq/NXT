@@ -5,6 +5,7 @@ import com.tm.nc.domain.checkout.service.CheckoutService;
 import com.tm.nc.features.checkout.controller.dto.request.CheckoutRequestDTO;
 import com.tm.nc.features.checkout.controller.dto.response.CheckoutResponseDTO;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,7 +32,7 @@ public class CheckoutControllerREST {
     @PostMapping
     public ResponseEntity<CheckoutResponseDTO> generateCheckout(
             @RequestHeader("Idempotency-Key") String idempotencyKey,
-            @RequestBody CheckoutRequestDTO checkoutRequestDTO) {
+            @RequestBody @Valid CheckoutRequestDTO checkoutRequestDTO) {
         Checkout checkout = checkoutService.generateCheckout(checkoutRequestDTO.toModel(), checkoutRequestDTO.itemCheckoutRequestDTO(), idempotencyKey);
 
         return  ResponseEntity.ok(CheckoutResponseDTO.fromModel(checkout));

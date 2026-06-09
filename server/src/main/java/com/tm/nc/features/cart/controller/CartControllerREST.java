@@ -8,6 +8,7 @@ import com.tm.nc.features.cart.controller.dto.request.CheckRequestDTO;
 import com.tm.nc.features.cart.controller.dto.request.ItemPreviewDTO;
 import com.tm.nc.features.cart.controller.dto.request.CartRequestDTO;
 import com.tm.nc.features.cart.controller.dto.response.ItemCartResponseDTO;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +20,7 @@ import java.util.List;
 
 @RestController()
 @RequestMapping("/cart")
+@Tag(name = "Carrito", description = "Operaciones relacionadas con la gestión del carrito")
 public class CartControllerREST {
 
     private final CartService cartService;
@@ -31,7 +33,7 @@ public class CartControllerREST {
     }
 
     @PostMapping("/add")
-    public void addToCart(@RequestBody CartRequestDTO cartRequestDTO) {
+    public void addToCart(@RequestBody @Valid CartRequestDTO cartRequestDTO) {
         //TODO: CUANDO YA SE TENGA READY SECURITY MODIFICAR
         Client user = userService.generateClient();
         cartService.addToCart(cartRequestDTO, user);
@@ -46,7 +48,7 @@ public class CartControllerREST {
     }
 
     @PostMapping("/check")
-    public ResponseEntity<Boolean> checkCart(@RequestBody CheckRequestDTO checkRequestDTO) {
+    public ResponseEntity<Boolean> checkCart(@RequestBody @Valid CheckRequestDTO checkRequestDTO) {
 
         return ResponseEntity.ok(cartService.checkStock(checkRequestDTO.detailId(), checkRequestDTO.quantity()));
     }
