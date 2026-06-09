@@ -15,7 +15,6 @@ import lombok.experimental.SuperBuilder;
 public class Client extends User {
     private String phone;
 
-    private String email;
 
     private String address;
 

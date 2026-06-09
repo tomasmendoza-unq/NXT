@@ -10,8 +10,19 @@ import lombok.experimental.SuperBuilder;
 public class User {
     private Long id;
 
+    private String email;
+
+    private String password;
+
+    private Boolean enabled;
+
     private String firstName;
 
     private String lastName;
 
+    private String role;
+
+    public Boolean isEnabled() {
+        return enabled;
+    }
 }
