@@ -1,6 +1,6 @@
 package com.tm.nc.domain.user.service.impl;
 
-import com.tm.nc.domain.user.model.User;
+import com.tm.nc.domain.client.model.Client;
 import com.tm.nc.domain.user.persistence.UserSQLDAO;
 import com.tm.nc.domain.user.service.UserService;
 import jakarta.transaction.Transactional;
@@ -16,8 +16,8 @@ public class UserServiceImpl implements UserService {
         this.userSQLDAO = userSQLDAO;
     }
 
-    public User generateUser() {
-        User user = new User();
+    public Client generateClient() {
+        Client user = new Client();
         return userSQLDAO.save(user);
     }
 }

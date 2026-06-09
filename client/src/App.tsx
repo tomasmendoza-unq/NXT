@@ -2,8 +2,9 @@ import { Routes, Route } from "react-router-dom";
 import { Home } from "./features/home/pages/Home";
 import { MainLayout } from "./shared/layouts/main/MainLayout";
 import { productRoutes } from "./features/product/routes/Product.routes";
-import { Cart } from "./features/cart/pages/viewCart/Cart";
 import { ToastProvider } from "./shared/provider/ToastProvider";
+import { cartRoutes } from "./features/cart/routes/Cart.routes";
+import { checkoutRoutes } from "./features/checkout/routes/Checkout.routes";
 
 function App() {
     return (
@@ -15,14 +16,11 @@ function App() {
                         element={<Home />}
                     />
                     {productRoutes}
+                    {cartRoutes}
+                    {checkoutRoutes}
                     <Route
-                        path="/cart"
-                        element={<Cart />}
-                    />
-
-                    <Route
-                        path="/about"
-                        element={<h1>About</h1>}
+                        path="*"
+                        element={<h1>NOT FOUND</h1>}
                     />
                 </Route>
             </Routes>

@@ -32,7 +32,7 @@ export const Cart = () => {
     };
 
     return items.length === 0 ? (
-        <p>Carrito está vacío</p>
+        <h1>Tu carrito está vacío.</h1>
     ) : (
         <main className="cart-container">
             <CartContent
