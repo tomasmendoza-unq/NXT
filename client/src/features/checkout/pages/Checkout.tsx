@@ -61,11 +61,9 @@ export const Checkout = () => {
                     <FormFacturation
                         formData={formData}
                         onChange={handleChange}
-                    />
-                    <OrderSummary
-                        items={items}
                         onCheckout={handleCheckout}
                     />
+                    <OrderSummary items={items} />
                 </>
             )}
 

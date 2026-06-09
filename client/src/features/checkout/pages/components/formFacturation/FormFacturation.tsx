@@ -8,11 +8,19 @@ type Props = {
     onChange: (
         e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
     ) => void;
+    onCheckout: () => void;
 };
 
-export const FormFacturation = ({ formData, onChange }: Props) => {
+export const FormFacturation = ({ formData, onChange, onCheckout }: Props) => {
     return (
-        <form className="form-facturation">
+        <form
+            className="form-facturation"
+            id="facturation-form"
+            onSubmit={(e) => {
+                e.preventDefault();
+                onCheckout();
+            }}
+        >
             <h1>Detalles de facturación</h1>
 
             {inputs.map((row, rowIndex) => (
