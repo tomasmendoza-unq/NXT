@@ -2,13 +2,15 @@ import { Routes, Route } from "react-router-dom";
 import { Home } from "./features/home/pages/Home";
 import { MainLayout } from "./shared/layouts/main/MainLayout";
 import { productRoutes } from "./features/product/routes/Product.routes";
-import { ToastProvider } from "./shared/provider/ToastProvider";
 import { cartRoutes } from "./features/cart/routes/Cart.routes";
 import { checkoutRoutes } from "./features/checkout/routes/Checkout.routes";
+import { ToastProvider } from "./features/toast/provider/ToastProvider";
+import { ToastListener } from "./features/toast/emitter/ToastListener";
 
 function App() {
     return (
         <ToastProvider>
+            <ToastListener />
             <Routes>
                 <Route element={<MainLayout />}>
                     <Route

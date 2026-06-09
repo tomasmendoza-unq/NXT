@@ -6,7 +6,7 @@ import { QuantitySelector } from "../../../../components/quantitySelector/Quanti
 import { RemoveItem } from "../../../../components/removeItem/RemoveItem";
 import { cartService } from "../../../../service/cartService.service";
 import { checkStock } from "../../../../service/check-stock.service";
-import { useToast } from "../../../../../../shared/hooks/toast/useToast";
+import { useToast } from "../../../../../toast/hooks/toast/useToast";
 
 export const ItemCard = ({
     item,

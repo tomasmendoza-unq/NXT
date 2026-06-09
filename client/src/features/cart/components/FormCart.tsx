@@ -3,12 +3,10 @@ import { useAddCart } from "../hooks/use-add-cart";
 import type { CartItem } from "../../../shared/types/CartItem";
 import "./styles/FormCard.css";
 import { QuantitySelector } from "./quantitySelector/QuantitySelector";
-import { useToast } from "../../../shared/hooks/toast/useToast";
 
 export const FormCart = ({ detailSelected }: { detailSelected: number }) => {
     const [quantity, setQuantity] = useState(1);
     const { addToCart } = useAddCart();
-    const { showToast } = useToast();
 
     const formData: CartItem = {
         detailId: detailSelected,
@@ -19,15 +17,7 @@ export const FormCart = ({ detailSelected }: { detailSelected: number }) => {
         <form
             onSubmit={async (e) => {
                 e.preventDefault();
-                const success = await addToCart(formData);
-                if (success) {
-                    showToast({ message: "Producto agregado al carrito" });
-                } else {
-                    showToast({
-                        message: "Sin stock disponible",
-                        severity: "error",
-                    });
-                }
+                await addToCart(formData);
             }}
             className="form-card"
         >
