@@ -26,6 +26,14 @@ function handleErrors(error: AxiosError) {
         throw new NotFoundError();
     }
 
+    if (error.response.status === 400) {
+        toastEmitter.emit({
+            message: message ?? "Solicitud incorrecta",
+            severity: "error",
+        });
+        throw new NotFoundError();
+    }
+
     if (error.response.status >= 500) {
         toastEmitter.emit({
             message: message ?? "Error interno del servidor",
