@@ -22,6 +22,6 @@ public class ItemCart {
     private int quantity;
 
     public boolean validateStock() {
-        return quantity <= productDetail.getQuantity();
+        return productDetail.hasStock(quantity);
     }
 }

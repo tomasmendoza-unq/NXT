@@ -1,6 +1,8 @@
 package com.tm.nc.domain.cart.exception;
 
-public class InsufficientStockException extends RuntimeException {
+import com.tm.nc.shared.exception.BusinessException;
+
+public class InsufficientStockException extends BusinessException {
     public InsufficientStockException(String message) {
         super(message);
     }
