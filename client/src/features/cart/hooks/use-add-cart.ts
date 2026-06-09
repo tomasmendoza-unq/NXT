@@ -2,17 +2,19 @@ import { useState } from "react";
 import type { CartItem } from "../../../shared/types/CartItem";
 import { cartService } from "../service/cartService.service";
 import { checkStock } from "../service/check-stock.service";
+import { useToast } from "../../toast/hooks/toast/useToast";
 
 export const useAddCart = () => {
     const isAuthenticated = false;
     const [localCart, setLocalCart] = useState<CartItem[]>(cartService.getCart);
     const [error, setError] = useState<string | null>(null);
+    const { showToast } = useToast();
 
     const addToCart = async (formData: {
         detailId?: number;
         quantity: number;
-    }): Promise<boolean> => {
-        if (!formData.detailId) return false;
+    }): Promise<void> => {
+        if (!formData.detailId) return;
         setError(null);
 
         try {
@@ -25,8 +27,11 @@ export const useAddCart = () => {
             const hasStock = await checkStock(formData.detailId, totalQuantity);
 
             if (!hasStock) {
-                setError("Sin stock disponible");
-                return false;
+                showToast({
+                    message: "Sin stock disponible",
+                    severity: "error",
+                });
+                return;
             }
 
             if (isAuthenticated) {
@@ -48,12 +53,15 @@ export const useAddCart = () => {
 
                 cartService.saveCart(updated);
                 setLocalCart(updated);
+                showToast({
+                    message: "Producto agregado al carrito",
+                    severity: "success",
+                });
+                return;
             }
-
-            return true;
         } catch {
             setError("Error al agregar el producto");
-            return false;
+            return;
         }
     };
 
