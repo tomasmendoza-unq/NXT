@@ -1,12 +1,14 @@
 import type { AxiosResponse } from "axios";
 import { TOKEN_KEY } from "./token-key";
 
-function setToken(response: AxiosResponse): void {
+export const setToken = (response: AxiosResponse): void => {
     const token =
         response.headers["authorization"] || response.headers["Authorization"];
     if (token) {
         localStorage.setItem(TOKEN_KEY, token);
     }
-}
+};
 
-export default setToken;
+export const setTokenDirectly = (token: string): void => {
+    localStorage.setItem(TOKEN_KEY, token);
+};
