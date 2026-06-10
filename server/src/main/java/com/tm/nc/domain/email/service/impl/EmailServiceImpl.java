@@ -1,6 +1,9 @@
 package com.tm.nc.domain.email.service.impl;
 
+import com.tm.nc.domain.checkout.model.Checkout;
+import com.tm.nc.domain.client.model.Client;
 import com.tm.nc.domain.email.service.EmailService;
+import com.tm.nc.domain.email.template.FacturationEmailTemplate;
 import jakarta.mail.internet.MimeMessage;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Value;
@@ -51,4 +54,15 @@ public class EmailServiceImpl implements EmailService {
             throw new RuntimeException("Error enviando email", e);
         }
     }
+
+    @Override
+    public void sendFacturationEmail(Client client, Checkout checkout) {
+        String html = FacturationEmailTemplate.build(
+                client.getFullName(),
+                checkout.getId()
+        );
+
+        sendHtmlEmail(client.getEmail(), "Orden de compra",  html);
+    }
+
 }
