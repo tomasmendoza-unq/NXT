@@ -54,6 +54,7 @@ public record ClientRequestDTO(
                 .firstName(firstName)
                 .lastName(lastName)
                 .address(address)
+                .enabled(true)
                 .province(province)
                 .city(city)
                 .postalCode(postalCode)
