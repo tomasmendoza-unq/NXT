@@ -11,4 +11,6 @@ public interface UserService {
     Optional<User> findUserByMail(String email);
 
     User save(User user);
+
+    User update(User user);
 }
