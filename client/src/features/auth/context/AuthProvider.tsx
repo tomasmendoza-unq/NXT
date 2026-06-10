@@ -2,14 +2,16 @@ import { useState, type ReactNode } from "react";
 import { jwtDecode } from "jwt-decode";
 import { AuthContext } from "./auth.context";
 import type { AuthUser } from "../types/AuthContext.t";
-import getToken from "../../../core/api/service/token/get-token";
 import { setToken } from "../../../core/api/service/token/set-token";
 import { TOKEN_KEY } from "../../../core/api/service/token/token-key";
 import type { AxiosResponse } from "axios";
+import { getToken } from "../../../core/api/service/token/get-token";
 
 const getUserFromToken = (): AuthUser | null => {
     const token = getToken();
+
     if (!token) return null;
+
     try {
         return jwtDecode<AuthUser>(token);
     } catch {
@@ -22,7 +24,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
     const login = (response: AxiosResponse) => {
         setToken(response);
-        setUser(jwtDecode<AuthUser>(getToken()));
+
+        const token = getToken();
+        if (!token) return;
+
+        setUser(jwtDecode<AuthUser>(token));
     };
 
     const logout = () => {
@@ -32,7 +38,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
     return (
         <AuthContext.Provider
-            value={{ user, isAuthenticated: !!user, login, logout }}
+            value={{
+                user,
+                isAuthenticated: !!user,
+                login,
+                logout,
+            }}
         >
             {children}
         </AuthContext.Provider>
