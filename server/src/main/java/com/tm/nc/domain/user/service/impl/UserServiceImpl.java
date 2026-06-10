@@ -39,4 +39,9 @@ public class UserServiceImpl implements UserService {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userSQLDAO.save(user);
     }
+
+    @Override
+    public User update(User user) {
+        return userSQLDAO.save(user);
+    }
 }
