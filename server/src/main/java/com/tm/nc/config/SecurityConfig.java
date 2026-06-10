@@ -73,7 +73,11 @@ public class SecurityConfig {
                                 "/swagger-ui/**",
                                 "/swagger-ui.html",
                                 "/auth/**",
-                                "/error"
+                                "/error",
+                                "/product/**",
+                                "/brand/**",
+                                "/cart/**",
+                                "/checkout/**"
                         ).permitAll()
                         .anyRequest().authenticated()
                 )
