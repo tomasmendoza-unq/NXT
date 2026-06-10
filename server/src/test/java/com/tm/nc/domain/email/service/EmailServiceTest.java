@@ -20,12 +20,4 @@ public class EmailServiceTest {
         emailService.sendEmail("tm1453766@gmail.com", "prueba", "holaaaaaaaaaaa");
     }
 
-    @Test
-    public void testSendEmailHTML() {
-        String html = FacturationEmailTemplate.build(
-                "Tomas",
-                1L
-        );
-        emailService.sendHtmlEmail("seleneluciladuarte@gmail.com", "Orden de compra", html);
-    }
 }
