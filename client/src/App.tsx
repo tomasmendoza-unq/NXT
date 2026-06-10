@@ -6,12 +6,15 @@ import { cartRoutes } from "./features/cart/routes/Cart.routes";
 import { checkoutRoutes } from "./features/checkout/routes/Checkout.routes";
 import { ToastProvider } from "./features/toast/provider/ToastProvider";
 import { ToastListener } from "./features/toast/emitter/ToastListener";
+import { authRoutes } from "./features/auth/routes/Auth.routes";
+import { AuthLayout } from "./features/auth/layout/AuthLayout";
 
 function App() {
     return (
         <ToastProvider>
             <ToastListener />
             <Routes>
+                <Route element={<AuthLayout />}>{authRoutes}</Route>
                 <Route element={<MainLayout />}>
                     <Route
                         path="/"
