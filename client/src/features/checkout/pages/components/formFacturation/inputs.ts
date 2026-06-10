@@ -64,13 +64,6 @@ export const inputs: InputConfig[][] = [
     ],
     [
         {
-            name: "registerUser",
-            label: "¿Crear una cuenta?",
-            type: "checkbox",
-        },
-    ],
-    [
-        {
             name: "notes",
             label: "Notas",
             type: "textarea",

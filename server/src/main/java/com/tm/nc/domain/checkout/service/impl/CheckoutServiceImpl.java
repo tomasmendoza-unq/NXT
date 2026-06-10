@@ -8,6 +8,7 @@ import com.tm.nc.domain.checkout.persistence.sql.CheckoutIdempotencyDAO;
 import com.tm.nc.domain.checkout.service.CheckoutService;
 import com.tm.nc.domain.client.model.Client;
 import com.tm.nc.domain.client.persistence.sql.ClientSQLDAO;
+import com.tm.nc.domain.client.service.ClientService;
 import com.tm.nc.domain.email.service.EmailService;
 import com.tm.nc.domain.email.template.FacturationEmailTemplate;
 import com.tm.nc.domain.productDetail.model.ProductDetail;
@@ -32,16 +33,16 @@ public class CheckoutServiceImpl implements CheckoutService {
 
     private final ProductDetailsSQLDAO productDetailsSQLDAO;
 
-    private final ClientSQLDAO clientSQLDAO;
+    private final ClientService clientService;
 
     private final EmailService emailService;
 
     private final CheckoutIdempotencyDAO checkoutIdempotencyDAO;
 
-    public CheckoutServiceImpl(CheckoutDAOSQL checkoutDAOSQL, ProductDetailsSQLDAO productDetailsSQLDAO, ClientSQLDAO clientSQLDAO, EmailService emailService, CheckoutIdempotencyDAO checkoutIdempotencyDAO) {
+    public CheckoutServiceImpl(CheckoutDAOSQL checkoutDAOSQL, ProductDetailsSQLDAO productDetailsSQLDAO, ClientService clientService, EmailService emailService, CheckoutIdempotencyDAO checkoutIdempotencyDAO) {
         this.checkoutDAOSQL = checkoutDAOSQL;
         this.productDetailsSQLDAO = productDetailsSQLDAO;
-        this.clientSQLDAO = clientSQLDAO;
+        this.clientService = clientService;
         this.emailService = emailService;
         this.checkoutIdempotencyDAO = checkoutIdempotencyDAO;
     }
@@ -84,7 +85,8 @@ public class CheckoutServiceImpl implements CheckoutService {
             model.addItem(detail, item.quantity());
         });
 
-        Client client = clientSQLDAO.save(model.getClient());
+        //TODO: CAMBIAR SI YA ESTA LOGUEADO
+        Client client = clientService.generateTemporal(model.getClient());
 
         model.setClient(client);
 

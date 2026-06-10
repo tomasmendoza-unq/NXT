@@ -7,7 +7,6 @@ export interface FacturationForm {
     postalCode: string;
     phone: string;
     email: string;
-    registerUser: boolean;
     notes: string;
 }
 
@@ -20,6 +19,5 @@ export const initialFacturationForm: FacturationForm = {
     postalCode: "",
     phone: "",
     email: "",
-    registerUser: false,
     notes: "",
 };

@@ -3,6 +3,7 @@ package com.tm.nc.domain.email.service.impl;
 import com.tm.nc.domain.checkout.model.Checkout;
 import com.tm.nc.domain.client.model.Client;
 import com.tm.nc.domain.email.service.EmailService;
+import com.tm.nc.domain.email.template.AccountTemporalTemplate;
 import com.tm.nc.domain.email.template.FacturationEmailTemplate;
 import jakarta.mail.internet.MimeMessage;
 import jakarta.transaction.Transactional;
@@ -10,18 +11,23 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 @Transactional
 public class EmailServiceImpl implements EmailService {
+
     private final JavaMailSender mailSender;
+
+    private final PasswordEncoder passwordEncoder;
 
     @Value("${admin.email}")
     private String from;
 
-    public EmailServiceImpl(JavaMailSender mailSender) {
+    public EmailServiceImpl(JavaMailSender mailSender, PasswordEncoder passwordEncoder) {
         this.mailSender = mailSender;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -64,6 +70,16 @@ public class EmailServiceImpl implements EmailService {
         );
 
         sendHtmlEmail(client.getEmail(), "Orden de compra",  html);
+    }
+
+    @Override
+    public void sendAccountTemporalEmail(Client client, String password) {
+        String html = AccountTemporalTemplate.build(
+                client.getFullName(),
+                client.getEmail(),
+                password
+        );
+        sendHtmlEmail(client.getEmail(), "Cuenta temporal",  html);
     }
 
 }

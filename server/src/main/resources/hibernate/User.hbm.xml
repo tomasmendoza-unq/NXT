@@ -24,6 +24,10 @@
 
         <property name="role" column="role"/>
 
+        <property name="temporal" column="temporal"/>
+
+        <property name="expirationDate" column="expirationDate"/>
+
     </class>
 
 </hibernate-mapping>
