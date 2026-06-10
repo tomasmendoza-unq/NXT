@@ -10,9 +10,10 @@ import "./style/Checkout.css";
 import { useCheckout } from "../hook/use-checkout";
 import { Modal } from "../../../shared/components/modal/Modal";
 import { useNavigate } from "react-router-dom";
+import { LoadingSpinner } from "../../../shared/components/loadingSpinner/LoadingSpinner";
 
 export const Checkout = () => {
-    const { fetch, items } = useGetPreviewCart();
+    const { fetch, items, isLoading } = useGetPreviewCart();
     const [formData, setFormData] = useState<FacturationForm>(
         initialFacturationForm,
     );
@@ -21,6 +22,7 @@ export const Checkout = () => {
         showSuccessMessage,
         setShowSuccessMessage,
         checkoutData,
+        isLoading: isCheckoutLoading,
     } = useCheckout();
 
     const navigate = useNavigate();
@@ -54,6 +56,7 @@ export const Checkout = () => {
 
     return (
         <section className="checkout-container">
+            {(isLoading || isCheckoutLoading) && <LoadingSpinner overlay />}
             {items.length === 0 ? (
                 <h1>Tu carrito está vacío.</h1>
             ) : (
