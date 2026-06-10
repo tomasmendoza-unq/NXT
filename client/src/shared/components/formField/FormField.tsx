@@ -39,7 +39,7 @@ export const FormField = <T extends object>({
 
     if (input.type === "textarea") {
         return (
-            <>
+            <div className="form-field">
                 <label htmlFor={input.name}>{input.label}</label>
                 <textarea
                     id={input.name}
@@ -47,12 +47,12 @@ export const FormField = <T extends object>({
                     value={value as string}
                     onChange={onChange}
                 />
-            </>
+            </div>
         );
     }
 
     return (
-        <>
+        <div className="form-field">
             <label htmlFor={input.name}>{input.label}</label>
             <input
                 id={input.name}
@@ -63,6 +63,6 @@ export const FormField = <T extends object>({
                 autoComplete={input.autoComplete}
                 onChange={onChange}
             />
-        </>
+        </div>
     );
 };

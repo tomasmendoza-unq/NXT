@@ -1,8 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { links } from "./navLink";
+import Person from "@mui/icons-material/Person";
 import "./styles/styles.css";
 import { IconText } from "../../../../components/iconText/iconText.tsx";
 import logo from "../../../../../assets/logo.png";
+import { useAuth } from "../../../../../features/auth/hooks/use-auth.ts";
 
 const SidebarLogo = ({ className }: { className?: string }) => (
     <img
@@ -14,6 +16,18 @@ const SidebarLogo = ({ className }: { className?: string }) => (
 );
 
 export const Sidebard = ({ isOpen }: { isOpen: boolean }) => {
+    const { isAuthenticated, user, logout } = useAuth();
+    const navigate = useNavigate();
+
+    const handleAuthClick = () => {
+        if (isAuthenticated) {
+            logout();
+            navigate("/");
+        } else {
+            navigate("/auth/login");
+        }
+    };
+
     return (
         <nav className={`sidebar ${isOpen ? "sidebar--open" : ""}`}>
             <Link
@@ -33,6 +47,16 @@ export const Sidebard = ({ isOpen }: { isOpen: boolean }) => {
                         </Link>
                     </li>
                 ))}
+                <li>
+                    <button
+                        className="sidebar-link"
+                        onClick={handleAuthClick}
+                    >
+                        <IconText icon={Person}>
+                            {isAuthenticated ? user?.name : "Iniciar sesión"}
+                        </IconText>
+                    </button>
+                </li>
             </ul>
         </nav>
     );
