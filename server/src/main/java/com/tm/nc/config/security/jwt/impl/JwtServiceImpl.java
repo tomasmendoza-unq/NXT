@@ -31,6 +31,7 @@ public class JwtServiceImpl implements JwtService {
                 .subject(user.getUsername())
                 .expiration(new Date(System.currentTimeMillis() + 3600000))
                 .claim("id", userDetails.getId())
+                .claim("name",  userDetails.getUsername())
                 .claim("role", user.getAuthorities()
                         .stream()
                         .findFirst()
