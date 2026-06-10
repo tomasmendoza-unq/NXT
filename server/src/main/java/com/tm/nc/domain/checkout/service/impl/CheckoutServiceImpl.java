@@ -8,6 +8,8 @@ import com.tm.nc.domain.checkout.persistence.sql.CheckoutIdempotencyDAO;
 import com.tm.nc.domain.checkout.service.CheckoutService;
 import com.tm.nc.domain.client.model.Client;
 import com.tm.nc.domain.client.persistence.sql.ClientSQLDAO;
+import com.tm.nc.domain.email.service.EmailService;
+import com.tm.nc.domain.email.template.FacturationEmailTemplate;
 import com.tm.nc.domain.productDetail.model.ProductDetail;
 import com.tm.nc.domain.productDetail.persistence.sql.ProductDetailsSQLDAO;
 import com.tm.nc.features.checkout.controller.dto.request.ItemCheckoutRequestDTO;
@@ -31,12 +33,16 @@ public class CheckoutServiceImpl implements CheckoutService {
     private final ProductDetailsSQLDAO productDetailsSQLDAO;
 
     private final ClientSQLDAO clientSQLDAO;
+
+    private final EmailService emailService;
+
     private final CheckoutIdempotencyDAO checkoutIdempotencyDAO;
 
-    public CheckoutServiceImpl(CheckoutDAOSQL checkoutDAOSQL, ProductDetailsSQLDAO productDetailsSQLDAO, ClientSQLDAO clientSQLDAO, CheckoutIdempotencyDAO checkoutIdempotencyDAO) {
+    public CheckoutServiceImpl(CheckoutDAOSQL checkoutDAOSQL, ProductDetailsSQLDAO productDetailsSQLDAO, ClientSQLDAO clientSQLDAO, EmailService emailService, CheckoutIdempotencyDAO checkoutIdempotencyDAO) {
         this.checkoutDAOSQL = checkoutDAOSQL;
         this.productDetailsSQLDAO = productDetailsSQLDAO;
         this.clientSQLDAO = clientSQLDAO;
+        this.emailService = emailService;
         this.checkoutIdempotencyDAO = checkoutIdempotencyDAO;
     }
 
@@ -87,6 +93,10 @@ public class CheckoutServiceImpl implements CheckoutService {
         checkoutIdempotencyDAO.save(
                 new CheckoutIdempotency(idempotencyKey, saved.getId(), LocalDateTime.now())
         );
+
+
+
+        emailService.sendFacturationEmail(client, saved);
 
         return saved;
     }

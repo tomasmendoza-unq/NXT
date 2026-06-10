@@ -25,4 +25,8 @@ public class User {
     public Boolean isEnabled() {
         return enabled;
     }
+
+    public String getFullName() {
+        return  firstName + " " + lastName;
+    }
 }
