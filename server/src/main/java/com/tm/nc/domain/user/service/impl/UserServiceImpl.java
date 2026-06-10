@@ -4,6 +4,7 @@ import com.tm.nc.domain.client.model.Client;
 import com.tm.nc.domain.user.model.User;
 import com.tm.nc.domain.user.persistence.UserSQLDAO;
 import com.tm.nc.domain.user.service.UserService;
+import com.tm.nc.shared.exception.BusinessException;
 import jakarta.transaction.Transactional;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -34,6 +35,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User save(User user) {
+        if(userSQLDAO.findByEmail(user.getEmail()).isPresent()) throw new BusinessException("No se pudo realizar la operación");
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userSQLDAO.save(user);
     }

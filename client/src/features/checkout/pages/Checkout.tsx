@@ -38,9 +38,8 @@ export const Checkout = () => {
         setFormData((prev) => ({
             ...prev,
             [name]:
-                e.target instanceof HTMLInputElement &&
-                e.target.type === "checkbox"
-                    ? e.target.checked
+                e.target instanceof HTMLInputElement
+                    ? e.target.value
                     : e.target.value,
         }));
     };
