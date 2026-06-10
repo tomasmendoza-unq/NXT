@@ -13,7 +13,16 @@
         </id>
 
         <property name="firstName" column="first_name"/>
+
         <property name="lastName" column="last_name"/>
+
+        <property name="email" column="email"/>
+
+        <property name="password" column="password"/>
+
+        <property name="enabled" column="enabled"/>
+
+        <property name="role" column="role"/>
 
     </class>
 

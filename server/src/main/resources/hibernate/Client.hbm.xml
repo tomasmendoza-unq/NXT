@@ -13,7 +13,6 @@
         <key column="id"/>
 
         <property name="phone" column="phone"/>
-        <property name="email" column="email"/>
         <property name="address" column="address"/>
         <property name="province" column="province"/>
         <property name="city" column="city"/>
