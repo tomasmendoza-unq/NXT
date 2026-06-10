@@ -8,28 +8,31 @@ import { ToastProvider } from "./features/toast/provider/ToastProvider";
 import { ToastListener } from "./features/toast/emitter/ToastListener";
 import { authRoutes } from "./features/auth/routes/Auth.routes";
 import { AuthLayout } from "./features/auth/layout/AuthLayout";
+import { AuthProvider } from "./features/auth/context/AuthProvider";
 
 function App() {
     return (
-        <ToastProvider>
-            <ToastListener />
-            <Routes>
-                <Route element={<AuthLayout />}>{authRoutes}</Route>
-                <Route element={<MainLayout />}>
-                    <Route
-                        path="/"
-                        element={<Home />}
-                    />
-                    {productRoutes}
-                    {cartRoutes}
-                    {checkoutRoutes}
-                    <Route
-                        path="*"
-                        element={<h1>NOT FOUND</h1>}
-                    />
-                </Route>
-            </Routes>
-        </ToastProvider>
+        <AuthProvider>
+            <ToastProvider>
+                <ToastListener />
+                <Routes>
+                    <Route element={<AuthLayout />}>{authRoutes}</Route>
+                    <Route element={<MainLayout />}>
+                        <Route
+                            path="/"
+                            element={<Home />}
+                        />
+                        {productRoutes}
+                        {cartRoutes}
+                        {checkoutRoutes}
+                        <Route
+                            path="*"
+                            element={<h1>NOT FOUND</h1>}
+                        />
+                    </Route>
+                </Routes>
+            </ToastProvider>
+        </AuthProvider>
     );
 }
 
