@@ -9,4 +9,6 @@ public interface UserService {
     public Client generateClient();
 
     Optional<User> findUserByMail(String email);
+
+    User save(User user);
 }

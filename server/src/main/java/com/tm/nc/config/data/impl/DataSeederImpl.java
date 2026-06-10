@@ -6,19 +6,31 @@ import com.tm.nc.domain.color.model.Color;
 import com.tm.nc.domain.product.model.Product;
 import com.tm.nc.domain.productDetail.model.ProductDetail;
 import com.tm.nc.domain.product.service.ProductService;
+import com.tm.nc.domain.user.model.User;
+import com.tm.nc.domain.user.service.UserService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import org.springframework.beans.factory.annotation.Value;
 
 @Component
 @Profile("dev")
 public class DataSeederImpl implements DataSeeder {
 
+    @Value("${admin.email}")
+    private String adminEmail;
+
+    @Value("${admin.password}")
+    private String adminPassword;
+
     private final ProductService productService;
 
-    public DataSeederImpl(ProductService productService) {
+    private final UserService userService;
+
+    public DataSeederImpl(ProductService productService, UserService userService) {
         this.productService = productService;
+        this.userService = userService;
     }
 
     @Override
@@ -144,5 +156,18 @@ public class DataSeederImpl implements DataSeeder {
 
         productService.save(product);
         productService.save(product2);
+
+        saveAdmin();
+    }
+
+    public void saveAdmin(){
+        userService.save(User.builder()
+                        .email(adminEmail)
+                        .firstName("Tomas")
+                        .password(adminPassword)
+                        .enabled(true)
+                        .lastName("Mendoza")
+                        .role("admin")
+                .build());
     }
 }
