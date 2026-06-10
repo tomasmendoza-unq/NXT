@@ -8,4 +8,6 @@ public interface EmailService {
     void sendHtmlEmail(String to, String subject, String html);
 
     void sendFacturationEmail(Client client, Checkout checkout);
+
+    void sendAccountTemporalEmail(Client client, String password);
 }
