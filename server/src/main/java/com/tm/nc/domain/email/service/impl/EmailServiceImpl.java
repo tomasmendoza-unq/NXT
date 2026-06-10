@@ -59,7 +59,8 @@ public class EmailServiceImpl implements EmailService {
     public void sendFacturationEmail(Client client, Checkout checkout) {
         String html = FacturationEmailTemplate.build(
                 client.getFullName(),
-                checkout.getId()
+                checkout.getId(),
+                checkout
         );
 
         sendHtmlEmail(client.getEmail(), "Orden de compra",  html);

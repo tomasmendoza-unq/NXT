@@ -1,10 +1,13 @@
 package com.tm.nc.domain.email.template;
 
+import com.tm.nc.domain.checkout.model.Checkout;
+
 public class FacturationEmailTemplate {
 
     public static String build(
             String customerName,
-            Long orderNumber
+            Long orderNumber,
+            Checkout checkout
     ) {
         return """
                 <!DOCTYPE html>
@@ -15,6 +18,7 @@ public class FacturationEmailTemplate {
                         %s
                         %s
                         %s
+                        %s
                     </div>
                 </body>
                 </html>
@@ -22,6 +26,7 @@ public class FacturationEmailTemplate {
                 .formatted(
                         head(),
                         title(customerName, orderNumber),
+                        CheckoutItemsTemplate.build(checkout),
                         paymentInfo(),
                         confirmationInfo()
                 );
