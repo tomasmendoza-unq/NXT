@@ -5,7 +5,8 @@ export const setToken = (response: AxiosResponse): void => {
     const token =
         response.headers["authorization"] || response.headers["Authorization"];
     if (token) {
-        localStorage.setItem(TOKEN_KEY, token);
+        const cleanToken = token.replace("Bearer ", "");
+        localStorage.setItem(TOKEN_KEY, cleanToken);
     }
 };
 
