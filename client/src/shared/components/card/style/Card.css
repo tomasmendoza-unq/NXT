@@ -1,0 +1,13 @@
+.card-container {
+    background-color: var(--card-bg-color);
+    padding: 10px;
+    border-radius: var(--border-radius);
+}
+
+.card-content {
+    border-radius: var(--border-radius);
+}
+
+h2 {
+    color: var(--primary-color);
+}
