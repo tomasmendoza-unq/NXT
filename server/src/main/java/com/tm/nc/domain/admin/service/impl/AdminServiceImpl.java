@@ -25,4 +25,9 @@ public class AdminServiceImpl implements AdminService {
 
         return checkoutDAOSQL.findAllByStatus(checkoutStatus);
     }
+
+    @Override
+    public List<Checkout> findAllOrders() {
+        return checkoutDAOSQL.findAll();
+    }
 }
