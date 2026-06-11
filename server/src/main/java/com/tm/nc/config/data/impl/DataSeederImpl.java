@@ -167,7 +167,7 @@ public class DataSeederImpl implements DataSeeder {
                         .password(adminPassword)
                         .enabled(true)
                         .lastName("Mendoza")
-                        .role("admin")
+                        .role("ADMIN")
                 .build());
     }
 }

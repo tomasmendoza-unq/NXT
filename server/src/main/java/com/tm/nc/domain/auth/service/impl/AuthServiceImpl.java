@@ -60,9 +60,7 @@ public class AuthServiceImpl implements AuthService {
     public boolean isExpired(User user) {
         LocalDateTime now = LocalDateTime.now(clock);
         LocalDateTime expiration = user.getExpirationDate();
-        System.out.println(">>> clock now: " + now);
-        System.out.println(">>> expiration: " + expiration);
-        System.out.println(">>> isTemporal: " + user.isTemporal());
+
         return user.isTemporal()
                 && expiration != null
                 && expiration.isBefore(now);
