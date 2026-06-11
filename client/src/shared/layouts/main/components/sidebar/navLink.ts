@@ -38,6 +38,18 @@ export const links: NavLink[] = [
         roles: ["ROLE_CLIENT", "guest"],
     },
     {
+        label: "Ordenes de compra",
+        path: "/admin/orders",
+        icon: DashboardIcon,
+        roles: ["ROLE_ADMIN"],
+    },
+    {
+        label: "Productos",
+        path: "/admin/products",
+        icon: DashboardIcon,
+        roles: ["ROLE_ADMIN"],
+    },
+    {
         label: "Dashboard",
         path: "/admin/dashboard",
         icon: DashboardIcon,

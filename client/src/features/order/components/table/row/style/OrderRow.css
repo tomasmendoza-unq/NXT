@@ -1,0 +1,28 @@
+.table-body-row {
+    background-color: #ffffff;
+    transition: background-color 0.15s;
+}
+
+.table-body-row:hover {
+    background-color: #e2e2e2;
+}
+
+.table-cell-id {
+    padding: 16px 24px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #111827;
+}
+
+.table-cell {
+    padding: 16px 24px;
+    font-size: 14px;
+    color: #4b5563;
+}
+
+.table-cell-total {
+    padding: 16px 24px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #111827;
+}
