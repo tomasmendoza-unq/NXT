@@ -26,9 +26,21 @@ public class AdminControllerREST {
 
     @GetMapping("/orders/{status}")
     @AdminEndpoint
-    public ResponseEntity<List<OrderResponseSimpleDTO>> getCheckoutsByStatus(@PathVariable String status){
+    public ResponseEntity<List<OrderResponseSimpleDTO>> getCheckoutsByStatus(@PathVariable(required = true) String status){
         List<Checkout> checkout = adminService.findAllByStatus(status);
 
         return ResponseEntity.ok(checkout.stream().map(OrderResponseSimpleDTO::fromModel).toList());
+    }
+
+    @GetMapping("/orders/")
+    @AdminEndpoint
+    public ResponseEntity<List<OrderResponseSimpleDTO>> getAllOrders() {
+        List<Checkout> checkout = adminService.findAllOrders();
+
+        return ResponseEntity.ok(
+                checkout.stream()
+                        .map(OrderResponseSimpleDTO::fromModel)
+                        .toList()
+        );
     }
 }

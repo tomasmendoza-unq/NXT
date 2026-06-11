@@ -3,7 +3,7 @@ package com.tm.nc.domain.checkout.model.enums;
 import java.util.Arrays;
 
 public enum CheckoutStatus {
-    PENDING_PAYMENT,
+    PENDING,
     PAID,
     SHIPPED,
     DELIVERED,
