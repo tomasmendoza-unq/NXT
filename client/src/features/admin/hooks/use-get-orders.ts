@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { GetOrdersService } from "../service/get-orders.service";
 import type { Order } from "../../order/types/Order.t";
+import { emptyPage, type Page } from "../../../shared/types/Page";
 
 export const useGetOrders = ({ status }: { status: string }) => {
-    const [orders, setOrders] = useState<Order[]>([]);
+    const [orders, setOrders] = useState<Page<Order>>(emptyPage());
     const [loading, setLoading] = useState<boolean>(false);
 
     const fetch = async () => {
