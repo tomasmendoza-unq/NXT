@@ -1,9 +1,9 @@
 export interface Order {
     id: number;
-    total: number;
-    createdAt: string;
     email: string;
+    total: number;
     status: string;
+    createdAt: string;
     client?: {
         firstName: string | null;
         lastName: string | null;

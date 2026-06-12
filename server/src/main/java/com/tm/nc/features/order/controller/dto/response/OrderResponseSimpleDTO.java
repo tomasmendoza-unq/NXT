@@ -6,18 +6,20 @@ import java.time.LocalDateTime;
 
 public record OrderResponseSimpleDTO(
         Long id,
+        String email,
         Double total,
         String status,
-        LocalDateTime createdAt,
-        String email
+        LocalDateTime createdAt
+
 ) {
     public static OrderResponseSimpleDTO fromModel(Checkout checkout) {
         return new OrderResponseSimpleDTO(
                 checkout.getId(),
+                checkout.getClient().getEmail(),
                 checkout.getTotal(),
                 checkout.getStatus().toString(),
-                checkout.getCreatedAt(),
-                checkout.getClient().getEmail()
+                checkout.getCreatedAt()
+
         );
     }
 }

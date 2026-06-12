@@ -6,10 +6,13 @@ import com.tm.nc.features.order.controller.dto.request.OrderFilterRequestDTO;
 import com.tm.nc.features.order.controller.dto.response.OrderResponseSimpleDTO;
 import com.tm.nc.shared.annotation.AdminEndpoint;
 import com.tm.nc.shared.dto.PageResponseDTO;
+import com.tm.nc.shared.dto.TableResponseDTO;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/admin")
@@ -24,13 +27,17 @@ public class AdminControllerREST {
 
     @PostMapping("/orders")
     @AdminEndpoint
-    public ResponseEntity<PageResponseDTO<OrderResponseSimpleDTO>> getOrders(@RequestBody OrderFilterRequestDTO request){
+    public ResponseEntity<TableResponseDTO<OrderResponseSimpleDTO>> getOrders(@RequestBody OrderFilterRequestDTO request){
         Page<Checkout> checkouts = adminService.findAllByStatus(request.status(), request.page(), request.size());
 
         Page<OrderResponseSimpleDTO> orders = checkouts.map(OrderResponseSimpleDTO::fromModel);
 
-        PageResponseDTO<OrderResponseSimpleDTO> pages = PageResponseDTO.from(orders);
+        TableResponseDTO<OrderResponseSimpleDTO> table =                 TableResponseDTO.fromPage(
+                List.of("ID","Cliente","Total","Estado","Fecha","Acciones"),
+                orders,
+                OrderResponseSimpleDTO::id
+        );
 
-        return ResponseEntity.ok(pages);
+        return ResponseEntity.ok(table);
     }
 }
