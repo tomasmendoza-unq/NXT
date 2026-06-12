@@ -2,16 +2,14 @@ package com.tm.nc.features.admin.controller;
 
 import com.tm.nc.domain.admin.service.AdminService;
 import com.tm.nc.domain.checkout.model.Checkout;
-import com.tm.nc.features.order.controller.dto.OrderResponseSimpleDTO;
+import com.tm.nc.features.order.controller.dto.request.OrderFilterRequestDTO;
+import com.tm.nc.features.order.controller.dto.response.OrderResponseSimpleDTO;
 import com.tm.nc.shared.annotation.AdminEndpoint;
+import com.tm.nc.shared.dto.PageResponseDTO;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/admin")
@@ -24,23 +22,15 @@ public class AdminControllerREST {
         this.adminService = adminService;
     }
 
-    @GetMapping("/orders/{status}")
+    @PostMapping("/orders")
     @AdminEndpoint
-    public ResponseEntity<List<OrderResponseSimpleDTO>> getCheckoutsByStatus(@PathVariable(required = true) String status){
-        List<Checkout> checkout = adminService.findAllByStatus(status);
+    public ResponseEntity<PageResponseDTO<OrderResponseSimpleDTO>> getOrders(@RequestBody OrderFilterRequestDTO request){
+        Page<Checkout> checkouts = adminService.findAllByStatus(request.status(), request.page(), request.size());
 
-        return ResponseEntity.ok(checkout.stream().map(OrderResponseSimpleDTO::fromModel).toList());
-    }
+        Page<OrderResponseSimpleDTO> orders = checkouts.map(OrderResponseSimpleDTO::fromModel);
 
-    @GetMapping("/orders/")
-    @AdminEndpoint
-    public ResponseEntity<List<OrderResponseSimpleDTO>> getAllOrders() {
-        List<Checkout> checkout = adminService.findAllOrders();
+        PageResponseDTO<OrderResponseSimpleDTO> pages = PageResponseDTO.from(orders);
 
-        return ResponseEntity.ok(
-                checkout.stream()
-                        .map(OrderResponseSimpleDTO::fromModel)
-                        .toList()
-        );
+        return ResponseEntity.ok(pages);
     }
 }

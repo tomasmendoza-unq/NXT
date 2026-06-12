@@ -1,4 +1,4 @@
-package com.tm.nc.features.order.controller.dto;
+package com.tm.nc.features.order.controller.dto.response;
 
 import com.tm.nc.features.client.controller.dto.ClientResponseDTO;
 
