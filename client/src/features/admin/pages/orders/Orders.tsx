@@ -15,7 +15,7 @@ export const Orders = () => {
     return (
         <section>
             <h1>Ordenes de compra</h1>
-            {orders.length > 0 ? (
+            {orders.content.length > 0 ? (
                 <OrdersTable
                     className="orders-table"
                     orders={orders}

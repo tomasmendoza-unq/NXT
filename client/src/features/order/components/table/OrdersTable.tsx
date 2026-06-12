@@ -1,3 +1,4 @@
+import type { Page } from "../../../../shared/types/Page";
 import type { Order } from "../../types/Order.t";
 import { ordersTableHeaders } from "./header/ordersTableHeaders";
 import { OrderRow } from "./row/OrderRow";
@@ -7,10 +8,10 @@ export const OrdersTable = ({
     orders,
     className,
 }: {
-    orders: Order[];
+    orders: Page<Order>;
     className?: string;
 }) => {
-    if (orders.length === 0)
+    if (orders.content.length === 0)
         return (
             <p className="text-center text-gray-500 py-12">
                 No hay órdenes para mostrar.
@@ -33,7 +34,7 @@ export const OrdersTable = ({
                     </tr>
                 </thead>
                 <tbody>
-                    {orders.map((order) => (
+                    {orders.content.map((order) => (
                         <OrderRow
                             key={order.id}
                             order={order}
