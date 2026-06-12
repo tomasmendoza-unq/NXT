@@ -1,4 +1,4 @@
 export const ADMIN_ENDPOINTS = {
-    GET_ORDERS: (status: string) => `/admin/orders/${status}`,
+    POST_ORDERS: "/admin/orders",
     UPDATE_ORDER_STATUS: "/admin/orders/update-status",
 };
