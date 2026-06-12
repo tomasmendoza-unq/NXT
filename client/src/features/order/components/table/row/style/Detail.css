@@ -1,0 +1,15 @@
+.btn {
+    display: block;
+    width: 100%;
+    padding: 0.5rem;
+    background-color: var(--button-primary-bg);
+    color: white;
+    text-align: center;
+    border: 1px solid var(--button-primary-border);
+    border-radius: var(--border-radius);
+}
+
+.btn:hover {
+    background-color: var(--button-primary-hover-bg);
+    border-color: var(--button-primary-hover-border);
+}

@@ -189,7 +189,7 @@ public class CheckoutServiceTest {
         );
 
         assertEquals(
-                CheckoutStatus.PENDING_PAYMENT,
+                CheckoutStatus.PENDING,
                 recovered.getStatus()
         );
     }
@@ -245,7 +245,7 @@ public class CheckoutServiceTest {
         );
 
         List<Checkout> all = checkoutService.findAllByStatus(
-                CheckoutStatus.PENDING_PAYMENT.name()
+                CheckoutStatus.PENDING.name()
         );
 
         long count = all.stream()

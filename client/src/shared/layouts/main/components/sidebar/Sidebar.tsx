@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { links } from "./navLink";
+import type { UserRole } from "./navLink";
 import Person from "@mui/icons-material/Person";
 import "./styles/styles.css";
 import { IconText } from "../../../../components/iconText/iconText.tsx";
@@ -19,6 +20,11 @@ export const Sidebard = ({ isOpen }: { isOpen: boolean }) => {
     const { isAuthenticated, user, logout } = useAuth();
     const navigate = useNavigate();
 
+    const currentRole = (user?.role ?? "guest") as UserRole;
+    const visibleLinks = links.filter((link) =>
+        link.roles.includes(currentRole),
+    );
+
     const handleAuthClick = () => {
         if (isAuthenticated) {
             logout();
@@ -37,7 +43,7 @@ export const Sidebard = ({ isOpen }: { isOpen: boolean }) => {
                 <IconText icon={SidebarLogo}>NXT_STEPS</IconText>
             </Link>
             <ul>
-                {links.map((link) => (
+                {visibleLinks.map((link) => (
                     <li key={link.path}>
                         <Link
                             className="sidebar-link"

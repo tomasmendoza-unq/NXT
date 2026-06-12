@@ -9,6 +9,7 @@ import { ToastListener } from "./features/toast/emitter/ToastListener";
 import { authRoutes } from "./features/auth/routes/Auth.routes";
 import { AuthLayout } from "./features/auth/layout/AuthLayout";
 import { AuthProvider } from "./features/auth/context/AuthProvider";
+import { adminRoutes } from "./features/admin/routes/Admin.routes";
 
 function App() {
     return (
@@ -22,6 +23,7 @@ function App() {
                             path="/"
                             element={<Home />}
                         />
+                        {adminRoutes}
                         {productRoutes}
                         {cartRoutes}
                         {checkoutRoutes}

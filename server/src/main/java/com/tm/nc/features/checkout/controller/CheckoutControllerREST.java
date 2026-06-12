@@ -22,12 +22,6 @@ public class CheckoutControllerREST {
         this.checkoutService = checkoutService;
     }
 
-    @GetMapping("/{status}")
-    public ResponseEntity<List<CheckoutResponseDTO>> getCheckoutsByStatus(@PathVariable String status){
-        List<Checkout> checkout = checkoutService.findAllByStatus(status);
-
-        return ResponseEntity.ok(checkout.stream().map(CheckoutResponseDTO::fromModel).toList());
-    }
 
     @PostMapping
     public ResponseEntity<CheckoutResponseDTO> generateCheckout(

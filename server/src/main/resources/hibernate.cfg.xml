@@ -18,5 +18,8 @@
         <mapping resource="hibernate/Color.hbm.xml"/>
         <mapping resource="hibernate/Product.hbm.xml"/>
         <mapping resource="hibernate/ProductDetail.hbm.xml"/>
+        <mapping resource="hibernate/User.hbm.xml"/>
+        <mapping resource="hibernate/Admin.hbm.xml"/>
+        <mapping resource="hibernate/Client.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>

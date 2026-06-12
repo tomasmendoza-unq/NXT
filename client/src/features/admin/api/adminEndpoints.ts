@@ -1,0 +1,4 @@
+export const ADMIN_ENDPOINTS = {
+    POST_ORDERS: "/admin/orders",
+    UPDATE_ORDER_STATUS: "/admin/orders/update-status",
+};

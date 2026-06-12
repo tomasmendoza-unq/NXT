@@ -30,7 +30,7 @@ public class Checkout {
     private Double total = 0D;
 
     @Builder.Default
-    private CheckoutStatus status = CheckoutStatus.PENDING_PAYMENT;
+    private CheckoutStatus status = CheckoutStatus.PENDING;
 
     @Builder.Default
     private LocalDateTime createdAt = LocalDateTime.now();
