@@ -5,9 +5,10 @@ import com.tm.nc.domain.checkout.model.Checkout;
 import com.tm.nc.domain.checkout.model.enums.CheckoutStatus;
 import com.tm.nc.domain.checkout.persistence.sql.CheckoutDAOSQL;
 import jakarta.transaction.Transactional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 
 @Service
 @Transactional
@@ -20,14 +21,9 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public List<Checkout> findAllByStatus(String status) {
-        CheckoutStatus checkoutStatus = CheckoutStatus.fromString(status);
-
-        return checkoutDAOSQL.findAllByStatus(checkoutStatus);
+    public Page<Checkout> findAllByStatus(String status, int page, int size) {
+        return status.isBlank() ? checkoutDAOSQL.findAll(PageRequest.of(page, size)) : checkoutDAOSQL.findAllByStatus(CheckoutStatus.fromString(status), PageRequest.of(page, size));
     }
 
-    @Override
-    public List<Checkout> findAllOrders() {
-        return checkoutDAOSQL.findAll();
-    }
+
 }

@@ -1,4 +1,4 @@
-package com.tm.nc.features.order.controller.dto;
+package com.tm.nc.features.order.controller.dto.response;
 
 public record OrderItemResponseDTO(
         Long idDetail,
