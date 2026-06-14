@@ -1,0 +1,20 @@
+.form-card {
+    display: flex;
+    gap: 5px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+}
+
+.add-to-card-button {
+    background-color: var(--button-primary-bg);
+    color: var(--button-primary-text);
+    cursor: pointer;
+    border-radius: var(--border-radius);
+    width: 100%;
+}
+
+.add-to-card-button:hover {
+    background-color: var(--button-primary-hover-bg);
+    color: var(--button-primary-text);
+}

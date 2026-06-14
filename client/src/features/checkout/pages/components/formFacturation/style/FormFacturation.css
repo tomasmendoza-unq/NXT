@@ -1,0 +1,47 @@
+.form-facturation {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    flex: 1;
+    background-color: transparent;
+}
+
+.form-facturation h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.form-row {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.form-facturation-submit {
+    width: 100%;
+    padding: 12px;
+    background-color: #01a146;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: background-color 0.2s ease;
+}
+
+.form-facturation-submit:hover {
+    background-color: #01943c;
+}
+
+@media (min-width: 1020px) {
+    .form-facturation {
+        width: 80%;
+    }
+
+    .form-row {
+        flex-direction: row;
+    }
+}

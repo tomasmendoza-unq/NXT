@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="com.tm.nc.domain.checkout.model.CheckoutIdempotency"
+           table="checkout_idempotency">
+
+        <id name="idempotencyKey" column="idempotency_key">
+            <generator class="assigned"/>
+        </id>
+
+        <property name="checkoutId"
+                  column="checkout_id"
+                  not-null="true"/>
+
+        <property name="createdAt"
+                  column="created_at"
+                  not-null="true"/>
+
+    </class>
+
+</hibernate-mapping>

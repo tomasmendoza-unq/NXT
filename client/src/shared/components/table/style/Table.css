@@ -1,0 +1,32 @@
+.table-wrapper {
+    overflow-x: auto;
+}
+
+.table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+
+    border: var(--border-size) solid #e5e7eb;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+.table-head {
+    background-color: #f9fafb;
+}
+
+.table-header {
+    padding: 12px 24px;
+    text-align: left;
+    font-size: 12px;
+    font-weight: 500;
+    color: #6b7280;
+    text-transform: uppercase;
+}
+
+.table-empty {
+    text-align: center;
+    color: #6b7280;
+    padding: 48px 0;
+}

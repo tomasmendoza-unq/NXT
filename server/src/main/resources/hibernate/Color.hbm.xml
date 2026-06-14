@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="com.tm.nc.domain.color.model.Color" table="colors">
+
+        <id name="id" column="id">
+            <generator class="sequence"/>
+        </id>
+
+        <property name="name" column="name" not-null="true"/>
+        <property name="color" column="hex_code" not-null="true"/>
+
+        <bag name="details" cascade="all">
+            <key column="color_id"/>
+            <one-to-many class="com.tm.nc.domain.productDetail.model.ProductDetail"/>
+        </bag>
+
+        <many-to-one name="product"
+                     class="com.tm.nc.domain.product.model.Product"
+                     column="product_id"/>
+
+    </class>
+
+</hibernate-mapping>

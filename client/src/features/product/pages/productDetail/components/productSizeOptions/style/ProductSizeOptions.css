@@ -1,0 +1,32 @@
+.product-size-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.product-size-options h3 {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.product-size-option-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.product-size-option {
+    min-width: 44px;
+    height: 36px;
+    border: var(--border-size) solid var(--border);
+    border-radius: 4px;
+    background: transparent;
+    color: var(--text);
+    cursor: pointer;
+}
+
+.product-size-option-selected {
+    border-color: var(--text-h);
+    background: var(--text-h);
+    color: var(--bg);
+}
