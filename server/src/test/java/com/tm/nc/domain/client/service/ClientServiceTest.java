@@ -80,4 +80,9 @@ class ClientServiceTest {
 
         assertThrows(UserExpiredException.class, () -> authService.authUser(token));
     }
+
+    @Test
+    public void getOrdersByClient(){
+        //TODO
+    }
 }
