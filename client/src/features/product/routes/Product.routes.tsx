@@ -1,10 +1,10 @@
 import { Route } from "react-router-dom";
-import { Routes as ProductRoutesArray } from "./routes";
-import type { Route as RouteType } from "../../../shared/types/Route.t.ts";
+import type { RouteNavigate } from "../../../shared/types/Route.t";
+import { ProductRoutesArray } from "./Routes";
 
 export const productRoutes = (
     <Route path="products">
-        {ProductRoutesArray.map((route: RouteType) => (
+        {ProductRoutesArray.map((route: RouteNavigate) => (
             <Route
                 key={route.path}
                 index={route.path === "/"}

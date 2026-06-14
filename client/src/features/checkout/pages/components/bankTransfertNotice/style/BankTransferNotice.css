@@ -1,6 +1,6 @@
 .bank-transfer-notice {
     padding: 16px;
-    color: #fafafa;
+    color: var(--text);
     display: flex;
     flex-direction: column;
     gap: 12px;

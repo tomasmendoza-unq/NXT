@@ -1,7 +1,7 @@
-import type { Route } from "../../../shared/types/Route.t";
+import type { RouteNavigate } from "../../../shared/types/Route.t";
 import { Login } from "../pages/login/Login";
 
-export const AuthRoutesArray: Route[] = [
+export const AuthRoutesArray: RouteNavigate[] = [
     {
         path: "/login",
         element: <Login />,

@@ -1,17 +1,40 @@
 .checkout-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+    align-items: flex-start;
+    padding: 24px;
+}
+
+.checkout-container > h1 {
+    grid-column: 1 / -1;
+}
+
+.checkout-content {
+    width: 100%;
     display: flex;
     gap: 32px;
-    align-items: center;
+}
+
+.form-facturation {
+    flex: 0 0 calc(60% - 16px);
+}
+
+.order-summary-container {
+    flex: 0 0 calc(40% - 16px);
 }
 
 @media (max-width: 1000px) {
     .checkout-container {
-        flex-direction: column;
         padding: 16px;
     }
 
+    .checkout-content {
+        flex-direction: column;
+    }
+
     .form-facturation,
-    .order-summary {
-        width: 100%;
+    .order-summary-container {
+        flex: 0 0 100%;
     }
 }

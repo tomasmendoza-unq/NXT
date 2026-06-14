@@ -50,23 +50,24 @@ export const Checkout = () => {
 
     const onCloseModal = () => {
         setShowSuccessMessage(false);
-        navigate("/orders");
+        navigate("/");
     };
 
     return (
         <section className="checkout-container">
             {(isLoading || isCheckoutLoading) && <LoadingSpinner overlay />}
+            <h1>Detalles de facturación</h1>
             {items.length === 0 ? (
                 <h1>Tu carrito está vacío.</h1>
             ) : (
-                <>
+                <div className="checkout-content">
                     <FormFacturation
                         formData={formData}
                         onChange={handleChange}
                         onCheckout={handleCheckout}
                     />
                     <OrderSummary items={items} />
-                </>
+                </div>
             )}
 
             <Modal

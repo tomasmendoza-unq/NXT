@@ -10,6 +10,7 @@ import { authRoutes } from "./features/auth/routes/Auth.routes";
 import { AuthLayout } from "./features/auth/layout/AuthLayout";
 import { AuthProvider } from "./features/auth/context/AuthProvider";
 import { adminRoutes } from "./features/admin/routes/Admin.routes";
+import { clientRoutes } from "./features/client/routes/Client.routes";
 
 function App() {
     return (
@@ -26,6 +27,7 @@ function App() {
                         {adminRoutes}
                         {productRoutes}
                         {cartRoutes}
+                        {clientRoutes}
                         {checkoutRoutes}
                         <Route
                             path="*"
