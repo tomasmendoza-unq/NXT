@@ -1,9 +1,8 @@
 import { useEffect } from "react";
 import { useGetOrders } from "../../hooks/use-get-orders";
 import { TableGeneric } from "../../../../shared/components/table/TableGeneric";
-import "./style/Order.css";
 import { useParams } from "react-router-dom";
-import { Detail } from "../../../order/components/table/row/Detail";
+import { Detail } from "../../../order/components/detail/Detail";
 
 export const Orders = () => {
     const { status } = useParams<{ status: string }>();

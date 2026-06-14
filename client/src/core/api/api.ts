@@ -1,6 +1,6 @@
 import axios, { AxiosError } from "axios";
 import handleErrors from "./middlewares/error-handler/middlewares";
-import { getToken } from "./service/token/get-token";
+import sendToken from "./middlewares/send-headers/send-token.middlewares";
 
 const API_BASE_URL =
     import.meta.env.VITE_API_URL || "http://localhost:8081/api/v1";
@@ -10,12 +10,12 @@ const api = axios.create({
 });
 
 api.interceptors.request.use(
-    (request) => {
-        const token = getToken();
-        if (token) {
-            request.headers["Authorization"] = `Bearer ${token}`;
-        }
+    (request) => sendToken(request),
+    (error: AxiosError) => handleErrors(error),
+);
 
+api.interceptors.request.use(
+    (request) => {
         if (
             ["POST", "PUT", "PATCH"].includes(
                 request.method?.toUpperCase() ?? "",
