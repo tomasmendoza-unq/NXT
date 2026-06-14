@@ -50,7 +50,7 @@ export const Checkout = () => {
 
     const onCloseModal = () => {
         setShowSuccessMessage(false);
-        navigate("/");
+        navigate("/client/orders");
     };
 
     return (
@@ -76,6 +76,7 @@ export const Checkout = () => {
                 title="¡Compra exitosa!"
             >
                 <p>Tu pedido fue procesado correctamente.</p>
+                <p>Inicie sesion con los datos que le llego al mail.</p>
                 {checkoutData && (
                     <p>Código de confirmación: {checkoutData.id}</p>
                 )}

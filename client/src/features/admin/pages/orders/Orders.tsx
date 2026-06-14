@@ -18,7 +18,12 @@ export const Orders = () => {
             <h1>Ordenes de compra</h1>
             <TableGeneric
                 table={orders}
-                childrenRow={(row) => <Detail id={row.id} />}
+                childrenRow={(row) => (
+                    <Detail
+                        id={row.id}
+                        role={"admin"}
+                    />
+                )}
             />
         </section>
     );
