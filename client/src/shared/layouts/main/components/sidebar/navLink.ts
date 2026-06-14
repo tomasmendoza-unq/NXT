@@ -1,6 +1,6 @@
 import HomeIcon from "@mui/icons-material/Home";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import LocalOfferIcon from "@mui/icons-material/LocalOffer";
+// import LocalOfferIcon from "@mui/icons-material/LocalOffer";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 
 export type UserRole = "ROLE_ADMIN" | "ROLE_CLIENT" | "guest";
@@ -21,16 +21,16 @@ export const links: NavLink[] = [
     },
     {
         label: "Productos",
-        path: "/product",
+        path: "/products",
         icon: ShoppingCartIcon,
         roles: ["ROLE_CLIENT", "guest"],
     },
-    {
-        label: "Marcas",
-        path: "/brands",
-        icon: LocalOfferIcon,
-        roles: ["ROLE_CLIENT", "guest"],
-    },
+    // {
+    //     label: "Marcas",
+    //     path: "/brands",
+    //     icon: LocalOfferIcon,
+    //     roles: ["ROLE_CLIENT", "guest"],
+    // },
     {
         label: "Carrito",
         path: "/cart",
