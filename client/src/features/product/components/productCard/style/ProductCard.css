@@ -3,6 +3,8 @@
     overflow: hidden;
     cursor: pointer;
     transition: box-shadow 0.2s ease;
+    border: var(--border-size) solid var(--border);
+    border-radius: var(--border-radius);
 }
 
 .product-card:hover {

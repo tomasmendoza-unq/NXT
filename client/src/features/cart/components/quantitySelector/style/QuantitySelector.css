@@ -3,7 +3,7 @@
     align-items: center;
     height: 36px;
 
-    border: 1px solid #dcdcdc;
+    border: var(--border-size) solid #dcdcdc;
     border-radius: 8px;
     overflow: hidden;
 

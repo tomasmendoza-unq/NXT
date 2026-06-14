@@ -10,7 +10,7 @@ export const ProductCard = ({ id, name, model, colors }: Product) => {
 
     return (
         <div
-            onClick={() => navigate(`/product/${id}`)}
+            onClick={() => navigate(`/products/${id}`)}
             className="product-card"
         >
             <ProductImage

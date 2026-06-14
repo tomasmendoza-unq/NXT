@@ -4,14 +4,16 @@
     --text: #6b6375;
     --text-h: #08060d;
     --bg: #fff;
-    --border: #e5e4e7;
+    --border-size: 2px;
+    --border: #aaaaaa;
     --code-bg: #f4f3ec;
     --card-bg-color: #fff;
     --shadow:
-        rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+        rgba(0, 0, 0, 0.712) 0 10px 15px -3px,
+        rgba(0, 0, 0, 0.336) 0 4px 6px -2px;
 
-    --button-primary-bg: rgb(94, 94, 94);
-    --button-primary-hover-bg: #303030;
+    --button-primary-bg: #a32d2d;
+    --button-primary-hover-bg: #e24b4a;
     --button-primary-text: white;
 
     --sans: system-ui, "Segoe UI", Roboto, sans-serif;
@@ -31,27 +33,6 @@
 
     @media (max-width: 1024px) {
         font-size: 16px;
-    }
-}
-
-@media (prefers-color-scheme: dark) {
-    :root {
-        --text: #808a92;
-        --text-h: #bdc7ce;
-        --bg: #24292e;
-        --border: #1a1d23;
-        --code-bg: #1f2028;
-        --accent: #c084fc;
-        --accent-bg: rgba(192, 132, 252, 0.15);
-        --accent-border: rgba(192, 132, 252, 0.5);
-        --social-bg: rgba(47, 48, 58, 0.5);
-        --shadow:
-            rgba(0, 0, 0, 0.4) 0 10px 15px -3px,
-            rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-    }
-
-    #social .button-icon {
-        filter: invert(1) brightness(2);
     }
 }
 
