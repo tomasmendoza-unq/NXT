@@ -11,33 +11,35 @@ export const OrderSummary = ({ items }: { items: Item[] }) => {
 
     return (
         <section className="order-summary-container">
-            <h2 className="order-summary-title">Tu pedido</h2>
+            <div className="order-summary-scrollable">
+                <h2 className="order-summary-title">Tu pedido</h2>
 
-            <div className="order-summary-header">
-                <span>Producto</span>
-                <span>Subtotal</span>
+                <div className="order-summary-header">
+                    <span>Producto</span>
+                    <span>Subtotal</span>
+                </div>
+
+                <ul className="order-summary-list">
+                    {items.map((item) => (
+                        <li
+                            key={item.detail.id}
+                            className="order-summary-item"
+                        >
+                            <span>
+                                {item.product.name} x {item.quantity}
+                            </span>
+                            <span>${item.subTotal.toLocaleString()}</span>
+                        </li>
+                    ))}
+                </ul>
+
+                <OrderSummaryRow
+                    label="Total"
+                    value={`$${total.toLocaleString()}`}
+                />
+
+                <BankTransferNotice />
             </div>
-
-            <ul className="order-summary-list">
-                {items.map((item) => (
-                    <li
-                        key={item.detail.id}
-                        className="order-summary-item"
-                    >
-                        <span>
-                            {item.product.name} x {item.quantity}
-                        </span>
-                        <span>${item.subTotal.toLocaleString()}</span>
-                    </li>
-                ))}
-            </ul>
-
-            <OrderSummaryRow
-                label="Total"
-                value={`$${total.toLocaleString()}`}
-            />
-
-            <BankTransferNotice />
 
             <button
                 type="submit"

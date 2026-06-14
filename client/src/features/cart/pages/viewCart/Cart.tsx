@@ -35,6 +35,7 @@ export const Cart = () => {
         <h1>Tu carrito está vacío.</h1>
     ) : (
         <main className="cart-container">
+            <h1>Carrito</h1>
             <CartContent
                 items={items}
                 onQuantityChange={handleQuantityChange}

@@ -1,7 +1,7 @@
-import type { Route } from "../../../shared/types/Route.t";
+import type { RouteNavigate } from "../../../shared/types/Route.t";
 import { Cart } from "../pages/viewCart/Cart";
 
-export const CartRoutesArray: Route[] = [
+export const CartRoutesArray: RouteNavigate[] = [
     {
         path: "/",
         element: <Cart />,

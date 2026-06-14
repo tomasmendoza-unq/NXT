@@ -21,8 +21,6 @@ export const FormFacturation = ({ formData, onChange, onCheckout }: Props) => {
                 onCheckout();
             }}
         >
-            <h1>Detalles de facturación</h1>
-
             {inputs.map((row, rowIndex) => (
                 <div
                     key={rowIndex}

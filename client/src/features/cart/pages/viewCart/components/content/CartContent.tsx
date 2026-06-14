@@ -12,8 +12,6 @@ export const CartContent = ({
 }) => {
     return (
         <section className="cart-content">
-            <h1>Carrito</h1>
-
             <ul className="cart-items">
                 {items.map((item, index) => (
                     <li key={item.detail.id}>

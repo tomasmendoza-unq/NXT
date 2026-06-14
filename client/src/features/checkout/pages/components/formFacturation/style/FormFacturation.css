@@ -3,6 +3,7 @@
     flex-direction: column;
     gap: 16px;
     flex: 1;
+    background-color: transparent;
 }
 
 .form-facturation h2 {

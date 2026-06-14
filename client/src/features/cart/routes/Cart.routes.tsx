@@ -1,10 +1,10 @@
 import { Route } from "react-router-dom";
 import { CartRoutesArray } from "./CartRoutes";
-import type { Route as RouteType } from "../../../shared/types/Route.t.ts";
+import type { RouteNavigate } from "../../../shared/types/Route.t";
 
 export const cartRoutes = (
     <Route path="cart">
-        {CartRoutesArray.map((route: RouteType) => (
+        {CartRoutesArray.map((route: RouteNavigate) => (
             <Route
                 key={route.path}
                 index={route.path === "/"}

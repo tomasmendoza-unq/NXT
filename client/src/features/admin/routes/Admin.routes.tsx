@@ -1,7 +1,7 @@
 import { Outlet, Route } from "react-router-dom";
-import type { Route as RouteType } from "../../../shared/types/Route.t.ts";
 import { AdminRoutesArray } from "./AdminRoutes.tsx";
 import { ProtectedRoute } from "../../../shared/components/protectedRoute/ProtectedRoute.tsx";
+import type { RouteNavigate } from "../../../shared/types/Route.t.ts";
 export const adminRoutes = (
     <Route
         path="admin"
@@ -11,7 +11,7 @@ export const adminRoutes = (
             </ProtectedRoute>
         }
     >
-        {AdminRoutesArray.map((route: RouteType) => (
+        {AdminRoutesArray.map((route: RouteNavigate) => (
             <Route
                 key={route.path}
                 index={route.path === "/"}

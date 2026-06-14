@@ -1,8 +1,8 @@
-import type { Route } from "../../../shared/types/Route.t.ts";
+import type { RouteNavigate } from "../../../shared/types/Route.t";
 import { ProductDetail } from "../pages/productDetail/ProductDetail";
 import { ProductGrid } from "../pages/productGrid/ProductGrid";
 
-export const Routes: Route[] = [
+export const ProductRoutesArray: RouteNavigate[] = [
     {
         path: "/",
         element: <ProductGrid />,
