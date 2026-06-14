@@ -1,11 +1,11 @@
 import type { RouteNavigate } from "../../../shared/types/Route.t";
 import { ProductDetail } from "../pages/productDetail/ProductDetail";
-import { ProductGrid } from "../pages/productGrid/ProductGrid";
+import { Products } from "../pages/productGrid/Products";
 
 export const ProductRoutesArray: RouteNavigate[] = [
     {
         path: "/",
-        element: <ProductGrid />,
+        element: <Products />,
     },
     {
         path: "/:id",

@@ -32,7 +32,7 @@ public class ClientControllerREST {
         Page<OrderResponseSimpleDTO> orders = checkouts.map(OrderResponseSimpleDTO::fromModel);
 
         TableResponseDTO<OrderResponseSimpleDTO> table =                 TableResponseDTO.fromPage(
-                List.of("ID","Total","Estado","Fecha","Acciones"),
+                List.of("ID","Cliente","Total","Estado","Fecha","Acciones"),
                 orders,
                 OrderResponseSimpleDTO::id
         );
