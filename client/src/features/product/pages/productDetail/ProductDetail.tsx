@@ -29,10 +29,9 @@ export const ProductDetail = () => {
         return <div>Loading...</div>;
     }
     return (
-        <section className="product-detail">
+        <section className="product-container">
             {product ? (
                 <>
-                    <h1>Product Detail</h1>
                     <HeaderNavigation links={links} />
                     <ProductContent product={product} />
                 </>

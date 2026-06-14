@@ -1,7 +1,7 @@
 .cart-summary {
     width: 20%;
     background-color: #fff;
-    border: 1px solid #e5e5e5;
+    border: var(--border-size) solid #e5e5e5;
     padding: 16px;
     border-radius: var(--border-radius);
     box-sizing: border-box;

@@ -14,7 +14,7 @@
     max-height: calc(100vh - 120px);
     width: 100%;
     background-color: #fff;
-    border: 1px solid #e5e5e5;
+    border: var(--border-size) solid #e5e5e5;
     overflow-y: auto;
     box-sizing: border-box;
 }

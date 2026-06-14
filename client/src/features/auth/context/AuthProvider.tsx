@@ -9,11 +9,16 @@ import { getToken } from "../../../core/api/service/token/get-token";
 
 const getUserFromToken = (): AuthUser | null => {
     const token = getToken();
-
     if (!token) return null;
 
     try {
-        return jwtDecode<AuthUser>(token);
+        const decoded = jwtDecode<AuthUser>(token);
+
+        if (decoded.exp && decoded.exp * 1000 < Date.now()) {
+            localStorage.removeItem(TOKEN_KEY);
+            return null;
+        }
+        return decoded;
     } catch {
         return null;
     }

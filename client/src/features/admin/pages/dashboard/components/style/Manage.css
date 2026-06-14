@@ -6,5 +6,5 @@
 
 .manage-image {
     border-radius: var(--border-radius);
-    border: 1px solid var(--border);
+    border: var(--border-size) solid var(--border);
 }

@@ -18,7 +18,7 @@
 .product-size-option {
     min-width: 44px;
     height: 36px;
-    border: 1px solid var(--border);
+    border: var(--border-size) solid var(--border);
     border-radius: 4px;
     background: transparent;
     color: var(--text);

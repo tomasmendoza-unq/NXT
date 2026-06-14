@@ -9,7 +9,8 @@
 .add-to-card-button {
     background-color: var(--button-primary-bg);
     color: var(--button-primary-text);
-    border: none;
+    cursor: pointer;
+    border-radius: var(--border-radius);
     width: 100%;
 }
 

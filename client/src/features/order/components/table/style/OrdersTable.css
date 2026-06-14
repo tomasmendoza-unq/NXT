@@ -7,7 +7,7 @@
     border-collapse: separate;
     border-spacing: 0;
 
-    border: 1px solid #e5e7eb;
+    border: var(--border-size) solid #e5e7eb;
     border-radius: var(--border-radius);
     overflow: hidden;
 }
