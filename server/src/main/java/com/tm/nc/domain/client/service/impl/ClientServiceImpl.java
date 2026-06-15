@@ -34,7 +34,7 @@ public class ClientServiceImpl implements ClientService {
 
     private final ClientSQLDAO clientDAOSQL;
 
-    public ClientServiceImpl(UserService userService, @Qualifier("systemClock") Clock clock, EmailService emailService, CheckoutDAOSQL checkoutDAOSQL, ClientSQLDAO clientDAOSQL) {
+    public ClientServiceImpl(UserService userService, @Qualifier("systemClock") Clock clock, @Qualifier("resendEmailService")EmailService emailService, CheckoutDAOSQL checkoutDAOSQL, ClientSQLDAO clientDAOSQL) {
         this.userService = userService;
         this.clock = clock;
         this.emailService = emailService;

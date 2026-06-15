@@ -16,6 +16,7 @@ import com.tm.nc.domain.productDetail.persistence.sql.ProductDetailsSQLDAO;
 import com.tm.nc.features.checkout.controller.dto.request.ItemCheckoutRequestDTO;
 import com.tm.nc.shared.exception.EntityNotFoundException;
 import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -39,7 +40,7 @@ public class CheckoutServiceImpl implements CheckoutService {
 
     private final CheckoutIdempotencyDAO checkoutIdempotencyDAO;
 
-    public CheckoutServiceImpl(CheckoutDAOSQL checkoutDAOSQL, ProductDetailsSQLDAO productDetailsSQLDAO, ClientService clientService, EmailService emailService, CheckoutIdempotencyDAO checkoutIdempotencyDAO) {
+    public CheckoutServiceImpl(CheckoutDAOSQL checkoutDAOSQL, ProductDetailsSQLDAO productDetailsSQLDAO, ClientService clientService, @Qualifier("resendEmailService") EmailService emailService, CheckoutIdempotencyDAO checkoutIdempotencyDAO) {
         this.checkoutDAOSQL = checkoutDAOSQL;
         this.productDetailsSQLDAO = productDetailsSQLDAO;
         this.clientService = clientService;
