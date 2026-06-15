@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: Ping API
         run: |
-          STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://nc-uvmg.onrender.com/system/health)
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://nc-uvmg.onrender.com/api/v1/system/health)
           echo "HTTP status: $STATUS"
           if [ "$STATUS" -lt 200 ] || [ "$STATUS" -ge 400 ]; then
             echo "Error: API returned $STATUS"
