@@ -18,14 +18,7 @@ public class AppConfiguration implements WebMvcConfigurer {
         return Clock.systemDefaultZone();
     }
 
-    @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**")
-                .allowedOrigins("*") // Permite peticiones desde cualquier origen
-                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // Métodos HTTP permitidos
-                .allowedHeaders("*") // Permite todos los headers
-                .allowCredentials(false); // No necesitamos credenciales para este caso
-    }
+
 
 
 }
