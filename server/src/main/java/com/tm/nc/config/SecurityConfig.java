@@ -77,7 +77,8 @@ public class SecurityConfig {
                                 "/product/**",
                                 "/brand/**",
                                 "/cart/**",
-                                "/checkout/**"
+                                "/checkout/**",
+                                "/security/health"
                         ).permitAll()
                         .anyRequest().authenticated()
                 )
