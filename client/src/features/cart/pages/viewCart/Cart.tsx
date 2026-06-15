@@ -4,9 +4,10 @@ import "./style/Cart.css";
 import { Summary } from "./components/summary/Summary";
 import { CartContent } from "./components/content/CartContent";
 import { cartService } from "../../service/cartService.service";
+import { LoadingSpinner } from "../../../../shared/components/loadingSpinner/LoadingSpinner";
 
 export const Cart = () => {
-    const { fetch, items, setItems } = useGetPreviewCart();
+    const { fetch, items, setItems, isLoading } = useGetPreviewCart();
 
     useEffect(() => {
         fetch();
@@ -36,6 +37,7 @@ export const Cart = () => {
     ) : (
         <main className="cart-container">
             <h1>Carrito</h1>
+            {isLoading && <LoadingSpinner overlay />}
             <CartContent
                 items={items}
                 onQuantityChange={handleQuantityChange}

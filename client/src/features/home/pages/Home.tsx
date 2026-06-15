@@ -4,10 +4,15 @@ import { useEffect } from "react";
 import { BrandsContainer } from "../../brand/components/BrandsContainer";
 import useGetAllProducts from "../../product/hooks/use-get-all-products";
 import useGetAllBrands from "../../brand/hooks/use-get-all-brands";
+import { LoadingSpinner } from "../../../shared/components/loadingSpinner/LoadingSpinner";
 
 export const Home = () => {
-    const { products, fetch } = useGetAllProducts();
-    const { brands, fetch: fetchBrands } = useGetAllBrands();
+    const { products, fetch, isLoading } = useGetAllProducts();
+    const {
+        brands,
+        fetch: fetchBrands,
+        isLoading: isLoadingBrands,
+    } = useGetAllBrands();
 
     useEffect(() => {
         fetch(0, 10);
@@ -16,6 +21,7 @@ export const Home = () => {
 
     return (
         <section className="w-full mx-auto section-container">
+            {(isLoading || isLoadingBrands) && <LoadingSpinner overlay />}
             <ProductsContainer products={products} />
             <BrandsContainer brands={brands} />
         </section>
