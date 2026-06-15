@@ -81,6 +81,8 @@ public class GlobalExceptionHandler{
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponseDTO> handleGenericException(Exception exception,HttpServletRequest request) {
+        exception.printStackTrace();
+
 
         ErrorResponseDTO error = ErrorResponseDTO.of(
                 HttpStatus.INTERNAL_SERVER_ERROR.value(),
@@ -89,9 +91,12 @@ public class GlobalExceptionHandler{
                 request.getRequestURI()
         );
 
-        log.error("Unexpected error - URI: {} | Error: {}", request.getRequestURI(), error);
-
-        return ResponseEntity.internalServerError().body(error);
+        log.error(
+                "Unexpected error - URI: {}",
+                request.getRequestURI(),
+                exception
+        );
+        return ResponseEntity.status(500).body(error);
     }
 
 

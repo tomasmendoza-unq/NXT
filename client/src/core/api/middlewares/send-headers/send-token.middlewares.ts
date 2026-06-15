@@ -6,7 +6,7 @@ function sendToken(
 ): InternalAxiosRequestConfig {
     const isToken = getToken();
     if (request.headers["X-Api-Key"]) return request;
-    if (isToken) request.headers.Authorization = isToken;
+    if (isToken) request.headers.Authorization = `Bearer ${isToken}`;
     return request;
 }
 

@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { ProductContent } from "./components/product/ProductContent";
 import { HeaderNavigation } from "../../../../shared/components/headerNavigation/HeaderNavigation";
 import "./ProductDetail.css";
+import { LoadingSpinner } from "../../../../shared/components/loadingSpinner/LoadingSpinner";
 
 export const ProductDetail = () => {
     const { id } = useParams();
@@ -25,11 +26,9 @@ export const ProductDetail = () => {
         fetch(productId);
     }, [fetch, productId]);
 
-    if (isLoading) {
-        return <div>Loading...</div>;
-    }
     return (
         <section className="product-container">
+            {isLoading && <LoadingSpinner overlay />}
             {product ? (
                 <>
                     <HeaderNavigation links={links} />
