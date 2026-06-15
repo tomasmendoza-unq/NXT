@@ -89,9 +89,13 @@ public class GlobalExceptionHandler{
                 request.getRequestURI()
         );
 
-        log.error("Unexpected error - URI: {} | Error: {}", request.getRequestURI(), error);
+        log.error(
+                "Unexpected error - URI: {} | Error: {}",
+                request.getRequestURI(),
+                error
+        );
 
-        return ResponseEntity.internalServerError().body(error);
+        return ResponseEntity.status(500).body(error);
     }
 
 
