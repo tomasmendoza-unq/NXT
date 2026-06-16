@@ -44,12 +44,5 @@ public class ProductControllerREST {
         return ResponseEntity.ok(productResponseDTO);
     }
 
-    @PostMapping()
-    public ResponseEntity<ProductResponseDTO> createProduct(@RequestBody ProductRequestDTO request) {
-        Product product = productService.save(request.toModel());
 
-        ProductResponseDTO productResponseDTO = ProductResponseDTO.fromModel(product);
-
-        return ResponseEntity.ok(productResponseDTO);
-    }
 }

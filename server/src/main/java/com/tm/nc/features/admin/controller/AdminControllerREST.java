@@ -2,8 +2,11 @@ package com.tm.nc.features.admin.controller;
 
 import com.tm.nc.domain.admin.service.AdminService;
 import com.tm.nc.domain.checkout.model.Checkout;
+import com.tm.nc.domain.product.model.Product;
 import com.tm.nc.features.order.controller.dto.request.OrderFilterRequestDTO;
 import com.tm.nc.features.order.controller.dto.response.OrderResponseSimpleDTO;
+import com.tm.nc.features.product.controller.dto.request.ProductRequestDTO;
+import com.tm.nc.features.product.controller.dto.response.ProductResponseDTO;
 import com.tm.nc.shared.annotation.AdminEndpoint;
 import com.tm.nc.shared.dto.PageResponseDTO;
 import com.tm.nc.shared.dto.TableResponseDTO;
@@ -39,5 +42,15 @@ public class AdminControllerREST {
         );
 
         return ResponseEntity.ok(table);
+    }
+
+    @PostMapping("/products")
+    @AdminEndpoint
+    public ResponseEntity<ProductResponseDTO> createProduct(@RequestBody ProductRequestDTO request) {
+        Product product = adminService.createProduct(request.toModel(), request);
+
+        ProductResponseDTO productResponseDTO = ProductResponseDTO.fromModel(product);
+
+        return ResponseEntity.ok(productResponseDTO);
     }
 }
