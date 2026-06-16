@@ -6,7 +6,7 @@ interface ManageLink {
 
 export const manageLinks: ManageLink[] = [
     {
-        path: "/admin/products",
+        path: "/admin/create/product",
         title: "Gestion de productos",
         image: "/src/assets/products.jfif",
     },
