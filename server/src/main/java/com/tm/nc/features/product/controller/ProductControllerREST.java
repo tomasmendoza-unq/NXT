@@ -5,6 +5,7 @@ import com.tm.nc.domain.product.service.ProductService;
 import com.tm.nc.features.product.controller.dto.request.ProductRequestDTO;
 import com.tm.nc.features.product.controller.dto.response.ProductResponseDTO;
 import com.tm.nc.shared.dto.PageResponseDTO;
+import io.swagger.v3.oas.annotations.security.SecurityRequirements;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +23,7 @@ public class ProductControllerREST {
     }
 
     @GetMapping()
+    @SecurityRequirements
     public ResponseEntity<PageResponseDTO<ProductResponseDTO>> getAllProducts(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "5") int size) {
@@ -36,6 +38,7 @@ public class ProductControllerREST {
     }
 
     @GetMapping("/{idProduct}")
+    @SecurityRequirements
     public ResponseEntity<ProductResponseDTO> getProductById(@PathVariable Long idProduct) {
         Product product = productService.getById(idProduct);
 

@@ -90,7 +90,7 @@ public class CheckoutItemsTemplate {
                 .formatted(
                         detail.getName(),
                         detail.getSize(),
-                        detail.getImage(),
+                        detail.getColor().getImage(),
                         detail.getName(),
                         item.getQuantity(),
                         money(item.getUnitPrice() * item.getQuantity())

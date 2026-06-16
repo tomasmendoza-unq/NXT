@@ -23,5 +23,9 @@ public class Color {
 
     private Product product;
 
+    private String image;
+
+    private List<String> gallery;
+
     private List<ProductDetail> details = new ArrayList<>();
 }

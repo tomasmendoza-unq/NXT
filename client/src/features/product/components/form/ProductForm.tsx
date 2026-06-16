@@ -18,24 +18,13 @@ export const ProductForm = ({ data, onChange }: Props) => {
 
     return (
         <div className="product-form">
-            {productBasicInputs.map((row, rowIndex) => (
-                <div
-                    key={rowIndex}
-                    className="form-row"
-                >
-                    {row.map((input) => (
-                        <div
-                            key={input.name}
-                            className="form-field"
-                        >
-                            <FormField
-                                input={input}
-                                formData={data}
-                                onChange={handleChange}
-                            />
-                        </div>
-                    ))}
-                </div>
+            {productBasicInputs.map((input) => (
+                <FormField<ProductRequestDTO>
+                    key={input.name}
+                    input={input}
+                    formData={data}
+                    onChange={handleChange}
+                />
             ))}
         </div>
     );

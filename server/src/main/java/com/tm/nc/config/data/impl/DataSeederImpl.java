@@ -60,89 +60,69 @@ public class DataSeederImpl implements DataSeeder {
         ProductDetail detailSize39Black = ProductDetail.builder()
                 .size(39)
                 .price(200D)
-                .image("https://www.kappastore.com.ar/cdn/shop/files/K134242KW-KA0Z-1.jpg?v=1766067184&width=1380")
                 .quantity(1)
-                .gallery(List.of(
-                        "https://www.kappastore.com.ar/cdn/shop/files/K134242KW-KA0Z-3.jpg?v=1766067238&width=128",
-                        "https://www.kappastore.com.ar/cdn/shop/files/K134242KW-KA0Z-4.jpg?v=1766067238&width=128",
-                        "https://www.kappastore.com.ar/cdn/shop/files/K134242KW-KA0Z-2.jpg?v=1766067238&width=128"
-                ))
                 .build();
 
         ProductDetail detailSize40Red = ProductDetail.builder()
                 .size(40)
                 .price(210D)
-                .image("https://www.kappastore.com.ar/cdn/shop/files/K134242KW-KA1M-1.jpg?v=1766066883&width=1380")
                 .quantity(7)
-                .gallery(List.of(
-                        "https://www.kappastore.com.ar/cdn/shop/files/K134242KW-KA1M-2.jpg?v=1766066927&width=690",
-                        "https://www.kappastore.com.ar/cdn/shop/files/K134242KW-KA1M-4.jpg?v=1766066927&width=690",
-                        "https://www.kappastore.com.ar/cdn/shop/files/K134242KW-KA1M-3.jpg?v=1766066927&width=690",
-                        "https://www.kappastore.com.ar/cdn/shop/files/K134242KW-KA1M-3.jpg?v=1766066927&width=690",
-                        "https://www.kappastore.com.ar/cdn/shop/files/K134242KW-KA1M-3.jpg?v=1766066927&width=690"
-                ))
                 .build();
 
         ProductDetail detailSize41White = ProductDetail.builder()
                 .size(41)
                 .price(215D)
-                .image("https://authogar.vtexassets.com/arquivos/ids/214811-800-auto?v=638721421030330000&width=800&height=auto&aspect=true")
                 .quantity(1)
-                .gallery(List.of(
-                        "https://http2.mlstatic.com/D_NQ_NP_786651-MLA74664829441_022024-O.webp",
-                        "https://http2.mlstatic.com/D_NQ_NP_786651-MLA74664829441_022024-O.webp",
-                        "https://http2.mlstatic.com/D_NQ_NP_786651-MLA74664829441_022024-O.webp"
-                ))
                 .build();
 
         ProductDetail detailSize42Black = ProductDetail.builder()
                 .size(42)
                 .price(220D)
-                .image("https://www.kappastore.com.ar/cdn/shop/files/K134242KW-KA0Z-1.jpg?v=1766067184&width=1380")
-                .quantity(3)
-                .gallery(List.of(
-                        "https://www.kappastore.com.ar/cdn/shop/files/K134242KW-KA0Z-3.jpg?v=1766067238&width=128",
-                        "https://www.kappastore.com.ar/cdn/shop/files/K134242KW-KA0Z-4.jpg?v=1766067238&width=128",
-                        "https://www.kappastore.com.ar/cdn/shop/files/K134242KW-KA0Z-2.jpg?v=1766067238&width=128")
-                )
-                .build();
-
-        ProductDetail detailSize4Black = ProductDetail.builder()
-                .size(42)
-                .price(220D)
-                .image("https://authogar.vtexassets.com/arquivos/ids/214811-800-auto?v=638721421030330000&width=800&height=auto&aspect=true")
                 .quantity(3)
                 .build();
 
         Color black = Color.builder()
                 .name("black")
                 .color("#000000")
-                .details(List.of(detailSize39Black, detailSize42Black))
+                .image("https://www.kappastore.com.ar/cdn/shop/files/K134242KW-KA0Z-1.jpg?v=1766067184&width=1380")
+                .gallery(List.of(
+                        "https://www.kappastore.com.ar/cdn/shop/files/K134242KW-KA0Z-3.jpg?v=1766067238&width=128",
+                        "https://www.kappastore.com.ar/cdn/shop/files/K134242KW-KA0Z-4.jpg?v=1766067238&width=128",
+                        "https://www.kappastore.com.ar/cdn/shop/files/K134242KW-KA0Z-2.jpg?v=1766067238&width=128"
+                ))
+                .details(List.of(
+                        detailSize39Black,
+                        detailSize42Black
+                ))
                 .build();
 
         Color red = Color.builder()
                 .name("red")
                 .color("#FF0000")
+                .image("https://www.kappastore.com.ar/cdn/shop/files/K134242KW-KA1M-1.jpg?v=1766066883&width=1380")
+                .gallery(List.of(
+                        "https://www.kappastore.com.ar/cdn/shop/files/K134242KW-KA1M-2.jpg?v=1766066927&width=690",
+                        "https://www.kappastore.com.ar/cdn/shop/files/K134242KW-KA1M-4.jpg?v=1766066927&width=690",
+                        "https://www.kappastore.com.ar/cdn/shop/files/K134242KW-KA1M-3.jpg?v=1766066927&width=690"
+                ))
                 .details(List.of(detailSize40Red))
                 .build();
 
         Color white = Color.builder()
                 .name("white")
                 .color("#FFFFFF")
+                .image("https://authogar.vtexassets.com/arquivos/ids/214811-800-auto?v=638721421030330000&width=800&height=auto&aspect=true")
+                .gallery(List.of(
+                        "https://http2.mlstatic.com/D_NQ_NP_786651-MLA74664829441_022024-O.webp"
+                ))
                 .details(List.of(detailSize41White))
                 .build();
 
-        Color blackDuke = Color.builder()
-                .name("black")
-                .color("#000000")
-                .details(List.of( detailSize4Black))
-                .build();
 
         detailSize39Black.setColor(black);
         detailSize42Black.setColor(black);
         detailSize41White.setColor(white);
         detailSize40Red.setColor(red);
-        detailSize4Black.setColor(blackDuke);
 
         product.addColor(List.of(
                 black,
@@ -150,9 +130,6 @@ public class DataSeederImpl implements DataSeeder {
                 red
         ));
 
-        product2.addColor(List.of(
-                blackDuke
-        ));
 
         productService.save(product);
         productService.save(product2);

@@ -47,42 +47,56 @@ public class ProductServiceTest {
         ProductDetail detailSize39Black = ProductDetail.builder()
                 .size(39)
                 .price(200D)
-                .image("https://authogar.vtexassets.com/arquivos/ids/214811-800-auto?v=638721421030330000&width=800&height=auto&aspect=true")
                 .quantity(10)
                 .build();
 
         ProductDetail detailSize42Black = ProductDetail.builder()
                 .size(42)
                 .price(220D)
-                .image("https://authogar.vtexassets.com/arquivos/ids/214811-800-auto?v=638721421030330000&width=800&height=auto&aspect=true")
                 .quantity(3)
                 .build();
 
         ProductDetail detailSize40Red = ProductDetail.builder()
                 .size(40)
                 .price(210D)
-                .image("https://authogar.vtexassets.com/arquivos/ids/214811-800-auto?v=638721421030330000&width=800&height=auto&aspect=true")
                 .quantity(7)
                 .build();
 
         Color black = Color.builder()
                 .name("black")
                 .color("#000000")
-                .details(List.of(detailSize39Black, detailSize42Black))
+                .image("https://authogar.vtexassets.com/arquivos/ids/214811-800-auto?v=638721421030330000&width=800&height=auto&aspect=true")
+                .gallery(List.of(
+                        "https://img1.jpg",
+                        "https://img2.jpg",
+                        "https://img3.jpg"
+                ))
+                .details(List.of(
+                        detailSize39Black,
+                        detailSize42Black
+                ))
                 .build();
 
         Color red = Color.builder()
                 .name("red")
                 .color("#FF0000")
+                .image("https://authogar.vtexassets.com/arquivos/ids/214811-800-auto?v=638721421030330000&width=800&height=auto&aspect=true")
+                .gallery(List.of(
+                        "https://img4.jpg",
+                        "https://img5.jpg"
+                ))
                 .details(List.of(detailSize40Red))
                 .build();
+
+        detailSize39Black.setColor(black);
+        detailSize42Black.setColor(black);
+        detailSize40Red.setColor(red);
 
         product.addColor(List.of(
                 black,
                 red
         ));
     }
-
     @Test
     public void createAndRecoverProduct(){
         Product saved = productService.save(product);

@@ -1,8 +1,7 @@
-import { FormField } from "../../../../shared/components/formField/FormField";
-import { type ColorRequestDTO } from "../../../color/api/types/color-request";
+import { FormList } from "../../../../shared/components/form/FormList";
+import type { ColorRequestDTO } from "../../../color/api/types/color-request";
 import { defaultDetailRequestDTO } from "../../api/types/detail-request.t";
 import { detailInputs } from "./inputs";
-import { DynamicList } from "../../../../shared/components/dynamicList/DynamicList";
 
 type Props = {
     colors: ColorRequestDTO[];
@@ -15,7 +14,9 @@ export const DetailForm = ({ colors, onChange }: Props) => {
         details: ColorRequestDTO["details"],
     ) => {
         onChange(
-            colors.map((c, ci) => (ci === colorIndex ? { ...c, details } : c)),
+            colors.map((color, index) =>
+                index === colorIndex ? { ...color, details } : color,
+            ),
         );
     };
 
@@ -27,36 +28,15 @@ export const DetailForm = ({ colors, onChange }: Props) => {
                     className="detail-form-color"
                 >
                     <h3>{color.name || `Color ${colorIndex + 1}`}</h3>
-                    <DynamicList
+
+                    <FormList
                         items={color.details}
                         onChange={(details) =>
                             handleDetailChange(colorIndex, details)
                         }
                         defaultItem={defaultDetailRequestDTO}
+                        inputs={detailInputs.flat()}
                         addLabel="+ Agregar talle"
-                        renderItem={(detail, _, handleChange) => (
-                            <div className="detail-form-item">
-                                {detailInputs.map((row, rowIndex) => (
-                                    <div
-                                        key={rowIndex}
-                                        className="form-row"
-                                    >
-                                        {row.map((input) => (
-                                            <div
-                                                key={input.name}
-                                                className="form-field"
-                                            >
-                                                <FormField
-                                                    input={input}
-                                                    formData={detail}
-                                                    onChange={handleChange}
-                                                />
-                                            </div>
-                                        ))}
-                                    </div>
-                                ))}
-                            </div>
-                        )}
                     />
                 </div>
             ))}

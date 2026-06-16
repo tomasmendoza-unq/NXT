@@ -1,4 +1,7 @@
-import type { ColorRequestDTO } from "../../../color/api/types/color-request";
+import {
+    defaultColorRequestDTO,
+    type ColorRequestDTO,
+} from "../../../color/api/types/color-request";
 
 export interface ProductRequestDTO {
     name: string;
@@ -11,5 +14,5 @@ export const defaultProductRequestDTO: ProductRequestDTO = {
     name: "",
     model: "",
     brandId: 0,
-    colors: [],
+    colors: [defaultColorRequestDTO],
 };
