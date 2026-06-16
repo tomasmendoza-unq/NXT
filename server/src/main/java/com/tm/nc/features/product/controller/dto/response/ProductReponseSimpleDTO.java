@@ -5,14 +5,12 @@ import com.tm.nc.features.brand.controller.dto.response.BrandResponseDTO;
 
 public record ProductReponseSimpleDTO(
         Long  id,
-        String name,
         String model,
         BrandResponseDTO brand
 ) {
     public static ProductReponseSimpleDTO fromModel(Product product) {
         return new ProductReponseSimpleDTO(
                 product.getId(),
-                product.getName(),
                 product.getModel(),
                 BrandResponseDTO.fromModel(product.getBrand())
         );

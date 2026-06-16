@@ -47,14 +47,12 @@ public class DataSeederImpl implements DataSeeder {
 
         Product product = Product.builder()
                 .brand(brand)
-                .name("New balance 540")
-                .model("jordan")
+                .model("New balance 540")
                 .build();
 
         Product product2 = Product.builder()
                 .brand(brand2)
-                .name("Jordan 1")
-                .model("Duke")
+                .model("New balance 540")
                 .build();
 
         ProductDetail detailSize39Black = ProductDetail.builder()

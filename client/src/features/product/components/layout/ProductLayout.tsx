@@ -26,7 +26,7 @@ export const ProductLayout = ({ product, children }: ProductLayoutProps) => {
                 product={product}
                 selectedColorId={selectedColorId}
                 selectedDetailId={selectedDetailId}
-                alt={product.name}
+                alt={product.model}
                 setImageSelected={setImageSelected}
                 imageSelected={imageSelected}
             />

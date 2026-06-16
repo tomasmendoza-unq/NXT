@@ -26,7 +26,7 @@ export const OrderSummary = ({ items }: { items: Item[] }) => {
                             className="order-summary-item"
                         >
                             <span>
-                                {item.product.name} x {item.quantity}
+                                {item.product.model} x {item.quantity}
                             </span>
                             <span>${item.subTotal.toLocaleString()}</span>
                         </li>

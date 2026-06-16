@@ -3,7 +3,6 @@ import type { ProductRequestDTO } from "../api/types/product-request";
 
 export const toProductPreview = (dto: ProductRequestDTO): Product => ({
     id: 0,
-    name: dto.name,
     model: dto.model,
     brand: { image: "", name: "" },
     colors: dto.colors.map((c, ci) => ({

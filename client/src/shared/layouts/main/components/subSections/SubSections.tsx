@@ -9,7 +9,7 @@ export const SubSections = ({
 }) => {
     return (
         <section className="subSection-Container">
-            <h3 className="subSection-title">{subTitle}</h3>
+            <h1 className="subSection-title">{subTitle}</h1>
             <div>{children}</div>
         </section>
     );

@@ -19,8 +19,8 @@ export const ProductDetailInfo = ({
     );
     return (
         <section>
-            <h3>{product.name}</h3>
-            <h4>${detail.price.toFixed(2)}</h4>
+            <h1>{product.model}</h1>
+            <h2>${detail.price.toFixed(2)}</h2>
         </section>
     );
 };
