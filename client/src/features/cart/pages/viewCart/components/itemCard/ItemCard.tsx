@@ -38,11 +38,11 @@ export const ItemCard = ({
             <section className="item-image">
                 <img
                     src={item.color.image}
-                    alt={item.product.name}
+                    alt={item.product.model}
                 />
             </section>
             <section className="item-details">
-                <h2>{item.product.name}</h2>
+                <h2>{item.product.model}</h2>
                 <p>${item.subTotal.toFixed(2)}</p>
                 <p>
                     {item.color.name.toUpperCase()} | {item.detail.size}

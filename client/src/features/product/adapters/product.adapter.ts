@@ -31,7 +31,6 @@ function adaptColor(color: ColorResponseDTO): Color {
 export function adaptProduct(product: ProductResponseDTO): Product {
     return {
         id: product.id,
-        name: product.name,
         model: product.model,
         brand: adaptBrand(product.brand),
         colors: product.colors.map(adaptColor),

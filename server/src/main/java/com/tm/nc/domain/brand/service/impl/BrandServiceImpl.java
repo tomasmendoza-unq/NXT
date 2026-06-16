@@ -22,4 +22,9 @@ public class BrandServiceImpl implements BrandService {
     public List<Brand> getAll() {
         return brandSQLDAO.findAll();
     }
+
+    @Override
+    public Brand save(Brand brand) {
+        return brandSQLDAO.save(brand);
+    }
 }

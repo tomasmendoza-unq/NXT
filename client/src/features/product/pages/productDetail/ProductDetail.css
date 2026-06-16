@@ -6,3 +6,9 @@
     flex-direction: column;
     justify-content: center;
 }
+
+@media (min-width: 768px) {
+    .product-container {
+        gap: 10px;
+    }
+}

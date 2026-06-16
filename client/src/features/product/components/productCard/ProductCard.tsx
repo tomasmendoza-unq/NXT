@@ -3,7 +3,7 @@ import type { Product } from "../../../../shared/types/Product";
 import { ProductImage } from "../ProductImage";
 import "./style/ProductCard.css";
 
-export const ProductCard = ({ id, name, model, colors }: Product) => {
+export const ProductCard = ({ id, model, colors }: Product) => {
     const navigate = useNavigate();
     const price = colors[0]?.details[0]?.price ?? 0;
     const productImage = colors[0]?.image;
@@ -15,11 +15,10 @@ export const ProductCard = ({ id, name, model, colors }: Product) => {
         >
             <ProductImage
                 image={productImage}
-                name={name}
+                name={model}
             />
             <div className="product-card-info">
-                <h3 className="product-card-name">{name}</h3>
-                <p className="product-card-model">{model}</p>
+                <h3 className="product-card-name">{model}</h3>
                 <p className="product-card-price">${price.toLocaleString()}</p>
             </div>
         </div>

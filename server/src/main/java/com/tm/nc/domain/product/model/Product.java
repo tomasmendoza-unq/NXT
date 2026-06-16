@@ -17,8 +17,6 @@ import java.util.List;
 public class Product {
     private Long  id;
 
-    private String name;
-
     private String model;
 
     private Brand brand;

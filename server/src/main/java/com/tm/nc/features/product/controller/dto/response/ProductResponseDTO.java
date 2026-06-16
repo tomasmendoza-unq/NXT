@@ -8,7 +8,6 @@ import java.util.List;
 
 public record ProductResponseDTO(
         Long  id,
-        String name,
         String model,
         List<ColorResponseDTO> colors,
         BrandResponseDTO brand
@@ -16,7 +15,6 @@ public record ProductResponseDTO(
     public static ProductResponseDTO fromModel(Product product) {
         return new ProductResponseDTO(
                 product.getId(),
-                product.getName(),
                 product.getModel(),
                 product.getColors().stream().map(ColorResponseDTO::fromModel).toList(),
                 BrandResponseDTO.fromModel(product.getBrand())
