@@ -14,7 +14,7 @@ export const ProductDetail = () => {
         ? [
               { text: "Inicio", href: "/" },
               { text: product.brand.name, href: "/brands" },
-              { text: product.name, href: `/product/${product.id}` },
+              { text: product.model, href: `/product/${product.id}` },
           ]
         : [];
 
@@ -35,7 +35,7 @@ export const ProductDetail = () => {
                     <ProductContent product={product} />
                 </>
             ) : (
-                <h1>No product found.</h1>
+                <h1>Producto no encontrado</h1>
             )}
         </section>
     );

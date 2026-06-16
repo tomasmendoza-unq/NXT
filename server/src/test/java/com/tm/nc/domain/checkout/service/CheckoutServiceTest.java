@@ -65,8 +65,7 @@ public class CheckoutServiceTest {
 
         product = Product.builder()
                 .brand(brand)
-                .name("Nike Nike Nike Nike")
-                .model("jordan")
+                .model("New balance 540")
                 .build();
 
         detailSize39Black = ProductDetail.builder()

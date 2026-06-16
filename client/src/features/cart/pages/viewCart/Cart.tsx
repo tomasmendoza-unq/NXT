@@ -32,18 +32,22 @@ export const Cart = () => {
         setItems((prev) => prev.filter((i) => i.detail.id !== detailId));
     };
 
-    return items.length === 0 ? (
-        <h1>Tu carrito está vacío.</h1>
-    ) : (
+    return (
         <main className="cart-container">
-            <h1>Carrito</h1>
             {isLoading && <LoadingSpinner overlay />}
-            <CartContent
-                items={items}
-                onQuantityChange={handleQuantityChange}
-                onRemove={handleRemove}
-            />
-            <Summary items={items} />
+            {!isLoading && items.length === 0 ? (
+                <h1>Tu carrito está vacío.</h1>
+            ) : (
+                <>
+                    <h1>Carrito</h1>
+                    <CartContent
+                        items={items}
+                        onQuantityChange={handleQuantityChange}
+                        onRemove={handleRemove}
+                    />
+                    <Summary items={items} />
+                </>
+            )}
         </main>
     );
 };

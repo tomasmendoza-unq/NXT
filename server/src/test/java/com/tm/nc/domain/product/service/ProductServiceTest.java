@@ -40,8 +40,7 @@ public class ProductServiceTest {
 
         product = Product.builder()
                 .brand(brand)
-                .name("Nike Nike Nike Nike")
-                .model("jordan")
+                .model("New balance 540")
                 .build();
 
         ProductDetail detailSize39Black = ProductDetail.builder()
@@ -101,7 +100,6 @@ public class ProductServiceTest {
     public void createAndRecoverProduct(){
         Product saved = productService.save(product);
         assertNotNull(saved.getId(), "El producto guardado debe tener un ID");
-        assertEquals(product.getName(), saved.getName(), "El nombre debe coincidir");
         assertEquals(product.getModel(), saved.getModel(), "El modelo debe coincidir");
         assertNotNull(saved.getBrand(), "La marca no debe ser nula");
         assertFalse(saved.getColors().isEmpty(), "Debe tener al menos un color");
@@ -110,7 +108,6 @@ public class ProductServiceTest {
 
         assertNotNull(recovered, "El producto recuperado no debe ser nulo");
         assertEquals(saved.getId(), recovered.getId(), "El ID debe coincidir");
-        assertEquals(saved.getName(), recovered.getName(), "El nombre debe coincidir");
         assertEquals(2, recovered.getColors().size(), "Debe tener 2 colores");
     }
 

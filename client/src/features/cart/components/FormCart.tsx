@@ -31,7 +31,7 @@ export const FormCart = ({ detailSelected }: { detailSelected: number }) => {
                 type="submit"
                 className="add-to-card-button"
             >
-                Add to Card
+                Agregar al carrito
             </button>
         </form>
     );

@@ -8,8 +8,7 @@ import jakarta.validation.constraints.NotNull;
 import java.util.List;
 
 public record ProductRequestDTO(
-        @NotNull(message = "El nombre del producto no puede ser nulo")
-        String name,
+
         @NotNull(message = "El modelo no puede ser nulo")
         String model,
         @Min(value = 0, message = "El id de la marca debe ser mayor 0")
@@ -19,7 +18,6 @@ public record ProductRequestDTO(
 ){
     public Product toModel() {
         return Product.builder()
-                .name(name)
                 .model(model)
                 .colors(colors.stream().map(ColorRequestDTO::toModel).toList())
                 .build();

@@ -29,6 +29,6 @@ public class ProductDetail {
     }
 
     public String getName() {
-        return color.getProduct().getName();
+        return color.getProduct().getModel();
     }
 }
