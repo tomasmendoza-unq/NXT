@@ -24,10 +24,16 @@
     color: white;
 }
 
-@media (min-width: 300px) {
+/* base (mobile) */
+.swiper {
+    width: 100%;
+    padding: 0 40px !important;
+}
+
+/* desktop */
+@media (min-width: 1024px) {
     .swiper {
-        width: 400px;
-        padding: 0 40px !important;
-        margin: 0px;
+        width: 100%;
+        padding: 0 50px !important;
     }
 }

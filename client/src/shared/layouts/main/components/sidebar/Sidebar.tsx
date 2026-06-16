@@ -16,7 +16,13 @@ const SidebarLogo = ({ className }: { className?: string }) => (
     />
 );
 
-export const Sidebard = ({ isOpen }: { isOpen: boolean }) => {
+export const Sidebard = ({
+    isOpen,
+    onClose,
+}: {
+    isOpen: boolean;
+    onClose: () => void;
+}) => {
     const { isAuthenticated, user, logout } = useAuth();
     const navigate = useNavigate();
 
@@ -26,6 +32,7 @@ export const Sidebard = ({ isOpen }: { isOpen: boolean }) => {
     );
 
     const handleAuthClick = () => {
+        onClose();
         if (isAuthenticated) {
             logout();
             navigate("/");
@@ -39,6 +46,7 @@ export const Sidebard = ({ isOpen }: { isOpen: boolean }) => {
             <Link
                 className="sidebar-brand"
                 to="/"
+                onClick={onClose}
             >
                 <IconText icon={SidebarLogo}>NXT_STEPS</IconText>
             </Link>
@@ -48,6 +56,7 @@ export const Sidebard = ({ isOpen }: { isOpen: boolean }) => {
                         <Link
                             className="sidebar-link"
                             to={link.path}
+                            onClick={onClose}
                         >
                             <IconText icon={link.icon}>{link.label}</IconText>
                         </Link>
