@@ -14,7 +14,10 @@ export const MainLayout = () => {
             >
                 ☰
             </button>
-            <Sidebard isOpen={sidebarOpen} />
+            <Sidebard
+                isOpen={sidebarOpen}
+                onClose={() => setSidebarOpen(false)}
+            />
             {sidebarOpen && (
                 <div
                     className="sidebar-overlay"

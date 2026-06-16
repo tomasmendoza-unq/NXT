@@ -40,6 +40,7 @@ export const ImagenContainer = ({
             )}
             <img
                 src={imageToShow}
+                className="image-primary"
                 alt={alt}
             />
         </section>
