@@ -20,7 +20,7 @@ export const Home = () => {
     }, []);
 
     return (
-        <section className="w-full mx-auto section-container">
+        <section className="section-container">
             {(isLoading || isLoadingBrands) && <LoadingSpinner overlay />}
             <ProductsContainer products={products} />
             <BrandsContainer brands={brands} />

@@ -24,6 +24,10 @@
     color: white;
 }
 
-.swiper-pagination {
-    display: none !important;
+@media (min-width: 300px) {
+    .swiper {
+        width: 400px;
+        padding: 0 40px !important;
+        margin: 0px;
+    }
 }

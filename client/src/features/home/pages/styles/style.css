@@ -1,5 +1,14 @@
 .section-container {
-    padding-left: 10px;
-    padding-top: 10px;
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 10px 16px;
     box-sizing: border-box;
+}
+
+@media (max-width: 720px) {
+    .section-container {
+        margin: 0;
+        padding: 0;
+    }
 }
