@@ -2,6 +2,7 @@ package com.tm.nc.config.data.impl;
 
 import com.tm.nc.config.data.DataSeeder;
 import com.tm.nc.domain.brand.model.Brand;
+import com.tm.nc.domain.brand.service.BrandService;
 import com.tm.nc.domain.color.model.Color;
 import com.tm.nc.domain.product.model.Product;
 import com.tm.nc.domain.productDetail.model.ProductDetail;
@@ -11,6 +12,7 @@ import com.tm.nc.domain.user.service.UserService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Value;
 
@@ -28,109 +30,85 @@ public class DataSeederImpl implements DataSeeder {
 
     private final UserService userService;
 
-    public DataSeederImpl(ProductService productService, UserService userService) {
+    private final BrandService brandService;
+
+    public DataSeederImpl(ProductService productService, UserService userService, BrandService brandService) {
         this.productService = productService;
         this.userService = userService;
+        this.brandService = brandService;
     }
 
     @Override
     public void run(String... args) throws Exception {
-        Brand brand = Brand.builder()
-                .name("nike")
+        Brand brand = brandService.save(Brand.builder()
+                .name("Nike")
                 .logo("https://acdn-us.mitiendanube.com/stores/006/133/691/products/nike-logo-24edf4f26f5a40025b17503629706845-1024-1024.webp")
-                .build();
+                .build());
 
         Brand brand2 = Brand.builder()
-                .name("nike")
-                .logo("https://acdn-us.mitiendanube.com/stores/006/133/691/products/nike-logo-24edf4f26f5a40025b17503629706845-1024-1024.webp")
+                .name("New Balance")
+                .logo("https://upload.wikimedia.org/wikipedia/commons/4/4d/New_balance.png")
                 .build();
+
+        Brand brand3 = brandService.save(Brand.builder()
+                .name("Adidas")
+                .logo("https://upload.wikimedia.org/wikipedia/commons/2/24/Adidas_logo.png")
+                .build());
+
+        Brand brand4 = brandService.save(Brand.builder()
+                .name("Vans")
+                .logo("https://guiaimpresion.com/wp-content/uploads/2024/03/8-3.png")
+                .build());
 
         Product product = Product.builder()
-                .brand(brand)
-                .model("New balance 540")
-                .build();
-
-        Product product2 = Product.builder()
                 .brand(brand2)
-                .model("New balance 540")
+                .model("New balance 530")
                 .build();
 
-        ProductDetail detailSize39Black = ProductDetail.builder()
-                .size(39)
-                .price(200D)
-                .quantity(1)
-                .build();
+        List<ProductDetail> detailsAzul   = createDetails(90000D, 10);
+        List<ProductDetail> detailsMarron = createDetails(90000D, 10);
+        List<ProductDetail> detailsWhite  = createDetails(90000D, 10);
 
-        ProductDetail detailSize40Red = ProductDetail.builder()
-                .size(40)
-                .price(210D)
-                .quantity(7)
-                .build();
-
-        ProductDetail detailSize41White = ProductDetail.builder()
-                .size(41)
-                .price(215D)
-                .quantity(1)
-                .build();
-
-        ProductDetail detailSize42Black = ProductDetail.builder()
-                .size(42)
-                .price(220D)
-                .quantity(3)
-                .build();
-
-        Color black = Color.builder()
-                .name("black")
-                .color("#000000")
-                .image("https://www.kappastore.com.ar/cdn/shop/files/K134242KW-KA0Z-1.jpg?v=1766067184&width=1380")
+        Color azul = Color.builder()
+                .name("Azul")
+                .color("#090A10")
+                .image("https://basedpremium.com/wp-content/uploads/2025/03/s-l960-6-600x754.webp")
                 .gallery(List.of(
-                        "https://www.kappastore.com.ar/cdn/shop/files/K134242KW-KA0Z-3.jpg?v=1766067238&width=128",
-                        "https://www.kappastore.com.ar/cdn/shop/files/K134242KW-KA0Z-4.jpg?v=1766067238&width=128",
-                        "https://www.kappastore.com.ar/cdn/shop/files/K134242KW-KA0Z-2.jpg?v=1766067238&width=128"
+                        "https://basedpremium.com/wp-content/uploads/2025/03/s-l1600-4-2-600x800.webp",
+                        "https://basedpremium.com/wp-content/uploads/2025/03/s-l1600-2-2-600x800.webp",
+                        "https://basedpremium.com/wp-content/uploads/2025/03/s-l1600-1-2-600x800.webp"
                 ))
-                .details(List.of(
-                        detailSize39Black,
-                        detailSize42Black
-                ))
+                .details(detailsAzul)
                 .build();
 
-        Color red = Color.builder()
-                .name("red")
-                .color("#FF0000")
-                .image("https://www.kappastore.com.ar/cdn/shop/files/K134242KW-KA1M-1.jpg?v=1766066883&width=1380")
+        Color marron = Color.builder()
+                .name("Marron")
+                .color("#261D16")
+                .image("https://basedpremium.com/wp-content/uploads/2026/01/new-balance-530-turtledove-mushroommr530asmsnrkickz-8423200.jpg")
                 .gallery(List.of(
-                        "https://www.kappastore.com.ar/cdn/shop/files/K134242KW-KA1M-2.jpg?v=1766066927&width=690",
-                        "https://www.kappastore.com.ar/cdn/shop/files/K134242KW-KA1M-4.jpg?v=1766066927&width=690",
-                        "https://www.kappastore.com.ar/cdn/shop/files/K134242KW-KA1M-3.jpg?v=1766066927&width=690"
+                        "https://basedpremium.com/wp-content/uploads/2026/01/m_wp_68d826b049e17b85d5e560bd.webp",
+                        "https://basedpremium.com/wp-content/uploads/2026/01/m_wp_68d826b0c4e7b4d284d38259.webp",
+                        "https://basedpremium.com/wp-content/uploads/2026/01/m_wp_68d826b0b09b7c2cb33e80b2.webp"
                 ))
-                .details(List.of(detailSize40Red))
+                .details(detailsMarron)
                 .build();
 
         Color white = Color.builder()
                 .name("white")
-                .color("#FFFFFF")
-                .image("https://authogar.vtexassets.com/arquivos/ids/214811-800-auto?v=638721421030330000&width=800&height=auto&aspect=true")
-                .gallery(List.of(
-                        "https://http2.mlstatic.com/D_NQ_NP_786651-MLA74664829441_022024-O.webp"
-                ))
-                .details(List.of(detailSize41White))
+                .color("#EAEEF2")
+                .image("https://basedpremium.com/wp-content/uploads/2025/03/d144effa-11c5-450f-ba8a-75d73a7813c2.jpg")
+                .details(detailsWhite)
                 .build();
 
+        // Asignar color a cada detalle ────────────────────────────────────────
+        detailsAzul.forEach(d   -> d.setColor(azul));
+        detailsMarron.forEach(d -> d.setColor(marron));
+        detailsWhite.forEach(d  -> d.setColor(white));
+        // ────────────────────────────────────────────────────────────────────
 
-        detailSize39Black.setColor(black);
-        detailSize42Black.setColor(black);
-        detailSize41White.setColor(white);
-        detailSize40Red.setColor(red);
-
-        product.addColor(List.of(
-                black,
-                white,
-                red
-        ));
-
+        product.addColor(List.of(azul, white, marron));
 
         productService.save(product);
-        productService.save(product2);
 
         saveAdmin();
     }
@@ -144,5 +122,17 @@ public class DataSeederImpl implements DataSeeder {
                         .lastName("Mendoza")
                         .role("ADMIN")
                 .build());
+    }
+
+    List<ProductDetail> createDetails(double price, int quantity) {
+        List<ProductDetail> details = new ArrayList<>();
+        for (int size = 34; size <= 44; size++) {
+            details.add(ProductDetail.builder()
+                    .size(size)
+                    .price(price)
+                    .quantity(quantity)
+                    .build());
+        }
+        return details;
     }
 }
