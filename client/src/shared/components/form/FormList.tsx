@@ -1,6 +1,5 @@
 import { FormField } from "../formField/FormField";
 import type { InputConfig } from "../../types/InputForm.t";
-import "./style/FormList.css";
 
 type Props<T extends object> = {
     items: T[];
