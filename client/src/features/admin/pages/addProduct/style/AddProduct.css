@@ -1,0 +1,23 @@
+.add-product-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+    align-items: flex-start;
+    padding: 24px;
+}
+
+.add-product-container > h1 {
+    grid-column: 1 / -1;
+}
+
+.add-product-container form {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+@media (max-width: 1000px) {
+    .add-product-container {
+        padding: 16px;
+    }
+}

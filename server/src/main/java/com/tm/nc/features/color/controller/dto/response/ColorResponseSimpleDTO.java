@@ -1,4 +1,4 @@
-package com.tm.nc.features.color.controller.dto;
+package com.tm.nc.features.color.controller.dto.response;
 
 import com.tm.nc.domain.color.model.Color;
 

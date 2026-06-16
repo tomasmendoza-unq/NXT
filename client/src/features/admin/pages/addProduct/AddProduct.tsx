@@ -1,10 +1,11 @@
-import { ProductForm } from "../components/AddProductForm";
+import { ProductForm } from "../../../product/components/form/ProductForm";
+import "./style/AddProduct.css";
 
 export const AddProduct = () => {
     return (
-        <div className="flex flex-col justify-center items-center gap-6">
-            <h1>Add Products</h1>
+        <section className="add-product-container">
+            <h1>Crear Producto</h1>
             <ProductForm />
-        </div>
+        </section>
     );
 };

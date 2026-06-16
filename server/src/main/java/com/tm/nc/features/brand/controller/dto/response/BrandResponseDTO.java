@@ -1,4 +1,4 @@
-package com.tm.nc.features.brand.controller.dto;
+package com.tm.nc.features.brand.controller.dto.response;
 
 import com.tm.nc.domain.brand.model.Brand;
 

@@ -2,7 +2,8 @@ package com.tm.nc.features.product.controller;
 
 import com.tm.nc.domain.product.model.Product;
 import com.tm.nc.domain.product.service.ProductService;
-import com.tm.nc.features.product.controller.dto.ProductResponseDTO;
+import com.tm.nc.features.product.controller.dto.request.ProductRequestDTO;
+import com.tm.nc.features.product.controller.dto.response.ProductResponseDTO;
 import com.tm.nc.shared.dto.PageResponseDTO;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.data.domain.Page;
@@ -37,6 +38,15 @@ public class ProductControllerREST {
     @GetMapping("/{idProduct}")
     public ResponseEntity<ProductResponseDTO> getProductById(@PathVariable Long idProduct) {
         Product product = productService.getById(idProduct);
+
+        ProductResponseDTO productResponseDTO = ProductResponseDTO.fromModel(product);
+
+        return ResponseEntity.ok(productResponseDTO);
+    }
+
+    @PostMapping()
+    public ResponseEntity<ProductResponseDTO> createProduct(@RequestBody ProductRequestDTO request) {
+        Product product = productService.save(request.toModel());
 
         ProductResponseDTO productResponseDTO = ProductResponseDTO.fromModel(product);
 
