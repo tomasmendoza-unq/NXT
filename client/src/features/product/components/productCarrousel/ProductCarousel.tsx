@@ -14,8 +14,8 @@ export const ProductCarousel = ({ products }: { products: Product[] }) => {
             spaceBetween={20}
             slidesPerView={1}
             breakpoints={{
-                480: { slidesPerView: 1 },
-                640: { slidesPerView: 2 },
+                480: { slidesPerView: 1, navigation: false },
+                640: { slidesPerView: 2, navigation: true },
                 1024: { slidesPerView: 3 },
                 1280: { slidesPerView: 4 },
             }}
