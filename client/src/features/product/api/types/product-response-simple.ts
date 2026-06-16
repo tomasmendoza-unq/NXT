@@ -11,11 +11,11 @@ export interface ProductDetailsResponseSimpleDTO {
     id: number;
     size: number;
     price: number;
-    image: string;
 }
 
 export interface ColorResponseSimpleDTO {
     id: number;
     name: string;
     color: string;
+    image: string;
 }

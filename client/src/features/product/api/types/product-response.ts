@@ -4,15 +4,15 @@ export interface ProductDetailsResponseDTO {
     id: number;
     size: number;
     price: number;
-    image: string;
     quantity: number;
-    gallery: string[];
 }
 
 export interface ColorResponseDTO {
     id: number;
     name: string;
     color: string;
+    gallery: string[];
+    image: string;
     variants: ProductDetailsResponseDTO[];
 }
 
