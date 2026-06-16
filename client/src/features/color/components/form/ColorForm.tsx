@@ -1,5 +1,4 @@
-import { DynamicList } from "../../../../shared/components/dynamicList/DynamicList";
-import { FormField } from "../../../../shared/components/formField/FormField";
+import { FormList } from "../../../../shared/components/form/FormList";
 import {
     defaultColorRequestDTO,
     type ColorRequestDTO,
@@ -12,33 +11,11 @@ type Props = {
 };
 
 export const ColorForm = ({ colors, onChange }: Props) => (
-    <DynamicList
+    <FormList<ColorRequestDTO>
         items={colors}
         onChange={onChange}
         defaultItem={defaultColorRequestDTO}
+        inputs={colorInputs}
         addLabel="+ Agregar color"
-        renderItem={(color, _, handleChange) => (
-            <div className="color-form-item">
-                {colorInputs.map((row, rowIndex) => (
-                    <div
-                        key={rowIndex}
-                        className="form-row"
-                    >
-                        {row.map((input) => (
-                            <div
-                                key={input.name}
-                                className="form-field"
-                            >
-                                <FormField
-                                    input={input}
-                                    formData={color}
-                                    onChange={handleChange}
-                                />
-                            </div>
-                        ))}
-                    </div>
-                ))}
-            </div>
-        )}
     />
 );

@@ -37,7 +37,7 @@ export const ItemCard = ({
         <article className="item">
             <section className="item-image">
                 <img
-                    src={item.detail.image}
+                    src={item.color.image}
                     alt={item.product.name}
                 />
             </section>

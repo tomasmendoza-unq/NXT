@@ -6,7 +6,7 @@ import "./style/ProductCard.css";
 export const ProductCard = ({ id, name, model, colors }: Product) => {
     const navigate = useNavigate();
     const price = colors[0]?.details[0]?.price ?? 0;
-    const productImage = colors[0]?.details[0]?.image;
+    const productImage = colors[0]?.image;
 
     return (
         <div

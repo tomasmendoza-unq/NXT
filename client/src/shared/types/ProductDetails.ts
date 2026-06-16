@@ -5,7 +5,5 @@ export interface ProductDetails {
     price: number;
     size: number;
     quantity: number;
-    image: string;
     product?: Product;
-    gallery: string[];
 }

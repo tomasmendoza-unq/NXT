@@ -20,15 +20,15 @@ export const ImagenContainer = ({
     setImageSelected,
     imageSelected,
 }: ImagenContainerProps) => {
-    const { detail } = useSelectedVariant(
+    const { variant } = useSelectedVariant(
         product,
         selectedColorId,
         selectedDetailId,
     );
 
-    const imageToShow = imageSelected ?? detail.image;
+    const imageToShow = imageSelected ?? variant.image;
 
-    const gallery = [detail.image, ...detail.gallery];
+    const gallery = [variant.image, ...variant.gallery];
 
     return (
         <section className="image-container">
@@ -38,6 +38,7 @@ export const ImagenContainer = ({
                     onImageSelect={setImageSelected}
                 />
             )}
+
             <img
                 src={imageToShow}
                 className="image-primary"

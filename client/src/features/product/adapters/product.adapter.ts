@@ -13,9 +13,7 @@ function adaptProductDetail(detail: ProductDetailsResponseDTO): ProductDetails {
         id: detail.id,
         size: detail.size,
         price: detail.price,
-        image: detail.image,
         quantity: detail.quantity,
-        gallery: detail.gallery,
     };
 }
 
@@ -24,6 +22,8 @@ function adaptColor(color: ColorResponseDTO): Color {
         id: color.id,
         name: color.name,
         color: color.color,
+        image: color.image,
+        gallery: color.gallery,
         details: color.variants.map(adaptProductDetail),
     };
 }
