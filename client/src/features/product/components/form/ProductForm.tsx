@@ -17,7 +17,7 @@ export const ProductForm = ({ data, onChange }: Props) => {
     };
 
     return (
-        <form className="product-form">
+        <div className="product-form">
             {productBasicInputs.map((row, rowIndex) => (
                 <div
                     key={rowIndex}
@@ -37,6 +37,6 @@ export const ProductForm = ({ data, onChange }: Props) => {
                     ))}
                 </div>
             ))}
-        </form>
+        </div>
     );
 };

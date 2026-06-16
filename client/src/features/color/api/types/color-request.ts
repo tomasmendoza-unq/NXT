@@ -8,6 +8,6 @@ export interface ColorRequestDTO {
 
 export const defaultColorRequestDTO: ColorRequestDTO = {
     name: "",
-    color: "",
+    color: "#000000",
     details: [],
 };

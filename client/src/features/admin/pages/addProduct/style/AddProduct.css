@@ -16,6 +16,19 @@
     margin: 0 auto;
 }
 
+.submit {
+    background-color: var(--button-primary-bg);
+    color: var(--button-primary-text);
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+}
+
+.submit:hover {
+    background-color: var(--button-primary-hover-bg);
+}
+
 @media (max-width: 1000px) {
     .add-product-container {
         padding: 16px;

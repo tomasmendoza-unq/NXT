@@ -29,4 +29,12 @@ export const detailInputs: InputConfig[][] = [
             autoComplete: "off",
         },
     ],
+    [
+        {
+            name: "gallery",
+            label: "Galería",
+            type: "text",
+            autoComplete: "off",
+        },
+    ],
 ];
