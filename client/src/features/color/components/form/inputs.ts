@@ -1,4 +1,4 @@
-import type { InputConfig } from "../../../shared/types/InputForm.t";
+import type { InputConfig } from "../../../../shared/types/InputForm.t";
 
 export const colorInputs: InputConfig[][] = [
     [

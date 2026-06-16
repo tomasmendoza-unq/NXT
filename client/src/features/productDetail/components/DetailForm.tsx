@@ -2,6 +2,7 @@ import { FormField } from "../../../shared/components/formField/FormField";
 import { type ColorRequestDTO } from "../../color/api/types/color-request";
 import { defaultDetailRequestDTO } from "../api/types/detail-request.t";
 import { detailInputs } from "./inputs";
+import { DynamicList } from "../../../shared/components/dynamicList/DynamicList";
 
 type Props = {
     colors: ColorRequestDTO[];
@@ -9,47 +10,13 @@ type Props = {
 };
 
 export const DetailForm = ({ colors, onChange }: Props) => {
-    const handleChange = (
+    const handleDetailChange = (
         colorIndex: number,
-        detailIndex: number,
-        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+        details: ColorRequestDTO["details"],
     ) => {
-        const { name, value } = e.target;
-        const updated = colors.map((c, ci) =>
-            ci === colorIndex
-                ? {
-                      ...c,
-                      details: c.details.map((d, di) =>
-                          di === detailIndex ? { ...d, [name]: value } : d,
-                      ),
-                  }
-                : c,
+        onChange(
+            colors.map((c, ci) => (ci === colorIndex ? { ...c, details } : c)),
         );
-        onChange(updated);
-    };
-
-    const handleAddDetail = (colorIndex: number) => {
-        const updated = colors.map((c, ci) =>
-            ci === colorIndex
-                ? {
-                      ...c,
-                      details: [...c.details, { ...defaultDetailRequestDTO }],
-                  }
-                : c,
-        );
-        onChange(updated);
-    };
-
-    const handleRemoveDetail = (colorIndex: number, detailIndex: number) => {
-        const updated = colors.map((c, ci) =>
-            ci === colorIndex
-                ? {
-                      ...c,
-                      details: c.details.filter((_, di) => di !== detailIndex),
-                  }
-                : c,
-        );
-        onChange(updated);
     };
 
     return (
@@ -60,52 +27,37 @@ export const DetailForm = ({ colors, onChange }: Props) => {
                     className="detail-form-color"
                 >
                     <h3>{color.name || `Color ${colorIndex + 1}`}</h3>
-                    {color.details.map((detail, detailIndex) => (
-                        <div
-                            key={detailIndex}
-                            className="detail-form-item"
-                        >
-                            {detailInputs.map((row, rowIndex) => (
-                                <div
-                                    key={rowIndex}
-                                    className="form-row"
-                                >
-                                    {row.map((input) => (
-                                        <div
-                                            key={input.name}
-                                            className="form-field"
-                                        >
-                                            <FormField
-                                                input={input}
-                                                formData={detail}
-                                                onChange={(e) =>
-                                                    handleChange(
-                                                        colorIndex,
-                                                        detailIndex,
-                                                        e,
-                                                    )
-                                                }
-                                            />
-                                        </div>
-                                    ))}
-                                </div>
-                            ))}
-                            <button
-                                type="button"
-                                onClick={() =>
-                                    handleRemoveDetail(colorIndex, detailIndex)
-                                }
-                            >
-                                Eliminar
-                            </button>
-                        </div>
-                    ))}
-                    <button
-                        type="button"
-                        onClick={() => handleAddDetail(colorIndex)}
-                    >
-                        + Agregar talle
-                    </button>
+                    <DynamicList
+                        items={color.details}
+                        onChange={(details) =>
+                            handleDetailChange(colorIndex, details)
+                        }
+                        defaultItem={defaultDetailRequestDTO}
+                        addLabel="+ Agregar talle"
+                        renderItem={(detail, _, handleChange) => (
+                            <div className="detail-form-item">
+                                {detailInputs.map((row, rowIndex) => (
+                                    <div
+                                        key={rowIndex}
+                                        className="form-row"
+                                    >
+                                        {row.map((input) => (
+                                            <div
+                                                key={input.name}
+                                                className="form-field"
+                                            >
+                                                <FormField
+                                                    input={input}
+                                                    formData={detail}
+                                                    onChange={handleChange}
+                                                />
+                                            </div>
+                                        ))}
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+                    />
                 </div>
             ))}
         </div>

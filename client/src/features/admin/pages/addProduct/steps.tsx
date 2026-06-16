@@ -1,7 +1,7 @@
 import type { Stager } from "../../../../shared/types/Stager.t";
 import type { ProductRequestDTO } from "../../../product/api/types/product-request";
 import { ProductForm } from "../../../product/components/form/ProductForm";
-import { ColorForm } from "../../../color/components/ColorForm";
+import { ColorForm } from "../../../color/components/form/ColorForm";
 import { DetailForm } from "../../../productDetail/components/DetailForm";
 
 type StepsProps = {

@@ -10,27 +10,28 @@ export const PreviewProduct = ({ product }: { product: ProductRequestDTO }) => {
 
     return (
         <div className="preview-product">
-            <h2>Vista previa</h2>
-
-            <p>Nombre: {product.name || "—"}</p>
-            <p>Modelo: {product.model || "—"}</p>
-
-            {hasColors && (
-                <div>
-                    <p>Colores:</p>
-                    {product.colors.map((c, i) => (
-                        <span
-                            key={i}
-                            style={{ background: c.color }}
-                        >
-                            {c.name}
-                        </span>
-                    ))}
-                </div>
-            )}
-
-            {hasDetails && (
+            {hasDetails ? (
                 <ProductLayout product={toProductPreview(product)} />
+            ) : (
+                <>
+                    <h2>Vista previa</h2>
+                    <p>Nombre: {product.name || "—"}</p>
+                    <p>Modelo: {product.model || "—"}</p>
+
+                    {hasColors && (
+                        <div>
+                            <p>Colores:</p>
+                            {product.colors.map((c, i) => (
+                                <span
+                                    key={i}
+                                    style={{ background: c.color }}
+                                >
+                                    {c.name}
+                                </span>
+                            ))}
+                        </div>
+                    )}
+                </>
             )}
         </div>
     );

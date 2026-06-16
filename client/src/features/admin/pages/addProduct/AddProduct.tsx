@@ -24,23 +24,25 @@ export const AddProduct = () => {
     return (
         <section className="add-product-container">
             <h1>Crear Producto</h1>
-            <form onSubmit={handleSubmit}>
-                <Stager
-                    steps={steps}
-                    currentStep={current}
-                    setCurrentStep={setCurrent}
-                />
-                {steps[current].component}
-                {current === steps.length - 1 && (
-                    <button
-                        type="submit"
-                        className="submit"
-                    >
-                        Crear producto
-                    </button>
-                )}
-            </form>
-            <PreviewProduct product={productData} />
+            <div className="add-product-content">
+                <form onSubmit={handleSubmit}>
+                    <Stager
+                        steps={steps}
+                        currentStep={current}
+                        setCurrentStep={setCurrent}
+                    />
+                    {steps[current].component}
+                    {current === steps.length - 1 && (
+                        <button
+                            type="submit"
+                            className="submit"
+                        >
+                            Crear producto
+                        </button>
+                    )}
+                </form>
+                <PreviewProduct product={productData} />
+            </div>
         </section>
     );
 };

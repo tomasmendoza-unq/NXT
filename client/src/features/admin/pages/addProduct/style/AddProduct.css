@@ -10,10 +10,15 @@
     grid-column: 1 / -1;
 }
 
+.add-product-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    align-items: flex-start;
+}
+
 .add-product-container form {
     width: 100%;
-    max-width: 1000px;
-    margin: 0 auto;
 }
 
 .submit {
@@ -32,5 +37,9 @@
 @media (max-width: 1000px) {
     .add-product-container {
         padding: 16px;
+    }
+
+    .add-product-content {
+        grid-template-columns: 1fr;
     }
 }
