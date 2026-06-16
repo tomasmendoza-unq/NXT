@@ -1,0 +1,21 @@
+.size-option-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.size-option {
+    min-width: 44px;
+    padding: 0.5rem 0.75rem;
+
+    border: var(--border-size) solid var(--border);
+    border-radius: var(--border-radius);
+
+    background: var(--bg);
+    cursor: pointer;
+}
+
+.size-option-selected {
+    border-color: var(--text-h);
+    font-weight: 600;
+}

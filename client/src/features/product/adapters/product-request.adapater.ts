@@ -1,0 +1,22 @@
+import type { Product } from "../../../shared/types/Product";
+import type { ProductRequestDTO } from "../api/types/product-request";
+
+export const toProductPreview = (dto: ProductRequestDTO): Product => ({
+    id: 0,
+    name: dto.name,
+    model: dto.model,
+    brand: { image: "", name: "" },
+    colors: dto.colors.map((c, ci) => ({
+        id: ci,
+        name: c.name,
+        color: c.color,
+        details: c.details.map((d, di) => ({
+            id: di,
+            size: Number(d.size),
+            price: Number(d.price),
+            image: d.image,
+            gallery: d.gallery,
+            quantity: Number(d.quantity),
+        })),
+    })),
+});

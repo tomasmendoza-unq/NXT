@@ -1,4 +1,5 @@
-import type { InputConfig } from "../../../../../shared/components/formField/FormField";
+import type { InputConfig } from "../../../../../shared/types/InputForm.t";
+
 export const inputs: InputConfig[] = [
     {
         name: "email",

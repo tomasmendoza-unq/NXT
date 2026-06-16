@@ -1,10 +1,7 @@
-package com.tm.nc.features.product.controller.dto;
+package com.tm.nc.features.product.controller.dto.response;
 
 import com.tm.nc.domain.product.model.Product;
-import com.tm.nc.features.brand.controller.dto.BrandResponseDTO;
-import com.tm.nc.features.color.controller.dto.ColorResponseDTO;
-
-import java.util.List;
+import com.tm.nc.features.brand.controller.dto.response.BrandResponseDTO;
 
 public record ProductReponseSimpleDTO(
         Long  id,

@@ -2,7 +2,8 @@ package com.tm.nc.features.product.controller;
 
 import com.tm.nc.domain.product.model.Product;
 import com.tm.nc.domain.product.service.ProductService;
-import com.tm.nc.features.product.controller.dto.ProductResponseDTO;
+import com.tm.nc.features.product.controller.dto.request.ProductRequestDTO;
+import com.tm.nc.features.product.controller.dto.response.ProductResponseDTO;
 import com.tm.nc.shared.dto.PageResponseDTO;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.data.domain.Page;
@@ -42,4 +43,6 @@ public class ProductControllerREST {
 
         return ResponseEntity.ok(productResponseDTO);
     }
+
+
 }

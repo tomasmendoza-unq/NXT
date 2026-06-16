@@ -1,8 +1,7 @@
 package com.tm.nc.features.checkout.controller.dto.response;
 
 import com.tm.nc.domain.checkout.model.ItemCheckout;
-import com.tm.nc.features.product.controller.dto.ProductResponseDTO;
-import com.tm.nc.features.productDetail.controller.dto.ProductDetailsSimpleResponseDTO;
+import com.tm.nc.features.productDetail.controller.dto.response.ProductDetailsSimpleResponseDTO;
 
 public record ItemsCheckoutResponseDTO(
         ProductDetailsSimpleResponseDTO detail,

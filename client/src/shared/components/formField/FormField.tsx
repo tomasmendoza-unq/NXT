@@ -1,11 +1,5 @@
+import type { InputConfig } from "../../types/InputForm.t";
 import "./style/FormField.css";
-
-export type InputConfig = {
-    name: string;
-    label: string;
-    type: string;
-    autoComplete?: string;
-};
 
 type Props<T extends object> = {
     input: InputConfig;
