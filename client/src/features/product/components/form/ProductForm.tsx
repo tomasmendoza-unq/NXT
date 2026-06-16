@@ -1,33 +1,23 @@
-import { useState } from "react";
 import type { ProductRequestDTO } from "../../api/types/product-request";
 import { productBasicInputs } from "./inputs";
 import { FormField } from "../../../../shared/components/formField/FormField";
 import "./style/ProductForm.css";
 
-export const ProductForm = () => {
-    const [formData, setFormData] = useState<ProductRequestDTO>({
-        name: "",
-        model: "",
-        brandId: 0,
-    });
+type Props = {
+    data: ProductRequestDTO;
+    onChange: (data: ProductRequestDTO) => void;
+};
 
+export const ProductForm = ({ data, onChange }: Props) => {
     const handleChange = (
         e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
     ) => {
         const { name, value } = e.target;
-        setFormData((prev) => ({ ...prev, [name]: value }));
-    };
-
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        console.log(formData);
+        onChange({ ...data, [name]: value });
     };
 
     return (
-        <form
-            className="product-form"
-            onSubmit={handleSubmit}
-        >
+        <form className="product-form">
             {productBasicInputs.map((row, rowIndex) => (
                 <div
                     key={rowIndex}
@@ -40,19 +30,13 @@ export const ProductForm = () => {
                         >
                             <FormField
                                 input={input}
-                                formData={formData}
+                                formData={data}
                                 onChange={handleChange}
                             />
                         </div>
                     ))}
                 </div>
             ))}
-            <button
-                type="submit"
-                className="submit"
-            >
-                Crear producto
-            </button>
         </form>
     );
 };
