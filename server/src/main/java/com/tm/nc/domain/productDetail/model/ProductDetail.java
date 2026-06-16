@@ -20,11 +20,7 @@ public class ProductDetail {
 
     private double price;
 
-    private String image;
-
     private Color color;
-
-    private List<String> gallery;
 
     private int quantity;
 

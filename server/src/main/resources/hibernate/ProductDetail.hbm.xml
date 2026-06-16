@@ -13,14 +13,8 @@
 
         <property name="size" column="size" not-null="true"/>
         <property name="price" column="price" not-null="true"/>
-        <property name="image" column="image" not-null="true"/>
+
         <property name="quantity" column="quantity" not-null="true"/>
-
-
-        <bag name="gallery" table="product_detail_gallery">
-            <key column="product_detail_id"/>
-            <element column="image_url" type="string"/>
-        </bag>
 
         <many-to-one name="color"
                      class="com.tm.nc.domain.color.model.Color"

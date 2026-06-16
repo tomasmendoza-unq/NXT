@@ -9,6 +9,8 @@ public record ColorResponseDTO(
         Long id,
         String name,
         String color,
+        String image,
+        List<String>gallery,
         List<ProductDetailsResponseDTO> variants
 ) {
     public static ColorResponseDTO fromModel(Color color) {
@@ -16,6 +18,8 @@ public record ColorResponseDTO(
                 color.getId(),
                 color.getName(),
                 color.getColor(),
+                color.getImage(),
+                color.getGallery(),
                 color.getDetails().stream().map(ProductDetailsResponseDTO::fromDetails).toList()
         );
     }

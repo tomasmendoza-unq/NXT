@@ -11,12 +11,16 @@ public record ColorRequestDTO(
     @NotNull(message = "El color debe tener un nombre")
     String name,
     String color,
+    String image,
+    List<String>gallery,
     List<ProductDetailRequestDTO> details
 ) {
     public Color toModel() {
         return Color.builder()
                 .name(name)
                 .color(color)
+                .image(image)
+                .gallery(gallery)
                 .details(details.stream().map(ProductDetailRequestDTO::toModel).toList())
                 .build();
     }

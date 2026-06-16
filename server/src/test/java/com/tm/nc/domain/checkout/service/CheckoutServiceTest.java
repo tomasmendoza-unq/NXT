@@ -72,20 +72,20 @@ public class CheckoutServiceTest {
         detailSize39Black = ProductDetail.builder()
                 .size(39)
                 .price(200D)
-                .image("https://authogar.vtexassets.com/arquivos/ids/214811-800-auto?v=638721421030330000&width=800&height=auto&aspect=true")
+
                 .quantity(10)
                 .build();
 
         detailSize40Black = ProductDetail.builder()
                 .size(40)
                 .price(200D)
-                .image("https://authogar.vtexassets.com/arquivos/ids/214811-800-auto?v=638721421030330000&width=800&height=auto&aspect=true")
                 .quantity(10)
                 .build();
 
         black = Color.builder()
                 .name("black")
                 .color("#000000")
+                .image("https://authogar.vtexassets.com/arquivos/ids/214811-800-auto?v=638721421030330000&width=800&height=auto&aspect=true")
                 .details(List.of(detailSize39Black, detailSize40Black))
                 .build();
 

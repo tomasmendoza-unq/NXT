@@ -11,8 +11,7 @@ public record ProductDetailRequestDTO(
         int size,
         @Min(value = 0, message = "El precio debe ser mayor a 0")
         double price,
-        String image,
-        List<String>gallery,
+
         @Min(value = 0, message = "El stock debe ser mayor a 0")
         int quantity
 ) {
@@ -20,8 +19,6 @@ public record ProductDetailRequestDTO(
         return ProductDetail.builder()
                 .size(size)
                 .price(price)
-                .image(image)
-                .gallery(gallery)
                 .quantity(quantity)
                 .build();
     }
