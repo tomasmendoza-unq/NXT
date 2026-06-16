@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import "./style/DynamicList.css";
 
 type Props<T> = {
     items: T[];
@@ -38,7 +39,7 @@ export const DynamicList = <T extends object>({
         onChange(items.filter((_, i) => i !== index));
 
     return (
-        <div>
+        <section className="dynamic-list">
             {items.map((item, index) => (
                 <div key={index}>
                     {renderItem(item, index, (e) => handleChange(index, e))}
@@ -56,6 +57,6 @@ export const DynamicList = <T extends object>({
             >
                 {addLabel}
             </button>
-        </div>
+        </section>
     );
 };

@@ -1,4 +1,4 @@
-import type { InputConfig } from "../../../shared/types/InputForm.t";
+import type { InputConfig } from "../../../../shared/types/InputForm.t";
 
 export const detailInputs: InputConfig[][] = [
     [
@@ -29,12 +29,12 @@ export const detailInputs: InputConfig[][] = [
             autoComplete: "off",
         },
     ],
-    [
-        {
-            name: "gallery",
-            label: "Galería",
-            type: "text",
-            autoComplete: "off",
-        },
-    ],
+    // [
+    //     {
+    //         name: "gallery",
+    //         label: "Galería",
+    //         type: "text",
+    //         autoComplete: "off",
+    //     },
+    // ],
 ];

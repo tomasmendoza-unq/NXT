@@ -17,6 +17,7 @@ export const Stager = ({ steps, currentStep, setCurrentStep }: Props) => {
                         className="stager-step"
                     >
                         <button
+                            type="button"
                             className={`stager-number ${currentStep === step.index ? "active" : ""}`}
                             onClick={() => setCurrentStep?.(step.index)}
                         >

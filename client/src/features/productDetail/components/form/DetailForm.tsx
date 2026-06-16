@@ -1,8 +1,8 @@
-import { FormField } from "../../../shared/components/formField/FormField";
-import { type ColorRequestDTO } from "../../color/api/types/color-request";
-import { defaultDetailRequestDTO } from "../api/types/detail-request.t";
+import { FormField } from "../../../../shared/components/formField/FormField";
+import { type ColorRequestDTO } from "../../../color/api/types/color-request";
+import { defaultDetailRequestDTO } from "../../api/types/detail-request.t";
 import { detailInputs } from "./inputs";
-import { DynamicList } from "../../../shared/components/dynamicList/DynamicList";
+import { DynamicList } from "../../../../shared/components/dynamicList/DynamicList";
 
 type Props = {
     colors: ColorRequestDTO[];

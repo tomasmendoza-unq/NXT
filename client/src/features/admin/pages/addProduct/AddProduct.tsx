@@ -7,6 +7,7 @@ import {
     type ProductRequestDTO,
 } from "../../../product/api/types/product-request";
 import { PreviewProduct } from "../../../product/components/preview/PreviewProduct";
+import { useCreateProduct } from "../../hooks/use-create-product";
 
 export const AddProduct = () => {
     const [current, setCurrent] = useState(0);
@@ -14,9 +15,11 @@ export const AddProduct = () => {
         defaultProductRequestDTO,
     );
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const { createProduct, loading } = useCreateProduct();
+
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        console.log(productData);
+        await createProduct(productData);
     };
 
     const steps = getSteps({ productData, setProductData });
@@ -24,6 +27,7 @@ export const AddProduct = () => {
     return (
         <section className="add-product-container">
             <h1>Crear Producto</h1>
+
             <div className="add-product-content">
                 <form onSubmit={handleSubmit}>
                     <Stager
@@ -31,16 +35,20 @@ export const AddProduct = () => {
                         currentStep={current}
                         setCurrentStep={setCurrent}
                     />
+
                     {steps[current].component}
+
                     {current === steps.length - 1 && (
                         <button
                             type="submit"
                             className="submit"
+                            disabled={loading}
                         >
-                            Crear producto
+                            {loading ? "Creando producto..." : "Crear producto"}
                         </button>
                     )}
                 </form>
+
                 <PreviewProduct product={productData} />
             </div>
         </section>
