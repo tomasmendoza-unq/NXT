@@ -264,6 +264,40 @@ public class CheckoutServiceTest {
         assertEquals(1, count);
     }
 
+    @Test
+    public void testGetCheckoutById(){
+        String key = "idem-key-999";
+
+        Checkout checkout = checkoutService.generateCheckout(
+                requestGood.toModel(),
+                requestGood.itemCheckoutRequestDTO(),
+                key
+        );
+
+        Checkout recovered = checkoutService.findById(checkout.getId());
+
+        assertNotNull(recovered);
+        assertEquals(checkout.getId(), recovered.getId());
+
+        assertNotNull(recovered.getClient());
+        assertEquals(client.firstName(), recovered.getClient().getFirstName());
+        assertEquals(client.lastName(), recovered.getClient().getLastName());
+        assertEquals(client.email(), recovered.getClient().getEmail());
+        assertEquals(client.phone(), recovered.getClient().getPhone());
+        assertEquals(client.address(), recovered.getClient().getAddress());
+        assertEquals(client.city(), recovered.getClient().getCity());
+        assertEquals(client.province(), recovered.getClient().getProvince());
+        assertEquals(client.postalCode(), recovered.getClient().getPostalCode());
+
+        assertEquals("Hola", recovered.getNotes());
+        assertEquals(CheckoutStatus.PENDING, recovered.getStatus());
+        assertNotNull(recovered.getCreatedAt());
+
+        assertEquals(2, recovered.getItems().size());
+        assertEquals(200D, recovered.getItems().get(0).getUnitPrice());
+        assertEquals(200D, recovered.getItems().get(1).getUnitPrice());
+    }
+
     @AfterEach
     public void tearDown() {
         resetService.resetAll();

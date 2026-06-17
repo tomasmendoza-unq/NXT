@@ -97,8 +97,6 @@ public class CheckoutServiceImpl implements CheckoutService {
                 new CheckoutIdempotency(idempotencyKey, saved.getId(), LocalDateTime.now())
         );
 
-
-
         emailService.sendFacturationEmail(client, saved);
 
         return saved;

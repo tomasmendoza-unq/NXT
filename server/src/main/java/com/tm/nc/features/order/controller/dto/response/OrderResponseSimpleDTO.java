@@ -9,7 +9,7 @@ public record OrderResponseSimpleDTO(
         String email,
         Double total,
         String status,
-        LocalDateTime createdAt
+        String createdAt
 
 ) {
     public static OrderResponseSimpleDTO fromModel(Checkout checkout) {
@@ -17,8 +17,8 @@ public record OrderResponseSimpleDTO(
                 checkout.getId(),
                 checkout.getClient().getEmail(),
                 checkout.getTotal(),
-                checkout.getStatus().toString(),
-                checkout.getCreatedAt()
+                checkout.getStatusLabel(),
+                checkout.getCreatedAtFormatted()
 
         );
     }

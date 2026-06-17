@@ -8,6 +8,7 @@ import com.tm.nc.domain.user.model.User;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,5 +47,13 @@ public class Checkout {
                 .build());
 
         total = total + (quantity * detail.getPrice());
+    }
+
+    public String getStatusLabel() {
+        return status.toString();
+    }
+
+    public String getCreatedAtFormatted() {
+        return createdAt.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
     }
 }
