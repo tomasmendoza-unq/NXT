@@ -1,7 +1,9 @@
 package com.tm.nc.features.client.controller;
 
 import com.tm.nc.domain.checkout.model.Checkout;
-import com.tm.nc.domain.client.service.ClientService;
+import com.tm.nc.domain.client.repository.ClientService;
+import com.tm.nc.features.checkout.controller.dto.request.CheckoutRequestDTO;
+import com.tm.nc.features.checkout.controller.dto.response.CheckoutResponseDTO;
 import com.tm.nc.features.order.controller.dto.request.OrderFilterRequestDTO;
 import com.tm.nc.features.order.controller.dto.response.OrderResponseDTO;
 import com.tm.nc.features.order.controller.dto.response.OrderResponseSimpleDTO;
@@ -51,5 +53,16 @@ public class ClientControllerREST {
         OrderResponseDTO orderResponse = OrderResponseDTO.fromModel(order);
 
         return ResponseEntity.ok(orderResponse);
+    }
+
+    @PostMapping("/checkout")
+    public ResponseEntity<CheckoutResponseDTO> checkout(
+            @RequestHeader("Idempotency-Key") String idempotencyKey,
+            @RequestBody @Valid CheckoutRequestDTO checkoutRequestDTO,
+            @RequestAttribute("userId") Long idClient
+    ) {
+        Checkout checkout = clientService.generateCheckout(checkoutRequestDTO.toModel(), checkoutRequestDTO.itemCheckoutRequestDTO(), idempotencyKey, idClient);
+
+        return ResponseEntity.ok(CheckoutResponseDTO.fromModel(checkout));
     }
 }

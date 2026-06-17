@@ -28,4 +28,7 @@ public class Client extends User {
     @Builder.Default
     private Cart cart = new Cart();
 
+    public boolean isSameEmail(String email) {
+        return email.equals(getEmail());
+    }
 }

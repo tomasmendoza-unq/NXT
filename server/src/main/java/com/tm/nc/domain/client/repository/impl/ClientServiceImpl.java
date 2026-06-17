@@ -1,62 +1,38 @@
-package com.tm.nc.domain.client.service.impl;
+package com.tm.nc.domain.client.repository.impl;
 
 import com.tm.nc.domain.checkout.model.Checkout;
 import com.tm.nc.domain.checkout.model.enums.CheckoutStatus;
 import com.tm.nc.domain.checkout.persistence.sql.CheckoutDAOSQL;
+import com.tm.nc.domain.checkout.service.CheckoutService;
 import com.tm.nc.domain.client.model.Client;
 import com.tm.nc.domain.client.persistence.sql.ClientSQLDAO;
-import com.tm.nc.domain.client.service.ClientService;
-import com.tm.nc.domain.email.service.EmailService;
-import com.tm.nc.domain.user.service.UserService;
+import com.tm.nc.domain.client.repository.ClientService;
+import com.tm.nc.features.checkout.controller.dto.request.ItemCheckoutRequestDTO;
+import com.tm.nc.shared.exception.BusinessException;
 import com.tm.nc.shared.exception.EntityNotFoundException;
 import jakarta.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Qualifier;
+import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.time.Clock;
-import java.time.LocalDateTime;
-import java.util.UUID;
+import java.util.List;
 
 @Service
 @Transactional
 public class ClientServiceImpl implements ClientService {
 
-    private final UserService userService;
-
-    private final Clock  clock;
-
-    private final EmailService emailService;
-
     private final CheckoutDAOSQL checkoutDAOSQL;
 
     private final ClientSQLDAO clientDAOSQL;
 
-    public ClientServiceImpl(UserService userService, @Qualifier("systemClock") Clock clock, @Qualifier("resendEmailService")EmailService emailService, CheckoutDAOSQL checkoutDAOSQL, ClientSQLDAO clientDAOSQL) {
-        this.userService = userService;
-        this.clock = clock;
-        this.emailService = emailService;
+    private final CheckoutService checkoutService;
+
+    public ClientServiceImpl( CheckoutDAOSQL checkoutDAOSQL, ClientSQLDAO clientDAOSQL, CheckoutService checkoutService) {
         this.checkoutDAOSQL = checkoutDAOSQL;
         this.clientDAOSQL = clientDAOSQL;
-    }
-
-    @Override
-    public Client generateTemporal(Client client) {
-        String uuid = UUID.randomUUID().toString();
-
-        client.setPassword(uuid);
-
-        client.setTemporal(true);
-        client.setExpirationDate(LocalDateTime.now(clock).plusDays(1));
-
-        Client saved = (Client) userService.save(client);
-
-        emailService.sendAccountTemporalEmail(saved,uuid);
-
-
-        return saved;
+        this.checkoutService = checkoutService;
     }
 
     @Override
@@ -69,5 +45,12 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public Checkout findOrderById(Long idOrder) {
         return checkoutDAOSQL.findById(idOrder).orElseThrow(() -> new EntityNotFoundException(Checkout.class.getName(), idOrder));
+    }
+
+    @Override
+    public Checkout generateCheckout(Checkout model, List<@Valid ItemCheckoutRequestDTO> itemCheckoutRequestDTOS, String idempotencyKey, Long idClient) {
+        Client client = clientDAOSQL.findById(idClient).orElseThrow(() -> new EntityNotFoundException(Client.class.getName(), idClient));
+        if(!client.isSameEmail(model.getClient().getEmail())) throw new BusinessException("Ingresar mismo mail al formulario");
+        return checkoutService.generateCheckout(model, itemCheckoutRequestDTOS, idempotencyKey, client);
     }
 }

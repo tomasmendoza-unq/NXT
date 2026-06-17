@@ -145,7 +145,7 @@ public class CheckoutServiceTest {
 
     @Test
     public void testCheckoutSuccess() {
-        Checkout checkout = checkoutService.generateCheckout(requestGood.toModel(), requestGood.itemCheckoutRequestDTO(), "idempotencyKey");
+        Checkout checkout = checkoutService.generateCheckout(requestGood.toModel(), requestGood.itemCheckoutRequestDTO(), "idempotencyKey", null);
         Checkout recovered = checkoutService.findById(checkout.getId());
 
         assertNotNull(recovered);
@@ -205,7 +205,7 @@ public class CheckoutServiceTest {
 
     @Test
     public void testCheckoutFailure() {
-        assertThrows(InsufficientStockException.class, () -> checkoutService.generateCheckout(requestWrong.toModel(), requestWrong.itemCheckoutRequestDTO(), "idempotencyKey"));
+        assertThrows(InsufficientStockException.class, () -> checkoutService.generateCheckout(requestWrong.toModel(), requestWrong.itemCheckoutRequestDTO(), "idempotencyKey", null));
     }
 
     @Test
@@ -216,14 +216,14 @@ public class CheckoutServiceTest {
         Checkout first = checkoutService.generateCheckout(
                 requestGood.toModel(),
                 requestGood.itemCheckoutRequestDTO(),
-                idempotencyKey
-        );
+                idempotencyKey,
+                null);
 
         Checkout second = checkoutService.generateCheckout(
                 requestGood.toModel(),
                 requestGood.itemCheckoutRequestDTO(),
-                idempotencyKey
-        );
+                idempotencyKey,
+                null);
 
         assertEquals(first.getId(), second.getId());
 
@@ -244,14 +244,14 @@ public class CheckoutServiceTest {
         Checkout first = checkoutService.generateCheckout(
                 requestGood.toModel(),
                 requestGood.itemCheckoutRequestDTO(),
-                key
-        );
+                key,
+                null);
 
         checkoutService.generateCheckout(
                 requestGood.toModel(),
                 requestGood.itemCheckoutRequestDTO(),
-                key
-        );
+                key,
+                null);
 
         List<Checkout> all = checkoutService.findAllByStatus(
                 CheckoutStatus.PENDING.name()
@@ -271,8 +271,8 @@ public class CheckoutServiceTest {
         Checkout checkout = checkoutService.generateCheckout(
                 requestGood.toModel(),
                 requestGood.itemCheckoutRequestDTO(),
-                key
-        );
+                key,
+                null);
 
         Checkout recovered = checkoutService.findById(checkout.getId());
 
