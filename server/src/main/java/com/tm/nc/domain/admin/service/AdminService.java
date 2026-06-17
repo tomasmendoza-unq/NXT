@@ -10,4 +10,6 @@ public interface AdminService {
     Page<Checkout> findAllByStatus(String status, int page, int size);
 
     Product createProduct(Product model, ProductRequestDTO request);
+
+    Checkout getOrderById(Long orderId);
 }
