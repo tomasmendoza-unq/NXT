@@ -7,10 +7,8 @@ import com.tm.nc.domain.checkout.persistence.sql.CheckoutDAOSQL;
 import com.tm.nc.domain.checkout.persistence.sql.CheckoutIdempotencyDAO;
 import com.tm.nc.domain.checkout.service.CheckoutService;
 import com.tm.nc.domain.client.model.Client;
-import com.tm.nc.domain.client.persistence.sql.ClientSQLDAO;
-import com.tm.nc.domain.client.service.ClientService;
+import com.tm.nc.domain.client.persistence.repository.ClientRepository;
 import com.tm.nc.domain.email.service.EmailService;
-import com.tm.nc.domain.email.template.FacturationEmailTemplate;
 import com.tm.nc.domain.productDetail.model.ProductDetail;
 import com.tm.nc.domain.productDetail.persistence.sql.ProductDetailsSQLDAO;
 import com.tm.nc.features.checkout.controller.dto.request.ItemCheckoutRequestDTO;
@@ -34,16 +32,16 @@ public class CheckoutServiceImpl implements CheckoutService {
 
     private final ProductDetailsSQLDAO productDetailsSQLDAO;
 
-    private final ClientService clientService;
+    private final ClientRepository clientRepository;
 
     private final EmailService emailService;
 
     private final CheckoutIdempotencyDAO checkoutIdempotencyDAO;
 
-    public CheckoutServiceImpl(CheckoutDAOSQL checkoutDAOSQL, ProductDetailsSQLDAO productDetailsSQLDAO, ClientService clientService, @Qualifier("resendEmailService") EmailService emailService, CheckoutIdempotencyDAO checkoutIdempotencyDAO) {
+    public CheckoutServiceImpl(CheckoutDAOSQL checkoutDAOSQL, ProductDetailsSQLDAO productDetailsSQLDAO, ClientRepository clientRepository, @Qualifier("resendEmailService") EmailService emailService, CheckoutIdempotencyDAO checkoutIdempotencyDAO) {
         this.checkoutDAOSQL = checkoutDAOSQL;
         this.productDetailsSQLDAO = productDetailsSQLDAO;
-        this.clientService = clientService;
+        this.clientRepository = clientRepository;
         this.emailService = emailService;
         this.checkoutIdempotencyDAO = checkoutIdempotencyDAO;
     }
@@ -52,7 +50,7 @@ public class CheckoutServiceImpl implements CheckoutService {
     public Checkout generateCheckout(
             Checkout model,
             List<ItemCheckoutRequestDTO> itemCheckoutRequestDTOS,
-            String idempotencyKey) {
+            String idempotencyKey, Client client) {
 
 
         Optional<CheckoutIdempotency> existing =
@@ -86,10 +84,11 @@ public class CheckoutServiceImpl implements CheckoutService {
             model.addItem(detail, item.quantity());
         });
 
-        //TODO: CAMBIAR SI YA ESTA LOGUEADO
-        Client client = clientService.generateTemporal(model.getClient());
-
+        if (client == null) {
+            client = clientRepository.generateTemporal(model.getClient());
+        }
         model.setClient(client);
+
 
         Checkout saved = checkoutDAOSQL.save(model);
 
