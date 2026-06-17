@@ -9,4 +9,6 @@ public interface ClientService {
     Client generateTemporal(Client client);
 
     Page<Checkout> findAllByStatus(String status, @Min(0) int page, @Min(0) int size, Long idClient);
+
+    Checkout findOrderById(Long idOrder);
 }

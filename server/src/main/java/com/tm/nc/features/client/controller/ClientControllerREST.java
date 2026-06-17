@@ -3,7 +3,9 @@ package com.tm.nc.features.client.controller;
 import com.tm.nc.domain.checkout.model.Checkout;
 import com.tm.nc.domain.client.service.ClientService;
 import com.tm.nc.features.order.controller.dto.request.OrderFilterRequestDTO;
+import com.tm.nc.features.order.controller.dto.response.OrderResponseDTO;
 import com.tm.nc.features.order.controller.dto.response.OrderResponseSimpleDTO;
+import com.tm.nc.shared.annotation.ClientEndpoint;
 import com.tm.nc.shared.dto.TableResponseDTO;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -25,6 +27,7 @@ public class ClientControllerREST {
     }
 
     @PostMapping("/orders")
+    @ClientEndpoint
     public ResponseEntity<TableResponseDTO<OrderResponseSimpleDTO>> getOrders(@RequestAttribute("userId") Long idClient,
                                                                               @RequestBody @Valid OrderFilterRequestDTO request){
         Page<Checkout> checkouts = clientService.findAllByStatus(request.status(), request.page(), request.size(), idClient);
@@ -38,5 +41,15 @@ public class ClientControllerREST {
         );
 
         return ResponseEntity.ok(table);
+    }
+
+    @GetMapping("/orders/{idOrder}")
+    @ClientEndpoint
+    public ResponseEntity<OrderResponseDTO> getOrder(@PathVariable("idOrder") Long idOrder){
+        Checkout order = clientService.findOrderById(idOrder);
+
+        OrderResponseDTO orderResponse = OrderResponseDTO.fromModel(order);
+
+        return ResponseEntity.ok(orderResponse);
     }
 }

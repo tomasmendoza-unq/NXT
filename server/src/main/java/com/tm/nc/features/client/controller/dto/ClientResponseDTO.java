@@ -1,8 +1,14 @@
 package com.tm.nc.features.client.controller.dto;
 
+import com.tm.nc.domain.client.model.Client;
+
 public record ClientResponseDTO(
         String email,
         String firstName,
-        String lastName
+        String lastName,
+        String phone
 ) {
+    public static ClientResponseDTO fromModel(Client client) {
+        return new  ClientResponseDTO(client.getEmail(), client.getFirstName(), client.getLastName(),  client.getPhone());
+    }
 }

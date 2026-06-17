@@ -17,6 +17,7 @@
         <property name="quantity" column="quantity" not-null="true"/>
 
         <many-to-one name="color"
+                     lazy="false"
                      class="com.tm.nc.domain.color.model.Color"
                      column="color_id"/>
 

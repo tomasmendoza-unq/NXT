@@ -2,10 +2,7 @@ package com.tm.nc.domain.color.model;
 
 import com.tm.nc.domain.product.model.Product;
 import com.tm.nc.domain.productDetail.model.ProductDetail;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@ToString(exclude = {"details", "product"})
 public class Color {
     private Long id;
 

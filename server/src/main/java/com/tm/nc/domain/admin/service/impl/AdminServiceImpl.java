@@ -42,5 +42,10 @@ public class AdminServiceImpl implements AdminService {
         return productService.save(model);
     }
 
+    @Override
+    public Checkout getOrderById(Long orderId) {
+        return checkoutDAOSQL.findById(orderId).orElseThrow(() -> new EntityNotFoundException(Checkout.class.getName(), orderId));
+    }
+
 
 }
