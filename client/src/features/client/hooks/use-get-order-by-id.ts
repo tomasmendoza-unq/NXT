@@ -4,7 +4,7 @@ import type { OrderResponseDTO } from "../../order/api/types/OrderResponseDTO.t"
 
 export const useGetOrderById = (idOrder: string) => {
     const [data, setData] = useState<OrderResponseDTO | null>(null);
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     const fetch = async () => {
         try {

@@ -8,7 +8,7 @@ export const ClientRoutesArray: RouteNavigate[] = [
         element: <Orders />,
     },
     {
-        path: "/orders/:idOrder",
+        path: "/orders/details/:idOrder",
         element: <OrderDetail />,
     },
 ];

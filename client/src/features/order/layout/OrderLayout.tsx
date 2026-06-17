@@ -31,6 +31,22 @@ export const OrderDetailLayout = ({
                 )}
             </section>
 
+            <section className="order-detail-client">
+                <h2>Cliente</h2>
+                <div className="order-detail-client-info">
+                    <p>
+                        <span>Nombre:</span> {order.client.firstName}{" "}
+                        {order.client.lastName}
+                    </p>
+                    <p>
+                        <span>Email:</span> {order.client.email}
+                    </p>
+                    <p>
+                        <span>Teléfono:</span> {order.client.phone}
+                    </p>
+                </div>
+            </section>
+
             <section className="order-detail-products">
                 <h2>Productos</h2>
                 <div className="order-detail-products-list">

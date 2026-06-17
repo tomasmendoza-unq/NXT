@@ -21,5 +21,9 @@
         <mapping resource="hibernate/User.hbm.xml"/>
         <mapping resource="hibernate/Admin.hbm.xml"/>
         <mapping resource="hibernate/Client.hbm.xml"/>
+        <mapping resource="hibernate/Checkout.hbm.xml"/>
+        <mapping resource="hibernate/ItemCart.hbm.xml"/>
+        <mapping resource="hibernate/ItemCheckout.hbm.xml"/>
+        <mapping resource="hibernate/Cart.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>
