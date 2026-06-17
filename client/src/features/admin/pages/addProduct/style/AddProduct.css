@@ -12,7 +12,7 @@
 
 .add-product-content {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1.5fr;
     gap: 32px;
     align-items: flex-start;
 }

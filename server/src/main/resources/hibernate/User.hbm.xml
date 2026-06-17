@@ -26,7 +26,7 @@
 
         <property name="temporal" column="temporal"/>
 
-        <property name="expirationDate" column="expirationDate"/>
+        <property name="expirationDate" column="expiration_date"/>
 
     </class>
 

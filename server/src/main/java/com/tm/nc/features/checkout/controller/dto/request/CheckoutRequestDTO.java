@@ -12,9 +12,7 @@ public record CheckoutRequestDTO(
         @NotNull(message = "El cliente es requerido")
         @Valid
         ClientRequestDTO client,
-
         String notes,
-
         @NotNull(message = "Los items son requeridos")
         @NotEmpty(message = "El pedido debe tener al menos un item")
         List<@Valid ItemCheckoutRequestDTO> itemCheckoutRequestDTO

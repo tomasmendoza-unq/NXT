@@ -5,12 +5,10 @@ import com.tm.nc.domain.checkout.model.enums.CheckoutStatus;
 import com.tm.nc.domain.client.model.Client;
 import com.tm.nc.domain.productDetail.model.ProductDetail;
 import com.tm.nc.domain.user.model.User;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +16,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString(exclude = {"items"})
 public class Checkout {
 
     private Long id;
@@ -48,5 +47,13 @@ public class Checkout {
                 .build());
 
         total = total + (quantity * detail.getPrice());
+    }
+
+    public String getStatusLabel() {
+        return status.toString();
+    }
+
+    public String getCreatedAtFormatted() {
+        return createdAt.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
     }
 }

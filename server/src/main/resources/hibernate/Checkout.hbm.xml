@@ -16,6 +16,7 @@
                 name="client"
                 class="com.tm.nc.domain.client.model.Client"
                 column="client_id"
+                lazy="false"
                 not-null="true"/>
 
         <property name="notes" column="notes"/>
