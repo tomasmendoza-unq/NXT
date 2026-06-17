@@ -39,4 +39,13 @@ public class ClientControllerREST {
 
         return ResponseEntity.ok(table);
     }
+
+    @GetMapping("/orders/{idOrder}")
+    public ResponseEntity<OrderResponseSimpleDTO> getOrder(@PathVariable("idOrder") Long idOrder){
+        Checkout order = clientService.findOrderById(idOrder);
+
+        OrderResponseSimpleDTO orderResponse = OrderResponseSimpleDTO.fromModel(order);
+
+        return ResponseEntity.ok(orderResponse);
+    }
 }

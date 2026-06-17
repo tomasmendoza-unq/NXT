@@ -36,7 +36,9 @@ public class ProductRepositoryImpl implements ProductRepository {
 
     @Override
     public Product save(Product product) {
-        List<Color> colors = colorRepository.saveAll(product.getColors());
+        List<Color> colors = product.getColors();
+        colors.forEach(color -> {color.setProduct(product);});
+        colors = colorRepository.saveAll(product.getColors());
         product.setColors(colors);
         return productSQLDAO.save(product);
     }

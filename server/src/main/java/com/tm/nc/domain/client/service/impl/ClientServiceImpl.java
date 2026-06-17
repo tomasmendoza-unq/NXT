@@ -62,7 +62,12 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public Page<Checkout> findAllByStatus(String status, int page, int size, Long idClient) {
         Client client = clientDAOSQL.findById(idClient).orElseThrow(() -> new EntityNotFoundException(Client.class.getName(), idClient));
-        Pageable  pageable = PageRequest.of(page, size);
+        Pageable pageable = PageRequest.of(page, size);
         return status.isBlank() ? checkoutDAOSQL.findAllByClient(client, pageable): checkoutDAOSQL.findAllByStatusAndClient(CheckoutStatus.fromString(status),client, pageable);
+    }
+
+    @Override
+    public Checkout findOrderById(Long idOrder) {
+        return checkoutDAOSQL.findById(idOrder).orElseThrow(() -> new EntityNotFoundException(Checkout.class.getName(), idOrder));
     }
 }

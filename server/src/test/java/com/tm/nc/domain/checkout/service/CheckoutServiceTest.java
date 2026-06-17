@@ -8,6 +8,7 @@ import com.tm.nc.domain.color.model.Color;
 import com.tm.nc.domain.product.model.Product;
 import com.tm.nc.domain.product.service.ProductService;
 import com.tm.nc.domain.productDetail.model.ProductDetail;
+import com.tm.nc.domain.productDetail.service.ProductDetailService;
 import com.tm.nc.features.checkout.controller.dto.request.CheckoutRequestDTO;
 import com.tm.nc.features.checkout.controller.dto.request.ItemCheckoutRequestDTO;
 import com.tm.nc.features.client.controller.dto.ClientRequestDTO;
@@ -56,6 +57,9 @@ public class CheckoutServiceTest {
 
     private List<ItemCheckoutRequestDTO> items;
 
+    @Autowired
+    private ProductDetailService productDetailService;
+
     @BeforeEach
     public void setUp() {
         brand = Brand.builder()
@@ -99,6 +103,12 @@ public class CheckoutServiceTest {
         detailSize39Black = black.getDetails().get(0);
 
         detailSize40Black = black.getDetails().get(1);
+
+        detailSize39Black.setColor(black);
+        detailSize40Black.setColor(black);
+
+        productDetailService.save(detailSize40Black);
+        productDetailService.save(detailSize39Black);
 
         client = new ClientRequestDTO(
                 "Tomás",
