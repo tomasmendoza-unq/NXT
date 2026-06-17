@@ -1,15 +1,13 @@
-package com.tm.nc.domain.client.service;
+package com.tm.nc.domain.client.repository;
 
 
 import com.tm.nc.config.FakeClockConfiguration;
 import com.tm.nc.domain.auth.exception.UserExpiredException;
 import com.tm.nc.domain.auth.service.AuthService;
 import com.tm.nc.domain.client.model.Client;
+import com.tm.nc.domain.client.persistence.repository.ClientRepository;
 import com.tm.nc.features.client.controller.dto.ClientRequestDTO;
-import com.tm.nc.shared.exception.BusinessException;
-import com.tm.nc.shared.service.ResetService;
 import jakarta.transaction.Transactional;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,13 +28,13 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 @Transactional
 @Import(FakeClockConfiguration.class)
 @TestPropertySource(properties = "spring.main.allow-bean-definition-overriding=true")
-class ClientServiceTest {
+class ClientRepositoryTest {
 
     @Autowired
     private FakeClockConfiguration fakeClock;
 
     @Autowired
-    private ClientService clientService;
+    private ClientRepository clientRepository;
 
     @Autowired
     private AuthService authService;
@@ -61,7 +59,7 @@ class ClientServiceTest {
 
     @Test
     public void generateAccountTemporal_loginOk_cuentaNoExpirada() {
-        clientService.generateTemporal(client);
+        clientRepository.generateTemporal(client);
 
         UsernamePasswordAuthenticationToken token =
                 new UsernamePasswordAuthenticationToken("reservoreservo3@gmail.com", "test-password");
@@ -71,7 +69,7 @@ class ClientServiceTest {
 
     @Test
     public void generateAccountTemporal_loginFalla_cuentaExpirada() {
-        clientService.generateTemporal(client);
+        clientRepository.generateTemporal(client);
 
         fakeClock.advanceBy(Duration.ofHours(25));
 

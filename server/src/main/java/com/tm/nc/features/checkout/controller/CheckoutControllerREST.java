@@ -9,8 +9,6 @@ import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/checkout")
 @Tag(name = "Checkout", description = "Operaciones relacionadas con la gestión de pedidos")
@@ -27,7 +25,7 @@ public class CheckoutControllerREST {
     public ResponseEntity<CheckoutResponseDTO> generateCheckout(
             @RequestHeader("Idempotency-Key") String idempotencyKey,
             @RequestBody @Valid CheckoutRequestDTO checkoutRequestDTO) {
-        Checkout checkout = checkoutService.generateCheckout(checkoutRequestDTO.toModel(), checkoutRequestDTO.itemCheckoutRequestDTO(), idempotencyKey);
+        Checkout checkout = checkoutService.generateCheckout(checkoutRequestDTO.toModel(), checkoutRequestDTO.itemCheckoutRequestDTO(), idempotencyKey, null);
 
         return  ResponseEntity.ok(CheckoutResponseDTO.fromModel(checkout));
     }
