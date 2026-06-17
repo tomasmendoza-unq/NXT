@@ -8,17 +8,22 @@ import { ProductSizeOptions } from "../../pages/productDetail/components/product
 
 interface ProductLayoutProps {
     product: Product;
+    selectedColorId: number; // Cambiado de number | undefined a number
+    setSelectedColorId: React.Dispatch<React.SetStateAction<number>>;
+    selectedDetailId: number; // Cambiado de number | undefined a number
+    setSelectedDetailId: React.Dispatch<React.SetStateAction<number>>;
     children?: React.ReactNode;
 }
 
-export const ProductLayout = ({ product, children }: ProductLayoutProps) => {
+export const ProductLayout = ({
+    product,
+    selectedColorId,
+    setSelectedColorId,
+    selectedDetailId,
+    setSelectedDetailId,
+    children,
+}: ProductLayoutProps) => {
     const [imageSelected, setImageSelected] = useState<string | null>(null);
-    const [selectedColorId, setSelectedColorId] = useState(
-        () => product.colors[0]?.id,
-    );
-    const [selectedDetailId, setSelectedDetailId] = useState(
-        () => product.colors[0]?.details[0]?.id,
-    );
 
     return (
         <section className="product-content">

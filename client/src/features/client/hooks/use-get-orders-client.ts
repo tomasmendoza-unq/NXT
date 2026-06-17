@@ -5,17 +5,17 @@ import { GetOrdersService } from "../service/post-orders.service";
 
 export const useGetOrdersClient = ({ status }: { status: string }) => {
     const [orders, setOrders] = useState<Table<Order>>(emptyTable());
-    const [loading, setLoading] = useState<boolean>(false);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     const fetch = async () => {
-        setLoading(true);
+        setIsLoading(true);
 
         try {
             const response = await GetOrdersService({ status });
             setOrders(response);
         } finally {
-            setLoading(false);
+            setIsLoading(false);
         }
     };
-    return { orders, loading, fetch };
+    return { orders, isLoading, fetch };
 };
