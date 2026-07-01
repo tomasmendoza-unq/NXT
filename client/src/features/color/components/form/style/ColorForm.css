@@ -1,0 +1,11 @@
+.color-form,
+.color-form-selector {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.color-form-selector h3 {
+    margin: 0;
+    font-size: 1rem;
+}
