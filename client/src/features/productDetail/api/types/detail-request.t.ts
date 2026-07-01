@@ -7,6 +7,5 @@ export interface DetailRequestDTO {
 export const defaultDetailRequestDTO: DetailRequestDTO = {
     size: 0,
     price: 0,
-
     quantity: 0,
 };

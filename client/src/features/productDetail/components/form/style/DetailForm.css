@@ -1,0 +1,31 @@
+.detail-form,
+.detail-form-color,
+.detail-form-size-selector,
+.detail-form-price-toggle {
+    display: flex;
+    flex-direction: column;
+}
+
+.detail-form {
+    gap: 1.5rem;
+}
+
+.detail-form-color {
+    gap: 1rem;
+}
+
+.detail-form-color h3,
+.detail-form-size-selector h4 {
+    margin: 0;
+}
+
+.detail-form-size-selector,
+.detail-form-price-toggle {
+    gap: 0.75rem;
+}
+
+.detail-form-price-toggle label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}

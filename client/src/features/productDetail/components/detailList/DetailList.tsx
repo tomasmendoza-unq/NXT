@@ -1,12 +1,12 @@
 import "./style/SizeList.css";
 
-interface SizeOptionListProps<T extends { id: number; size: string }> {
+interface SizeOptionListProps<T extends { id: number; size: number | string }> {
     sizes: T[];
     selectedSizeId: number;
     onSelect: (size: T) => void;
 }
 
-export const SizeOptionList = <T extends { id: number; size: string }>({
+export const SizeOptionList = <T extends { id: number; size: number | string }>({
     sizes,
     selectedSizeId,
     onSelect,
