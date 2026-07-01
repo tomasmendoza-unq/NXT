@@ -1,4 +1,6 @@
 .detail-form,
+.detail-form-selectors,
+.detail-form-color-selector,
 .detail-form-color,
 .detail-form-size-selector,
 .detail-form-price-toggle {
@@ -7,21 +9,48 @@
 }
 
 .detail-form {
-    gap: 1.5rem;
-}
-
-.detail-form-color {
     gap: 1rem;
 }
 
+.detail-form-color {
+    gap: 0.75rem;
+}
+
 .detail-form-color h3,
+.detail-form-color-selector h3,
 .detail-form-size-selector h4 {
     margin: 0;
 }
 
+.detail-form-selectors {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 1rem;
+    max-width: 100%;
+}
+
+.detail-form-color-selector,
 .detail-form-size-selector,
 .detail-form-price-toggle {
     gap: 0.75rem;
+}
+
+.detail-form-color-selector,
+.detail-form-size-selector {
+    min-width: 0;
+    flex: 1;
+}
+
+.detail-form-color-selector .product-color-option-list,
+.detail-form-size-selector .size-option-list {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    max-width: 100%;
+    padding: 4px;
+}
+
+.detail-form-size-selector .size-option {
+    flex: 0 0 auto;
 }
 
 .detail-form-price-toggle label {
