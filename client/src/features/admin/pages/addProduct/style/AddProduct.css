@@ -1,33 +1,128 @@
 .add-product-container {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 32px;
+    gap: 16px;
     align-items: flex-start;
-    padding: 24px;
+    padding: 16px 24px;
 }
 
 .add-product-container > h1 {
     grid-column: 1 / -1;
+    margin: 0;
+    font-size: 1.5rem;
 }
 
 .add-product-content {
     display: grid;
-    grid-template-columns: 1fr 1.5fr;
-    gap: 32px;
+    grid-template-columns: minmax(320px, 460px) minmax(360px, 1fr);
+    gap: 24px;
     align-items: flex-start;
 }
 
 .add-product-container form {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.add-product-container .stager {
+    margin-bottom: 8px;
+}
+
+.add-product-container .form-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.add-product-container .form-list-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.add-product-container .form-field {
+    gap: 4px;
+}
+
+.add-product-container .form-field input:not([type="checkbox"]),
+.add-product-container .form-field textarea {
+    padding: 8px 10px;
+}
+
+.add-product-preview-column {
+    position: sticky;
+    top: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-self: flex-start;
+}
+
+.preview-product {
+    padding: 10px;
+    border: var(--border-size) solid var(--border);
+    border-radius: var(--border-radius);
+}
+
+.preview-product .product-content {
+    grid-template-columns: minmax(150px, 0.72fr) minmax(160px, 1fr);
+    gap: 14px;
+    align-items: flex-start;
+}
+
+.preview-product .product-content-info,
+.preview-product .product-detail-options {
+    gap: 8px;
+}
+
+.preview-product .image-container img {
+    max-height: 190px;
+}
+
+.preview-product .product-info h1 {
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+.preview-product .product-info h2 {
+    font-size: 0.9rem;
+}
+
+.preview-product .product-color-options,
+.preview-product .product-size-options {
+    gap: 0.5rem;
+}
+
+.preview-product .product-color-options h3,
+.preview-product .product-size-options h3 {
+    font-size: 0.95rem;
+}
+
+.preview-product .product-color-option {
+    width: 30px;
+    height: 30px;
+}
+
+.preview-product .size-option {
+    min-width: 38px;
+    padding: 0.4rem 0.6rem;
 }
 
 .submit {
+    align-self: flex-start;
     background-color: var(--button-primary-bg);
     color: var(--button-primary-text);
     padding: 0.5rem 1rem;
     border: none;
     border-radius: var(--border-radius);
     cursor: pointer;
+}
+
+.add-product-submit {
+    width: 100%;
+    justify-content: center;
 }
 
 .submit:hover {
@@ -41,5 +136,9 @@
 
     .add-product-content {
         grid-template-columns: 1fr;
+    }
+
+    .add-product-preview-column {
+        position: static;
     }
 }

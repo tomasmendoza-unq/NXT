@@ -10,10 +10,12 @@ type Props = {
 
 export const ProductForm = ({ data, onChange }: Props) => {
     const handleChange = (
+        input: (typeof productBasicInputs)[number],
         e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
     ) => {
         const { name, value } = e.target;
-        onChange({ ...data, [name]: value });
+        const nextValue = input.type === "number" ? Number(value) : value;
+        onChange({ ...data, [name]: nextValue });
     };
 
     return (
@@ -23,7 +25,7 @@ export const ProductForm = ({ data, onChange }: Props) => {
                     key={input.name}
                     input={input}
                     formData={data}
-                    onChange={handleChange}
+                    onChange={(e) => handleChange(input, e)}
                 />
             ))}
         </div>

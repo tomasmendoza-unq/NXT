@@ -4,6 +4,7 @@ import "./style/FormField.css";
 type Props<T extends object> = {
     input: InputConfig;
     formData: T;
+    fieldId?: string;
     onChange: (
         e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
     ) => void;
@@ -12,6 +13,7 @@ type Props<T extends object> = {
 export const FormField = <T extends object>({
     input,
     formData,
+    fieldId = input.name,
     onChange,
 }: Props<T>) => {
     const value = (formData as Record<string, unknown>)[input.name];
@@ -20,13 +22,13 @@ export const FormField = <T extends object>({
         return (
             <div className="checkbox-field">
                 <input
-                    id={input.name}
+                    id={fieldId}
                     name={input.name}
                     type="checkbox"
                     checked={Boolean(value)}
                     onChange={onChange}
                 />
-                <label htmlFor={input.name}>{input.label}</label>
+                <label htmlFor={fieldId}>{input.label}</label>
             </div>
         );
     }
@@ -34,9 +36,9 @@ export const FormField = <T extends object>({
     if (input.type === "textarea") {
         return (
             <div className="form-field">
-                <label htmlFor={input.name}>{input.label}</label>
+                <label htmlFor={fieldId}>{input.label}</label>
                 <textarea
-                    id={input.name}
+                    id={fieldId}
                     name={input.name}
                     value={value as string}
                     onChange={onChange}
@@ -47,9 +49,9 @@ export const FormField = <T extends object>({
 
     return (
         <div className="form-field">
-            <label htmlFor={input.name}>{input.label}</label>
+            <label htmlFor={fieldId}>{input.label}</label>
             <input
-                id={input.name}
+                id={fieldId}
                 name={input.name}
                 required
                 type={input.type}

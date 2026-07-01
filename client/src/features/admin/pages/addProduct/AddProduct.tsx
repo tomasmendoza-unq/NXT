@@ -29,7 +29,10 @@ export const AddProduct = () => {
             <h1>Crear Producto</h1>
 
             <div className="add-product-content">
-                <form onSubmit={handleSubmit}>
+                <form
+                    id="add-product-form"
+                    onSubmit={handleSubmit}
+                >
                     <Stager
                         steps={steps}
                         currentStep={current}
@@ -37,19 +40,24 @@ export const AddProduct = () => {
                     />
 
                     {steps[current].component}
+                </form>
+
+                <aside className="add-product-preview-column">
+                    <PreviewProduct product={productData} />
 
                     {current === steps.length - 1 && (
                         <button
                             type="submit"
-                            className="submit"
+                            form="add-product-form"
+                            className="submit add-product-submit"
                             disabled={loading}
                         >
-                            {loading ? "Creando producto..." : "Crear producto"}
+                            {loading
+                                ? "Creando producto..."
+                                : "Crear producto"}
                         </button>
                     )}
-                </form>
-
-                <PreviewProduct product={productData} />
+                </aside>
             </div>
         </section>
     );
