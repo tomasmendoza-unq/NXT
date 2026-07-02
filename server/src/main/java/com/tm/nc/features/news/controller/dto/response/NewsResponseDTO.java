@@ -10,6 +10,7 @@ public record NewsResponseDTO(
 ) {
 
     public static NewsResponseDTO fromModel(News news) {
+        return  new NewsResponseDTO(news.getId(), news.getImage(), news.getTitle(), news.getLink());
     }
 
 }

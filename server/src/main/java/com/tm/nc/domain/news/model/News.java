@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -15,4 +17,7 @@ public class News {
     private String image;
     private String title;
     private String link;
+
+    @Builder.Default
+    private LocalDateTime createdAt = LocalDateTime.now();
 }

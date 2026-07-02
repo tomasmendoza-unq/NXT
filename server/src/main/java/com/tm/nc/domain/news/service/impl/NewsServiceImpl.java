@@ -20,7 +20,7 @@ public class NewsServiceImpl implements NewsService {
     }
 
     @Override
-    public Page<News> findAll(int size, int page) {
+    public Page<News> findAll(int page, int size) {
         return newsSQLDAO.findAll(PageRequest.of(page, size));
     }
 
