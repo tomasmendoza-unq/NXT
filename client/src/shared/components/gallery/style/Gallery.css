@@ -1,4 +1,4 @@
-.carrusel {
+.gallery {
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -6,10 +6,7 @@
     flex-shrink: 0;
 }
 
-.carrusel-image {
-    width: 80px;
-    height: 80px;
-    object-fit: cover;
+.gallery-item {
     cursor: pointer;
     border-radius: 8px;
     border: 2px solid transparent;
@@ -19,19 +16,26 @@
         border-color 0.3s ease;
 }
 
-.carrusel-image:hover {
+.gallery-item:hover {
     border-color: var(--border);
     transform: scale(1.05);
 }
 
+.gallery-image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
 @media (max-width: 768px) {
-    .carrusel {
+    .gallery {
         flex-direction: row;
         width: 100%;
         overflow-x: auto;
     }
 
-    .carrusel-image {
+    .gallery-image {
         width: 60px;
         height: 60px;
     }
