@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import type { Product } from "../../../shared/types/Product";
 import { ApiError } from "../../../core";
 import { getAllProducts } from "../services/get-all-products.service";
@@ -17,7 +17,7 @@ const useGetAllProducts = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<ApiError | null>(null);
 
-    const fetch = async (page: number = 0, size: number = 5) => {
+    const fetch = useCallback(async (page: number = 0, size: number = 5) => {
         try {
             setIsLoading(true);
             setError(null);
@@ -34,7 +34,7 @@ const useGetAllProducts = () => {
         } finally {
             setIsLoading(false);
         }
-    };
+    }, []);
 
     return {
         products,
