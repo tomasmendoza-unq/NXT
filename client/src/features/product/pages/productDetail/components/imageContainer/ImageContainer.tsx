@@ -1,7 +1,7 @@
 import "./style/ImagenContainer.css";
 import type { Product } from "../../../../../../shared/types/Product";
 import { useSelectedVariant } from "../../../../hooks/use-select-variant";
-import { Carrusel } from "../../../../../../shared/components/carrusel/Carrusel";
+import { Gallery } from "../../../../../../shared/components/gallery/Gallery";
 
 interface ImagenContainerProps {
     product: Product;
@@ -33,9 +33,16 @@ export const ImagenContainer = ({
     return (
         <section className="image-container">
             {gallery.length > 1 && (
-                <Carrusel
-                    images={gallery}
-                    onImageSelect={setImageSelected}
+                <Gallery
+                    items={gallery}
+                    renderItem={(image) => (
+                        <img
+                            className="gallery-image"
+                            src={image}
+                            alt="thumbnail"
+                        />
+                    )}
+                    onItemSelect={setImageSelected}
                 />
             )}
 

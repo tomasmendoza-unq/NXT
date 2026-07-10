@@ -21,16 +21,10 @@ export const links: NavLink[] = [
     },
     {
         label: "Productos",
-        path: "/products",
+        path: "/productos",
         icon: LocalOfferIcon,
         roles: ["ROLE_CLIENT", "guest"],
     },
-    // {
-    //     label: "Marcas",
-    //     path: "/brands",
-    //     icon: LocalOfferIcon,
-    //     roles: ["ROLE_CLIENT", "guest"],
-    // },
     {
         label: "Carrito",
         path: "/cart",

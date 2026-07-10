@@ -8,9 +8,9 @@ import { ProductSizeOptions } from "../../pages/productDetail/components/product
 
 interface ProductLayoutProps {
     product: Product;
-    selectedColorId: number; // Cambiado de number | undefined a number
+    selectedColorId: number;
     setSelectedColorId: React.Dispatch<React.SetStateAction<number>>;
-    selectedDetailId: number; // Cambiado de number | undefined a number
+    selectedDetailId: number;
     setSelectedDetailId: React.Dispatch<React.SetStateAction<number>>;
     children?: React.ReactNode;
 }

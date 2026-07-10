@@ -1,0 +1,32 @@
+.news-card {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.news-card-image {
+    width: 100%;
+    aspect-ratio: 16 / 5.5;
+    max-height: 470px;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    border-radius: var(--border-radius);
+}
+
+.news-card-title {
+    margin: 8px 0 0;
+    padding: 12px 14px;
+}
+
+@media (max-width: 420px) {
+    .news-card-image {
+        aspect-ratio: 16 / 8.5;
+        max-height: none;
+        object-position: center top;
+    }
+
+    .news-card-title {
+        padding: 10px 8px;
+    }
+}

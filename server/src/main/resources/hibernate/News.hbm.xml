@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+		"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+	<class name="com.tm.nc.domain.news.model.News" table="news">
+
+		<id name="id" column="id">
+			<generator class="sequence"/>
+		</id>
+
+		<property name="image" column="image" not-null="true"/>
+		<property name="title" column="title" not-null="true"/>
+		<property name="link" column="link" not-null="true"/>
+        <property name="createdAt" column="createdAt" not-null="true"/>
+
+	</class>
+
+</hibernate-mapping>

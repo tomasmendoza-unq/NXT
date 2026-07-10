@@ -4,6 +4,8 @@ import com.tm.nc.config.data.DataSeeder;
 import com.tm.nc.domain.brand.model.Brand;
 import com.tm.nc.domain.brand.service.BrandService;
 import com.tm.nc.domain.color.model.Color;
+import com.tm.nc.domain.news.model.News;
+import com.tm.nc.domain.news.service.NewsService;
 import com.tm.nc.domain.product.model.Product;
 import com.tm.nc.domain.productDetail.model.ProductDetail;
 import com.tm.nc.domain.product.service.ProductService;
@@ -32,10 +34,13 @@ public class DataSeederImpl implements DataSeeder {
 
     private final BrandService brandService;
 
-    public DataSeederImpl(ProductService productService, UserService userService, BrandService brandService) {
+    private final NewsService newsService;
+
+    public DataSeederImpl(ProductService productService, UserService userService, BrandService brandService, NewsService newsService) {
         this.productService = productService;
         this.userService = userService;
         this.brandService = brandService;
+        this.newsService = newsService;
     }
 
     @Override
@@ -111,6 +116,7 @@ public class DataSeederImpl implements DataSeeder {
         productService.save(product);
 
         saveAdmin();
+        createNews();
     }
 
     public void saveAdmin(){
@@ -134,5 +140,17 @@ public class DataSeederImpl implements DataSeeder {
                     .build());
         }
         return details;
+    }
+
+    void createNews() {
+        List<News> news = new ArrayList<>(List.of(
+                News.builder()
+                        .link("https://www.google.com")
+                        .title("Google")
+                        .image("https://res.cloudinary.com/dvkvlpq07/image/upload/v1782951205/Screenshot_2026-07-01_211012_lukvkq.png")
+                        .build()
+        ));
+
+        news.forEach(newsService::save);
     }
 }
