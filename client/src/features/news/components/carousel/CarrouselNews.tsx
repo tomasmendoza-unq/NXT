@@ -6,6 +6,7 @@ export const CarouselNews = ({ news }: { news: News[] }) => {
     return (
         <Carousel
             items={news}
+            size="full"
             renderItem={(newsItem) => <NewsCard news={newsItem} />}
         />
     );

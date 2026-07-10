@@ -7,6 +7,7 @@ export const ProductCarousel = ({ products }: { products: Product[] }) => {
     return (
         <Carousel
             items={products}
+            size="content"
             renderItem={(product) => <ProductCard {...product} />}
         />
     );
